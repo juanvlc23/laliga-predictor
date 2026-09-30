@@ -78,6 +78,7 @@ h3{font-size:15px;margin:0 0 8px}
 .boleto .cov{font-size:12px;color:var(--muted);width:48px}
 .warn{font-size:13px;color:var(--c2);margin-top:8px}
 .src{font-size:11px;color:var(--muted)}
+select.preset{font:inherit;font-size:12px;margin-top:4px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);max-width:100%}
 textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
 </style>
 </head>
@@ -298,15 +299,52 @@ function modelPredict(home, away){
   return {prob, pleno};
 }
 
-function buildItem(home, away, rawH, rawA){
-  const f = PRED.partidos.find(p => p.local === home && p.visitante === away);
-  if (f) return {...f, fuente: f.casas ? 'casas' : 'modelo'};
-  if (home && away && MODELO?.equipos[home] && MODELO?.equipos[away]){
-    const r = modelPredict(home, away);
-    return {local: home, visitante: away, prob: r.prob, pleno: r.pleno, fuente: 'modelo'};
+// Probabilidades puestas a mano para partidos sin datos (se guardan en este dispositivo)
+const PRESETS = [
+  ['', 'Probabilidades medias', null],
+  ['l2', 'Local muy favorito', {'1':0.72,'X':0.18,'2':0.10}],
+  ['l1', 'Local favorito', {'1':0.55,'X':0.26,'2':0.19}],
+  ['eq', 'Igualado', {'1':0.37,'X':0.30,'2':0.33}],
+  ['v1', 'Visitante favorito', {'1':0.22,'X':0.27,'2':0.51}],
+  ['v2', 'Visitante muy favorito', {'1':0.11,'X':0.19,'2':0.70}],
+];
+function getOverrides(){ try { return JSON.parse(localStorage.getItem('ajustesBoleto') || '{}'); } catch (e) { return {}; } }
+function setOverride(key, code){
+  const o = getOverrides();
+  if (code) o[key] = code; else delete o[key];
+  try { localStorage.setItem('ajustesBoleto', JSON.stringify(o)); } catch (e) {}
+}
+// Pleno aproximado a partir de unas probabilidades 1X2 (Poisson con los goles que mejor encajan)
+function plenoFromProbs(prob){
+  let best = null, be = 1e9;
+  for (let lh = 0.2; lh <= 3.6; lh += 0.05) for (let la = 0.2; la <= 3.6; la += 0.05){
+    const ph = poissonPmf(lh, 10), pa = poissonPmf(la, 10);
+    let p1 = 0, p2 = 0;
+    for (let i=0;i<=10;i++) for (let j=0;j<=10;j++){ const v = ph[i]*pa[j]; if (i>j) p1 += v; else if (j>i) p2 += v; }
+    const e = (p1-prob['1'])**2 + (p2-prob['2'])**2;
+    if (e < be){ be = e; best = [ph, pa]; }
   }
+  const pleno = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  let sum = 0;
+  best[0].forEach((x,i) => best[1].forEach((y,j) => { pleno[Math.min(i,3)][Math.min(j,3)] += x*y; sum += x*y; }));
+  return pleno.map(r => r.map(v => v/sum));
+}
+function buildItem(home, away, rawH, rawA, motivo){
+  if (!motivo){
+    const f = PRED.partidos.find(p => p.local === home && p.visitante === away);
+    if (f) return {...f, fuente: f.casas ? 'casas' : 'modelo'};
+    if (home && away && MODELO?.equipos[home] && MODELO?.equipos[away]){
+      const r = modelPredict(home, away);
+      return {local: home, visitante: away, prob: r.prob, pleno: r.pleno, fuente: 'modelo'};
+    }
+  }
+  const key = `${rawH}|${rawA}`;
+  const code = getOverrides()[key] || '';
+  const preset = PRESETS.find(x => x[0] === code);
   const rm = MODELO?.reparto_medio || {'1':0.45,'X':0.27,'2':0.28};
-  return {local: home || rawH, visitante: away || rawA, prob: {...rm}, pleno: null, fuente: 'sin datos'};
+  const prob = preset && preset[2] ? {...preset[2]} : {...rm};
+  return {local: rawH, visitante: rawA, prob, pleno: code ? plenoFromProbs(prob) : null,
+          fuente: 'sin datos', motivo: motivo || 'equipo no reconocido', key, preset: code};
 }
 
 function parseBoleto(text){
@@ -317,9 +355,19 @@ function parseBoleto(text){
     const parts = l.split(/\s+(?:-|–|—|vs\.?|v)\s+|\s*[-–—]\s*/i).map(s => s.trim()).filter(Boolean);
     if (parts.length < 2){ problems.push(`No entiendo la línea «${line}»`); return; }
     const [rh, ra] = [parts[0], parts.slice(1).join(' ')];
-    const h = matchTeam(rh, teams), a = matchTeam(ra, teams);
-    if (!h || !a) problems.push(`No reconozco ${!h ? '«'+rh+'»' : ''}${!h && !a ? ' ni ' : ''}${!a ? '«'+ra+'»' : ''} (se usarán probabilidades medias)`);
-    out.push(buildItem(h, a, rh, ra));
+    const fem = /\(\s*f\s*\)/i.test(rh) || /\(\s*f\s*\)/i.test(ra);
+    const clean = x => x.replace(/\(\s*[mf]\s*\)/ig, '').trim();
+    if (fem){
+      out.push(buildItem(null, null, clean(rh), clean(ra), 'fútbol femenino, el modelo no lo cubre'));
+      return;
+    }
+    const h = matchTeam(clean(rh), teams), a = matchTeam(clean(ra), teams);
+    if (!h || !a){
+      problems.push(`No reconozco ${!h ? '«'+clean(rh)+'»' : ''}${!h && !a ? ' ni ' : ''}${!a ? '«'+clean(ra)+'»' : ''}`);
+      out.push(buildItem(null, null, clean(rh), clean(ra), 'fuera de Primera y Segunda'));
+      return;
+    }
+    out.push(buildItem(h, a, clean(rh), clean(ra)));
   });
   return {items: out.slice(0, 15), problems, extra: out.length > 15};
 }
@@ -341,6 +389,14 @@ function strictTeam(line, teams){
 function extractFromPage(text){
   const teams = teamIndex();
   const lines = text.split(/\r?\n/).map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  // 0) formato de la web de juegos de Loterías: «1. Albacete (M) - Eibar (M)»
+  const numbered = {};
+  for (const line of lines){
+    const m = line.match(/^(\d{1,2})\.\s*(.+?)\s+[-–—]\s+(.+)$/);
+    if (m && +m[1] >= 1 && +m[1] <= 15 && !numbered[+m[1]]) numbered[+m[1]] = `${+m[1]}. ${m[2]} - ${m[3]}`;
+  }
+  const nums = Object.keys(numbered).map(Number).sort((a,b) => a-b);
+  if (nums.length >= 14) return {lines: nums.map(n => numbered[n])};
   const found = [];
   const add = (h, a) => { if (h && a && h !== a && !found.some(f => f[0] === h && f[1] === a)) found.push([h, a]); };
   // 1) líneas con los dos equipos separados por un guion: «Real Madrid - Getafe»
@@ -356,9 +412,9 @@ function extractFromPage(text){
     for (let i = 0; i + 1 < seq.length; i += 2){
       if (!alt.some(f => f[0] === seq[i] && f[1] === seq[i+1])) alt.push([seq[i], seq[i+1]]);
     }
-    if (alt.length > found.length) return alt.slice(0, 15);
+    if (alt.length > found.length) return {lines: alt.slice(0, 15).map(([h,a],i) => `${i+1}. ${h} - ${a}`)};
   }
-  return found.slice(0, 15);
+  return {lines: found.slice(0, 15).map(([h,a],i) => `${i+1}. ${h} - ${a}`)};
 }
 
 function qInit(){
@@ -394,17 +450,17 @@ function qInit(){
     loadBoleto(text, false);
   };
   document.getElementById('qFind').onclick = () => {
-    const pairs = extractFromPage(document.getElementById('qPage').value);
+    const found = extractFromPage(document.getElementById('qPage').value).lines;
     const box = document.getElementById('qPageMsg');
-    if (!pairs.length){
+    if (!found.length){
       box.innerHTML = '<div class="warn">No he encontrado partidos de Primera o Segunda en ese texto. Prueba a copiar otra vez la página o usa la opción A.</div>';
       return;
     }
-    const text = pairs.map(([h, a], i) => `${i+1}. ${h} - ${a}`).join('\n');
+    const text = found.join('\n');
     document.getElementById('qPaste').value = text;
     try { localStorage.setItem('boleto', text); } catch (e) {}
     loadBoleto(text, false);
-    box.innerHTML = `<p class="explain" style="color:var(--accent)">Encontrados ${pairs.length} partidos. Los he pasado al cuadro de la opción A: revisa que el orden coincide con el boleto${pairs.length < 15 ? ' y añade a mano los que falten (por ejemplo, partidos de fuera de Primera y Segunda)' : ''}.</p>`;
+    box.innerHTML = `<p class="explain" style="color:var(--accent)">Encontrados ${found.length} partidos. Los he pasado al cuadro de la opción A: revisa que el orden coincide con el boleto${found.length < 15 ? ' y añade a mano los que falten' : ''}.</p>`;
   };
   let saved = null;
   try { saved = localStorage.getItem('boleto'); } catch (e) {}
@@ -506,21 +562,22 @@ function qRender(){
 
   const rows = matches.map((p,i) => `<tr>
       <td class="n">${i+1}</td>
-      <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : 'sin datos: probabilidades medias'}</div></td>
+      <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : `sin datos (${esc(p.motivo)})`}</div>${p.fuente === 'sin datos' ? `<select class="preset" data-i="${i}">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : ''}</td>
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
   let pleno = '';
   if (Q.items.length >= 15){
     const p = Q.items[14];
+    const sel15 = p.fuente === 'sin datos' ? `<div class="src">sin datos (${esc(p.motivo)})</div><select class="preset" data-i="14">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : '';
     if (!p.pleno){
-      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td><td colspan="4" class="m" style="color:var(--muted)">Sin datos para el Pleno</td></tr>`;
+      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}${sel15}</td><td colspan="4" class="m" style="color:var(--muted)">Sin datos para el Pleno: elige un favorito en su desplegable</td></tr>`;
     } else {
       const cats = ['0','1','2','M'];
       const top = [];
       p.pleno.forEach((r,a) => r.forEach((v,b) => top.push([cats[a]+' – '+cats[b], v])));
       top.sort((a,b) => b[1]-a[1]);
-      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
+      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}${sel15}</td>
         <td colspan="3" style="text-align:center"><b>${top[0][0]}</b></td><td class="cov">${pct(top[0][1])}</td></tr>
         <tr><td></td><td colspan="5" class="m" style="color:var(--muted);font-size:12px">Otras opciones del Pleno: ${top.slice(1,4).map(([k,v]) => `${k} (${pct(v)})`).join(' · ')}</td></tr>`;
     }
@@ -540,6 +597,14 @@ function qRender(){
       <div class="card stat"><div class="v">${atLeast(14) >= 0.001 ? pct1(atLeast(14)) : '1 entre ' + Math.round(1/atLeast(14)).toLocaleString('es-ES')}</div><div class="l">Probabilidad de acertar los 14</div></div>
     </div>
     <p class="explain">Ojo: acertar 10 no garantiza cobrar algo que merezca la pena; el premio depende de cuánta gente acierte. Cuanto más previsible es la jornada, más acertantes y menos se paga.</p>`;
+  res.querySelectorAll('select.preset').forEach(sel => sel.onchange = () => {
+    const it = Q.items[+sel.dataset.i];
+    setOverride(it.key, sel.value);
+    Q.items[+sel.dataset.i] = buildItem(null, null, it.local, it.visitante, it.motivo);
+    qRender();
+  });
+  const sinDatos = Q.items.filter(x => x.fuente === 'sin datos').length;
+  if (sinDatos) res.insertAdjacentHTML('afterbegin', `<div class="warn" style="margin-bottom:8px">${sinDatos} partido${sinDatos>1?'s':''} del boleto no ${sinDatos>1?'están':'está'} en Primera o Segunda masculina. Elige en su desplegable quién crees que es favorito para afinar la columna.</div>`);
 }
 
 /* ---------------- Acierto ---------------- */
