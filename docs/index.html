@@ -9,11 +9,11 @@
 <style>
 :root{
   --bg:#f6f5f1; --card:#ffffff; --ink:#1b1b1f; --muted:#6b6b76; --line:#e6e3dc;
-  --c1:#1f6f5c; --cx:#b08a2e; --c2:#b3452f; --accent:#1f6f5c; --soft:#eef4f1;
+  --c1:#1f6f5c; --cx:#b08a2e; --c2:#b3452f; --accent:#1f6f5c; --soft:#eef4f1; --sel:#fff7e6;
 }
 @media (prefers-color-scheme: dark){
   :root{ --bg:#121315; --card:#1b1c1f; --ink:#ecebe7; --muted:#9a9aa3; --line:#2b2c30;
-    --c1:#4fb89c; --cx:#d8b25a; --c2:#e07a62; --accent:#4fb89c; --soft:#1d2a26; }
+    --c1:#4fb89c; --cx:#d8b25a; --c2:#e07a62; --accent:#4fb89c; --soft:#1d2a26; --sel:#2a2517; }
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
@@ -21,8 +21,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-u
 header h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
 header p{margin:0;color:var(--muted);font-size:13px}
 nav{display:flex;gap:6px;margin:20px 0 16px;flex-wrap:wrap}
-nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
-nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav button,.seg button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+nav button.on,.seg button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:flex;gap:6px;margin-bottom:12px}
+.seg button{padding:5px 12px;font-size:13px}
 section{display:none} section.on{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
 .match-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12px;color:var(--muted)}
@@ -34,7 +36,7 @@ section{display:none} section.on{display:block}
 .b1{background:var(--c1)} .bx{background:var(--cx)} .b2{background:var(--c2)}
 .row{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:13px;color:var(--muted)}
 .row b{color:var(--ink);font-weight:600}
-.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
 .alta{background:var(--soft);color:var(--accent)}
 .media{background:color-mix(in srgb,var(--cx) 15%,transparent);color:var(--cx)}
 .baja{background:color-mix(in srgb,var(--muted) 15%,transparent);color:var(--muted)}
@@ -48,10 +50,33 @@ th{color:var(--muted);font-weight:500;font-size:12px}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
 .stat .v{font-size:26px;font-weight:700;letter-spacing:-.02em}
 .stat .l{font-size:12px;color:var(--muted)}
-h2{font-size:17px;margin:18px 0 8px}
-.explain{font-size:13px;color:var(--muted)}
+h2{font-size:17px;margin:22px 0 8px}
+h3{font-size:15px;margin:0 0 8px}
+.explain{font-size:13px;color:var(--muted);margin:0 0 10px}
 .empty{color:var(--muted);text-align:center;padding:30px 10px}
 .tablewrap{overflow-x:auto}
+/* Quiniela */
+.pick-list{display:flex;flex-direction:column;gap:6px}
+.pick-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);cursor:pointer;font-size:14px;user-select:none}
+.pick-item.sel{background:var(--sel);border-color:var(--cx)}
+.pick-item .num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:1px solid var(--line);flex:none;color:var(--muted)}
+.pick-item.sel .num{background:var(--cx);border-color:var(--cx);color:#fff}
+.pick-item .div{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;align-items:end}
+.controls label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.controls select,.controls input{font:inherit;font-size:15px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:8px;font:inherit;font-size:13px;cursor:pointer}
+.cost{font-size:14px;margin-top:10px}
+.cost b{font-size:18px}
+.boleto td{padding:7px 4px}
+.boleto .sig{width:34px;text-align:center}
+.boleto .sig span{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:6px;color:var(--muted);font-weight:600;font-size:13px}
+.boleto .sig span.on{background:var(--ink);color:var(--bg)}
+.boleto .n{width:28px;color:var(--muted);text-align:left}
+.boleto .m{text-align:left;font-size:13px}
+.boleto .cov{font-size:12px;color:var(--muted);width:48px}
+.warn{font-size:13px;color:var(--c2);margin-top:8px}
 </style>
 </head>
 <body>
@@ -61,42 +86,86 @@ h2{font-size:17px;margin:18px 0 8px}
     <p id="meta">Cargando…</p>
   </header>
   <nav>
-    <button data-s="jornada" class="on">Próximos partidos</button>
+    <button data-s="partidos" class="on">Próximos partidos</button>
+    <button data-s="quiniela">Quiniela</button>
     <button data-s="acierto">¿Cuánto acierta?</button>
-    <button data-s="equipos">Fuerza de los equipos</button>
+    <button data-s="equipos">Equipos</button>
   </nav>
 
-  <section id="jornada" class="on">
+  <section id="partidos" class="on">
+    <div class="seg" id="segPartidos"></div>
     <div class="filters">
       <label><input type="checkbox" id="soloAlta"> Solo confianza alta (≥70%)</label>
     </div>
-    <div id="partidos"></div>
+    <div id="listaPartidos"></div>
+  </section>
+
+  <section id="quiniela">
+    <div class="card">
+      <h3>1. Elige los 15 partidos del boleto</h3>
+      <p class="explain">Toca los partidos en el mismo orden que en el boleto oficial. Los 14 primeros son las casillas 1–14 y el 15.º es el Pleno al 15.</p>
+      <div class="btns">
+        <button class="btn" id="qAuto">Autocompletar</button>
+        <button class="btn" id="qClear">Vaciar</button>
+      </div>
+      <div class="pick-list" id="qList"></div>
+    </div>
+    <div class="card">
+      <h3>2. Presupuesto</h3>
+      <div class="controls">
+        <label>Dobles<select id="qD"></select></label>
+        <label>Triples<select id="qT"></select></label>
+        <label>Precio por apuesta (€)<input id="qPrice" type="number" step="0.05" min="0" value="0.75"></label>
+      </div>
+      <div class="cost" id="qCost"></div>
+    </div>
+    <div class="card" id="qResult"></div>
   </section>
 
   <section id="acierto">
+    <div class="seg" id="segAcierto"></div>
     <div id="bt"></div>
   </section>
 
   <section id="equipos">
-    <p class="explain">Elo: fuerza general (1500 = media histórica). Ataque: goles que marca respecto a la media (1,20 = un 20% más). Defensa: goles que encaja respecto a la media (0,80 = un 20% menos, mejor).</p>
+    <div class="seg" id="segEquipos"></div>
+    <p class="explain">Elo: fuerza general (1500 = media histórica). Ataque: goles que marca respecto a la media (1,20 = un 20% más). Defensa: goles que encaja respecto a la media (0,80 = un 20% menos, mejor). Primera y Segunda se miden en la misma escala.</p>
     <div class="card tablewrap"><table id="tabla"></table></div>
   </section>
 </div>
 
 <script>
 const pct = x => (x*100).toFixed(0) + '%';
+const pct1 = x => (x*100).toFixed(1).replace('.', ',') + '%';
 const num = x => x.toFixed(2).replace('.', ',');
+const eur = x => x.toLocaleString('es-ES', {style:'currency', currency:'EUR'});
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmtDate = (d, t) => {
   if (!d) return '';
   const s = new Date(d + 'T12:00:00').toLocaleDateString('es-ES', {weekday:'short', day:'numeric', month:'short'});
   return t ? `${s} · ${t}` : s;
 };
 const pickName = {"1":"Gana local","X":"Empate","2":"Gana visitante"};
+const DIVS = ['Primera', 'Segunda'];
+const LAB = ['1','X','2'];
+let PRED, BT, EQ;
 
 document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x === b));
   document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === b.dataset.s));
 });
+
+function segmented(id, onChange){
+  const box = document.getElementById(id);
+  let cur = DIVS[0];
+  box.innerHTML = DIVS.map(d => `<button data-d="${d}" class="${d===cur?'on':''}">${d}</button>`).join('');
+  box.querySelectorAll('button').forEach(b => b.onclick = () => {
+    cur = b.dataset.d;
+    box.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    onChange(cur);
+  });
+  return () => cur;
+}
 
 async function load(name){
   const r = await fetch(`data/${name}.json?v=${Date.now()}`);
@@ -104,84 +173,254 @@ async function load(name){
   return r.json();
 }
 
-function renderPartidos(data){
-  const box = document.getElementById('partidos');
+/* ---------------- Próximos partidos ---------------- */
+let divPartidos;
+function renderPartidos(){
+  const div = divPartidos();
+  const box = document.getElementById('listaPartidos');
   const solo = document.getElementById('soloAlta').checked;
-  const list = data.partidos.filter(p => !solo || p.confianza === 'alta');
+  const all = PRED.partidos.filter(p => p.division === div);
+  const list = all.filter(p => !solo || p.confianza === 'alta');
+  const w = PRED.meta.peso_modelo?.[div];
+  const how = w == null ? '' : `<p class="explain">Probabilidad final = ${pct(w)} modelo + ${pct(1-w)} casas de apuestas (el reparto que mejor acertó en temporadas anteriores).</p>`;
   if (!list.length){
-    box.innerHTML = `<div class="card empty">${data.partidos.length ? 'Ningún partido con confianza alta en esta jornada.' : 'Aún no están publicados los próximos partidos. Se actualiza solo cada día.'}</div>`;
+    box.innerHTML = how + `<div class="card empty">${all.length ? 'Ningún partido con confianza alta.' : 'Aún no están publicados los próximos partidos. Se actualiza solo dos veces al día.'}</div>`;
     return;
   }
-  box.innerHTML = list.map(p => {
-    const w = k => Math.max(p.prob[k]*100, 0);
+  box.innerHTML = how + list.map(p => {
     const lab = k => p.prob[k] >= 0.18 ? `${k} · ${pct(p.prob[k])}` : p.prob[k] >= 0.07 ? pct(p.prob[k]) : '';
-    const casas = p.casas ? `<span>Casas: <b>${pct(p.casas["1"])} · ${pct(p.casas.X)} · ${pct(p.casas["2"])}</b></span>` : '';
-    const notas = p.notas.length ? `<div class="note">Ajuste manual: ${p.notas.join(' · ')}</div>` : '';
+    const src = `<span>Modelo: <b>${pct(p.prob_modelo['1'])} · ${pct(p.prob_modelo.X)} · ${pct(p.prob_modelo['2'])}</b></span>` +
+      (p.casas ? `<span>Casas: <b>${pct(p.casas['1'])} · ${pct(p.casas.X)} · ${pct(p.casas['2'])}</b></span>` : `<span>Sin cuotas todavía</span>`);
+    const notas = p.notas.length ? `<div class="note">Ajuste manual: ${esc(p.notas.join(' · '))}</div>` : '';
     return `<div class="card">
       <div class="match-top"><span>${fmtDate(p.fecha, p.hora)}</span>
         <span class="pill ${p.confianza}">${pickName[p.pick]} · confianza ${p.confianza}</span></div>
-      <div class="teams"><span class="a">${p.local}</span><span class="vs">vs</span><span>${p.visitante}</span></div>
+      <div class="teams"><span class="a">${esc(p.local)}</span><span class="vs">vs</span><span>${esc(p.visitante)}</span></div>
       <div class="bar">
-        <div class="b1" style="width:${w('1')}%">${lab('1')}</div>
-        <div class="bx" style="width:${w('X')}%">${lab('X')}</div>
-        <div class="b2" style="width:${w('2')}%">${lab('2')}</div>
+        <div class="b1" style="width:${p.prob['1']*100}%">${lab('1')}</div>
+        <div class="bx" style="width:${p.prob.X*100}%">${lab('X')}</div>
+        <div class="b2" style="width:${p.prob['2']*100}%">${lab('2')}</div>
       </div>
       <div class="row">
+        <span>Doble oportunidad: <b>${p.doble_oportunidad.pick} ${pct(p.doble_oportunidad.prob)}</b></span>
         <span>Marcador más probable: <b>${p.marcador_probable}</b></span>
         <span>Goles esperados: <b>${num(p.goles_esperados[0])} – ${num(p.goles_esperados[1])}</b></span>
-        <span>Doble oportunidad: <b>${p.doble_oportunidad.pick} ${pct(p.doble_oportunidad.prob)}</b></span>
         <span>Más de 2,5 goles: <b>${pct(p.over_2_5)}</b></span>
-        ${casas}
-      </div>${notas}
+      </div>
+      <div class="row">${src}</div>${notas}
     </div>`;
   }).join('');
 }
 
-function renderBacktest(bt){
-  const box = document.getElementById('bt');
-  if (!bt.total){ box.innerHTML = '<div class="card empty">Todavía no hay datos de acierto.</div>'; return; }
-  const t = bt.total;
-  const seasons = Object.entries(bt.temporadas).filter(([,v]) => v);
-  box.innerHTML = `
-    <p class="explain">Para cada jornada de ${seasons.map(s=>s[0]).join(' y ')}, el modelo se ajustó solo con los partidos anteriores y predijo el resultado más probable. Así se mide lo que habría acertado de verdad, sin hacer trampa mirando el futuro.</p>
+/* ---------------- Quiniela ---------------- */
+const Q = {sel: []};  // índices en PRED.partidos, en orden del boleto
+const keyOf = p => `${p.local}|${p.visitante}|${p.fecha}`;
+
+function qInit(){
+  const dSel = document.getElementById('qD'), tSel = document.getElementById('qT');
+  dSel.innerHTML = Array.from({length:15}, (_,i) => `<option value="${i}">${i}</option>`).join('');
+  tSel.innerHTML = Array.from({length:9}, (_,i) => `<option value="${i}">${i}</option>`).join('');
+  dSel.value = '2'; tSel.value = '0';
+  [dSel, tSel, document.getElementById('qPrice')].forEach(el => el.oninput = qRender);
+  document.getElementById('qAuto').onclick = () => {
+    const idx = PRED.partidos.map((p,i) => [p,i]);
+    const order = [...idx.filter(([p]) => p.division==='Primera'), ...idx.filter(([p]) => p.division==='Segunda')];
+    for (const [,i] of order){ if (Q.sel.length >= 15) break; if (!Q.sel.includes(i)) Q.sel.push(i); }
+    qRender();
+  };
+  document.getElementById('qClear').onclick = () => { Q.sel = []; qRender(); };
+  qRender();
+}
+
+// Elige qué partidos llevan doble o triple para maximizar la probabilidad de acertar los 14.
+function optimize(matches, D, T){
+  const n = matches.length;
+  const opts = matches.map(p => {
+    const s = LAB.map(k => [k, p.prob[k]]).sort((a,b) => b[1]-a[1]);
+    return [
+      {signs:[s[0][0]], cov:s[0][1], d:0, t:0},
+      {signs:[s[0][0], s[1][0]], cov:s[0][1]+s[1][1], d:1, t:0},
+      {signs:['1','X','2'], cov:1, d:0, t:1},
+    ];
+  });
+  // DP[i][d][t] = mejor suma de log(cobertura)
+  const NEG = -1e18;
+  let dp = [...Array(D+1)].map(() => Array(T+1).fill(NEG)); dp[0][0] = 0;
+  const back = [];
+  for (let i=0;i<n;i++){
+    const nd = [...Array(D+1)].map(() => Array(T+1).fill(NEG));
+    const bk = [...Array(D+1)].map(() => Array(T+1).fill(null));
+    for (let d=0; d<=D; d++) for (let t=0; t<=T; t++){
+      if (dp[d][t] === NEG) continue;
+      opts[i].forEach((o, oi) => {
+        const d2 = d+o.d, t2 = t+o.t;
+        if (d2 > D || t2 > T) return;
+        const v = dp[d][t] + Math.log(Math.max(o.cov, 1e-12));
+        if (v > nd[d2][t2]){ nd[d2][t2] = v; bk[d2][t2] = [d, t, oi]; }
+      });
+    }
+    dp = nd; back.push(bk);
+  }
+  let best = [0,0], bv = NEG;
+  for (let d=0; d<=D; d++) for (let t=0; t<=T; t++) if (dp[d][t] > bv){ bv = dp[d][t]; best = [d,t]; }
+  const choice = Array(n);
+  let [d,t] = best;
+  for (let i=n-1;i>=0;i--){ const [pd, pt, oi] = back[i][d][t]; choice[i] = opts[i][oi]; d = pd; t = pt; }
+  return choice;
+}
+
+// Probabilidad de acertar exactamente k de n (cada partido con su probabilidad de estar cubierto)
+function hitDistribution(covs){
+  let dist = [1];
+  for (const c of covs){
+    const nd = Array(dist.length+1).fill(0);
+    dist.forEach((v,k) => { nd[k] += v*(1-c); nd[k+1] += v*c; });
+    dist = nd;
+  }
+  return dist;
+}
+
+function qRender(){
+  const list = document.getElementById('qList');
+  if (!PRED.partidos.length){
+    list.innerHTML = '<div class="empty">Aún no están publicados los próximos partidos.</div>';
+  } else {
+    list.innerHTML = PRED.partidos.map((p,i) => {
+      const pos = Q.sel.indexOf(i);
+      const tag = pos < 0 ? '' : (pos === 14 ? 'P15' : pos+1);
+      return `<div class="pick-item ${pos>=0?'sel':''}" data-i="${i}"><span class="num">${tag}</span>
+        <span>${esc(p.local)} – ${esc(p.visitante)}</span><span class="div">${p.division} · ${fmtDate(p.fecha)}</span></div>`;
+    }).join('');
+    list.querySelectorAll('.pick-item').forEach(el => el.onclick = () => {
+      const i = +el.dataset.i, pos = Q.sel.indexOf(i);
+      if (pos >= 0) Q.sel.splice(pos, 1); else if (Q.sel.length < 15) Q.sel.push(i);
+      qRender();
+    });
+  }
+
+  const D = +document.getElementById('qD').value, T = +document.getElementById('qT').value;
+  const price = Math.max(+document.getElementById('qPrice').value || 0, 0);
+  const n14 = Math.min(Q.sel.length, 14);
+  const dEff = Math.min(D, n14), tEff = Math.min(T, n14 - dEff);
+  const bets = 2**dEff * 3**tEff;
+  document.getElementById('qCost').innerHTML =
+    `${bets.toLocaleString('es-ES')} apuestas · <b>${eur(bets*price)}</b>` +
+    (D + T > n14 && n14 ? `<div class="warn">Hay más dobles y triples que partidos elegidos; se usan ${dEff} dobles y ${tEff} triples.</div>` : '') +
+    `<p class="explain" style="margin-top:6px">Comprueba el precio vigente de la apuesta en Loterías y Apuestas del Estado.</p>`;
+
+  const res = document.getElementById('qResult');
+  if (Q.sel.length < 14){
+    res.innerHTML = `<h3>3. Tu columna</h3><p class="explain">Elige al menos 14 partidos (llevas ${Q.sel.length}).</p>`;
+    return;
+  }
+  const matches = Q.sel.slice(0,14).map(i => PRED.partidos[i]);
+  const choice = optimize(matches, dEff, tEff);
+  const covs = choice.map(c => c.cov);
+  const dist = hitDistribution(covs);
+  const atLeast = k => dist.slice(k).reduce((a,b) => a+b, 0);
+  const expected = covs.reduce((a,b) => a+b, 0);
+
+  const rows = matches.map((p,i) => `<tr>
+      <td class="n">${i+1}</td>
+      <td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
+      ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
+      <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
+
+  let pleno = '';
+  if (Q.sel.length >= 15){
+    const p = PRED.partidos[Q.sel[14]];
+    const cats = ['0','1','2','M'];
+    let best = [0,0,0];
+    p.pleno.forEach((r,a) => r.forEach((v,b) => { if (v > best[2]) best = [a,b,v]; }));
+    const top = [];
+    p.pleno.forEach((r,a) => r.forEach((v,b) => top.push([cats[a]+'-'+cats[b], v])));
+    top.sort((a,b) => b[1]-a[1]);
+    pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
+      <td colspan="3" style="text-align:center"><b>${cats[best[0]]} – ${cats[best[1]]}</b></td><td class="cov">${pct(best[2])}</td></tr>
+      <tr><td></td><td colspan="5" class="m" style="color:var(--muted);font-size:12px">Otras opciones del Pleno: ${top.slice(1,4).map(([k,v]) => `${k} (${pct(v)})`).join(' · ')}</td></tr>`;
+  }
+
+  res.innerHTML = `<h3>3. Tu columna</h3>
+    <p class="explain">Los dobles y triples van donde más suben la probabilidad de acertar. El % de cada fila es la probabilidad de que ese partido quede cubierto.</p>
+    <div class="tablewrap"><table class="boleto">
+      <tr><th class="n">#</th><th class="m">Partido</th><th class="sig">1</th><th class="sig">X</th><th class="sig">2</th><th>Cubre</th></tr>
+      ${rows}${pleno}
+    </table></div>
+    <h2>Probabilidades de esta columna</h2>
     <div class="stats">
-      <div class="card stat"><div class="v">${pct(t.acierto)}</div><div class="l">Acierto del modelo (${t.aciertos} de ${t.partidos})</div></div>
-      <div class="card stat"><div class="v">${t.acierto_casas != null ? pct(t.acierto_casas) : '—'}</div><div class="l">Acierto del favorito de las casas</div></div>
+      <div class="card stat"><div class="v">${num(expected)}</div><div class="l">Aciertos esperados de 14</div></div>
+      <div class="card stat"><div class="v">${pct1(atLeast(10))}</div><div class="l">Probabilidad de 10 o más (premio mínimo)</div></div>
+      <div class="card stat"><div class="v">${pct1(atLeast(12))}</div><div class="l">Probabilidad de 12 o más</div></div>
+      <div class="card stat"><div class="v">${atLeast(14) >= 0.001 ? pct1(atLeast(14)) : '1 entre ' + Math.round(1/atLeast(14)).toLocaleString('es-ES')}</div><div class="l">Probabilidad de acertar los 14</div></div>
+    </div>
+    <p class="explain">Ojo: acertar 10 no garantiza cobrar algo que merezca la pena; el premio depende de cuánta gente acierte. Cuanto más previsible es la jornada, más acertantes y menos se paga.</p>`;
+}
+
+/* ---------------- Acierto ---------------- */
+let divAcierto;
+function renderBacktest(){
+  const div = divAcierto();
+  const box = document.getElementById('bt');
+  const b = BT.divisiones?.[div];
+  if (!b || !b.total){ box.innerHTML = '<div class="card empty">Todavía no hay datos de acierto.</div>'; return; }
+  const t = b.total, w = BT.peso_modelo[div];
+  const seasons = Object.entries(b.temporadas).filter(([,v]) => v);
+  const conf = t.mezcla.por_confianza;
+  box.innerHTML = `
+    <p class="explain">Para cada jornada de ${BT.temporadas_evaluadas.join(', ')}, el modelo se ajustó solo con los partidos anteriores y predijo el resultado más probable. Así se mide lo que habría acertado de verdad, sin mirar el futuro.</p>
+    <div class="stats">
+      <div class="card stat"><div class="v">${pct(t.mezcla.acierto)}</div><div class="l">Acierto de la predicción final (${t.mezcla.aciertos} de ${t.mezcla.partidos})</div></div>
+      <div class="card stat"><div class="v">${pct(t.mezcla.acierto_doble)}</div><div class="l">Acierto con doble oportunidad</div></div>
       <div class="card stat"><div class="v">${pct(t.reparto_real.X)}</div><div class="l">Partidos que acabaron en empate</div></div>
     </div>
+    <h2>Modelo, casas y mezcla</h2>
+    <p class="explain">Comparados en los ${t.casas ? t.casas.partidos : 0} partidos que tenían cuotas. La mezcla usa ${pct(w)} modelo y ${pct(1-w)} casas, que es el reparto que menos se equivocó. ${w === 0 ? 'En esta división las casas han sido más precisas que el modelo, así que la predicción final sigue a las casas; el modelo aporta los goles esperados, el marcador y el Pleno al 15, y cubre los partidos sin cuotas.' : ''}</p>
+    <div class="card tablewrap"><table>
+      <tr><th>Fuente</th><th>Acierto 1X2</th><th>Doble oportunidad</th><th>Error (log-loss)</th></tr>
+      ${t.casas ? `
+      <tr><td>Solo modelo</td><td>${pct1(t.modelo_con_cuotas.acierto)}</td><td>${pct1(t.modelo_con_cuotas.acierto_doble)}</td><td>${t.modelo_con_cuotas.logloss.toFixed(3)}</td></tr>
+      <tr><td>Solo casas</td><td>${pct1(t.casas.acierto)}</td><td>${pct1(t.casas.acierto_doble)}</td><td>${t.casas.logloss.toFixed(3)}</td></tr>` :
+      `<tr><td>Solo modelo</td><td>${pct1(t.modelo.acierto)}</td><td>${pct1(t.modelo.acierto_doble)}</td><td>${t.modelo.logloss.toFixed(3)}</td></tr>`}
+      <tr><td><b>Mezcla (final)</b></td><td><b>${pct1(t.mezcla.acierto)}</b></td><td><b>${pct1(t.mezcla.acierto_doble)}</b></td><td><b>${t.mezcla.logloss.toFixed(3)}</b></td></tr>
+    </table></div>
     <h2>Acierto según la confianza</h2>
-    <p class="explain">Cuanto más seguro está el modelo, más acierta, pero hay menos partidos así.</p>
+    <p class="explain">Cuanto más segura es la predicción, más acierta, pero hay menos partidos así.</p>
     <div class="card tablewrap"><table>
       <tr><th>Probabilidad del pick</th><th>Partidos</th><th>Aciertos</th><th>% acierto</th></tr>
-      ${t.por_confianza.map(b => `<tr><td>≥ ${pct(b.umbral)}</td><td>${b.partidos}</td><td>${b.aciertos}</td><td>${b.partidos ? pct(b.aciertos/b.partidos) : '—'}</td></tr>`).join('')}
+      ${conf.map(c => `<tr><td>≥ ${pct(c.umbral)}</td><td>${c.partidos}</td><td>${c.aciertos}</td><td>${c.partidos ? pct(c.aciertos/c.partidos) : '—'}</td></tr>`).join('')}
     </table></div>
     <h2>Por temporada</h2>
     <div class="card tablewrap"><table>
-      <tr><th>Temporada</th><th>Partidos</th><th>Modelo</th><th>Casas</th></tr>
-      ${seasons.map(([s,v]) => `<tr><td>${s}</td><td>${v.partidos}</td><td>${pct(v.acierto)}</td><td>${v.acierto_casas != null ? pct(v.acierto_casas) : '—'}</td></tr>`).join('')}
+      <tr><th>Temporada</th><th>Partidos</th><th>Modelo</th><th>Casas</th><th>Final</th></tr>
+      ${seasons.map(([s,v]) => `<tr><td>${s}</td><td>${v.partidos}</td><td>${pct(v.modelo.acierto)}</td><td>${v.casas ? pct(v.casas.acierto) : '—'}</td><td>${pct(v.mezcla.acierto)}</td></tr>`).join('')}
     </table></div>`;
 }
 
-function renderEquipos(eq){
+/* ---------------- Equipos ---------------- */
+let divEquipos;
+function renderEquipos(){
+  const rows = EQ.divisiones?.[divEquipos()] || [];
   document.getElementById('tabla').innerHTML =
     `<tr><th>Equipo</th><th>Elo</th><th>Ataque</th><th>Defensa</th></tr>` +
-    eq.equipos.map(e => `<tr><td>${e.equipo}</td><td>${e.elo}</td><td>${num(e.ataque)}</td><td>${num(e.defensa)}</td></tr>`).join('');
+    rows.map(e => `<tr><td>${esc(e.equipo)}</td><td>${e.elo}</td><td>${num(e.ataque)}</td><td>${num(e.defensa)}</td></tr>`).join('');
 }
 
 (async () => {
   try {
-    const [pred, bt, eq] = await Promise.all([load('predicciones'), load('backtest'), load('equipos')]);
-    const m = pred.meta;
-    const upd = new Date(m.actualizado).toLocaleString('es-ES', {dateStyle:'medium', timeStyle:'short'});
-    document.getElementById('meta').textContent =
-      `Temporada ${m.temporada} · ${m.partidos_historico.toLocaleString('es-ES')} partidos en el histórico · actualizado ${upd}`;
-    renderPartidos(pred);
-    document.getElementById('soloAlta').onchange = () => renderPartidos(pred);
-    renderBacktest(bt);
-    renderEquipos(eq);
+    [PRED, BT, EQ] = await Promise.all([load('predicciones'), load('backtest'), load('equipos')]);
   } catch (e) {
     document.getElementById('meta').textContent = 'Todavía no hay datos. La primera actualización tarda unos minutos.';
+    return;
   }
+  const m = PRED.meta;
+  const upd = new Date(m.actualizado).toLocaleString('es-ES', {dateStyle:'medium', timeStyle:'short'});
+  document.getElementById('meta').textContent =
+    `Temporada ${m.temporada} · ${m.partidos_historico.toLocaleString('es-ES')} partidos en el histórico · actualizado ${upd}`;
+  divPartidos = segmented('segPartidos', renderPartidos);
+  divAcierto = segmented('segAcierto', renderBacktest);
+  divEquipos = segmented('segEquipos', renderEquipos);
+  document.getElementById('soloAlta').onchange = renderPartidos;
+  renderPartidos(); renderBacktest(); renderEquipos(); qInit();
 })();
 </script>
 </body>

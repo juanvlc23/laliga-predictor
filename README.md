@@ -1,10 +1,10 @@
 # LaLiga Predictor
 
-Predicciones 1X2 de Primera División con un modelo Dixon-Coles (Poisson con fuerza de ataque y defensa por equipo, ventaja de campo y corrección de empates).
+Predicciones 1X2 de Primera y Segunda División y generador de columnas de Quiniela. Combina un modelo Dixon-Coles (Poisson con fuerza de ataque y defensa por equipo, ventaja de campo y corrección de empates) con las cuotas de las casas de apuestas, con el peso que mejor funcionó en temporadas anteriores.
 
 ## Cómo funciona
 
-- **Datos:** resultados y cuotas de [football-data.co.uk](https://www.football-data.co.uk), desde la temporada 2016/17. Las temporadas cerradas se descargan una sola vez y quedan guardadas en `data/raw/`. La temporada actual y los próximos partidos se vuelven a descargar en cada actualización.
+- **Datos:** resultados y cuotas de Primera (SP1) y Segunda (SP2) de [football-data.co.uk](https://www.football-data.co.uk), desde la temporada 2016/17. Las temporadas cerradas se descargan una sola vez y quedan guardadas en `data/raw/`. La temporada actual y los próximos partidos se vuelven a descargar en cada actualización.
 - **Actualización automática:** GitHub Actions ejecuta `scripts/update.py` cada día y guarda los resultados en `docs/data/`.
 - **Web:** GitHub Pages publica `docs/index.html`, que muestra las predicciones, el acierto real del modelo en temporadas pasadas y la fuerza de cada equipo.
 
