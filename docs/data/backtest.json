@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-09-30T09:19:12Z",
+  "actualizado": "2026-09-30T09:20:40Z",
   "temporada": "2026/27",
   "partidos_historico": 3869,
   "ultimo_partido": "2026-09-20",
@@ -11,7 +11,7 @@
   "partidos": 443,
   "aciertos": 234,
   "acierto": 0.5282167042889391,
-  "logloss": 0.9792572841574041,
+  "logloss": 0.9792572839673591,
   "acierto_casas": 0.54627539503386,
   "partidos_con_cuotas": 443,
   "por_confianza": [
@@ -47,7 +47,7 @@
    "partidos": 378,
    "aciertos": 200,
    "acierto": 0.5291005291005291,
-   "logloss": 0.9836033931560356,
+   "logloss": 0.983603392933409,
    "acierto_casas": 0.5423280423280423,
    "partidos_con_cuotas": 378,
    "por_confianza": [
@@ -82,7 +82,7 @@
    "partidos": 65,
    "aciertos": 34,
    "acierto": 0.5230769230769231,
-   "logloss": 0.9539829887499786,
+   "logloss": 0.9539829887494078,
    "acierto_casas": 0.5692307692307692,
    "partidos_con_cuotas": 65,
    "por_confianza": [
