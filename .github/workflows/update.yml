@@ -2,8 +2,9 @@ name: Actualizar predicciones
 
 on:
   schedule:
-    # Todos los días a las 06:17 UTC (08:17 en Madrid en verano)
-    - cron: "17 6 * * *"
+    # Dos veces al día: 06:17 y 17:17 UTC (08:17 y 19:17 en Madrid en verano).
+    # football-data.co.uk publica los partidos del fin de semana hacia el jueves.
+    - cron: "17 6,17 * * *"
   workflow_dispatch: {}      # botón "Run workflow" para lanzarlo a mano
   push:
     branches: [main]
