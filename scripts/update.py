@@ -579,6 +579,14 @@ def main():
         if backtest["divisiones"]["Primera"]["total"] else {"1": 0.45, "X": 0.27, "2": 0.28},
     }
     (OUT / "modelo.json").write_text(json.dumps({"meta": meta, **modelo}, ensure_ascii=False, indent=1))
+
+    # Selecciones nacionales (para el Pleno al 15 y los parones de la Quiniela)
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import selecciones
+        selecciones.run(args.offline, ref, meta)
+    except Exception as e:  # nunca debe romper la actualización de los clubes
+        print(f"Selecciones: error ({e}); se omite.")
     print(f"Listo: {len(preds)} predicciones.")
     for name, b in backtest["divisiones"].items():
         t = b["total"]

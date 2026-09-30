@@ -231,7 +231,7 @@ function renderPartidos(){
 
 /* ---------------- Quiniela ---------------- */
 const Q = {items: []};  // partidos en orden del boleto (objetos con local, visitante, prob, pleno)
-let MODELO = null;
+let MODELO = null, SELE = null;
 
 // --- Reconocer nombres de equipos escritos de cualquier forma ---
 const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -286,6 +286,31 @@ function modelPredict(home, away){
   let la = Math.exp(base + a.att + h.def);
   if (M.ajustes[home]){ lh *= M.ajustes[home][0]; la *= M.ajustes[home][1]; }
   if (M.ajustes[away]){ la *= M.ajustes[away][0]; lh *= M.ajustes[away][1]; }
+  const G = M.max_goles, ph = poissonPmf(lh, G), pa = poissonPmf(la, G), r = M.rho;
+  const m = ph.map(x => pa.map(y => x*y));
+  m[0][0] *= 1 - lh*la*r; m[0][1] *= 1 + lh*r; m[1][0] *= 1 + la*r; m[1][1] *= 1 - r;
+  let s = 0; m.forEach(row => row.forEach(v => s += Math.max(v,0)));
+  const prob = {'1':0,'X':0,'2':0}, pleno = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  m.forEach((row,i) => row.forEach((v,j) => {
+    v = Math.max(v,0)/s;
+    prob[i>j?'1':i===j?'X':'2'] += v;
+    pleno[Math.min(i,3)][Math.min(j,3)] += v;
+  }));
+  return {prob, pleno};
+}
+
+// --- Selecciones nacionales ---
+function natTeam(raw){
+  if (!SELE) return null;
+  const n = norm(raw);
+  const en = SELE.nombres_es[n] || SELE.nombres_es[n.replace(/^rep /, 'republica ')];
+  if (en && SELE.equipos[en]) return en;
+  for (const t of Object.keys(SELE.equipos)) if (norm(t) === n) return t;
+  return null;
+}
+function natPredict(home, away){
+  const M = SELE, h = M.equipos[home], a = M.equipos[away];
+  const lh = Math.exp(M.mu + M.home + h.att + a.def), la = Math.exp(M.mu + a.att + h.def);
   const G = M.max_goles, ph = poissonPmf(lh, G), pa = poissonPmf(la, G), r = M.rho;
   const m = ph.map(x => pa.map(y => x*y));
   m[0][0] *= 1 - lh*la*r; m[0][1] *= 1 + lh*r; m[1][0] *= 1 + la*r; m[1][1] *= 1 - r;
@@ -359,6 +384,12 @@ function parseBoleto(text){
     const clean = x => x.replace(/\(\s*[mf]\s*\)/ig, '').trim();
     if (fem){
       out.push(buildItem(null, null, clean(rh), clean(ra), 'fútbol femenino, el modelo no lo cubre'));
+      return;
+    }
+    const nh = natTeam(clean(rh)), na = natTeam(clean(ra));
+    if (nh && na){
+      const r = natPredict(nh, na);
+      out.push({local: clean(rh), visitante: clean(ra), prob: r.prob, pleno: r.pleno, fuente: 'selecciones'});
       return;
     }
     const h = matchTeam(clean(rh), teams), a = matchTeam(clean(ra), teams);
@@ -562,14 +593,14 @@ function qRender(){
 
   const rows = matches.map((p,i) => `<tr>
       <td class="n">${i+1}</td>
-      <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : `sin datos (${esc(p.motivo)})`}</div>${p.fuente === 'sin datos' ? `<select class="preset" data-i="${i}">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : ''}</td>
+      <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : p.fuente === 'selecciones' ? 'modelo de selecciones (sin cuotas)' : `sin datos (${esc(p.motivo)})`}</div>${p.fuente === 'sin datos' ? `<select class="preset" data-i="${i}">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : ''}</td>
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
   let pleno = '';
   if (Q.items.length >= 15){
     const p = Q.items[14];
-    const sel15 = p.fuente === 'sin datos' ? `<div class="src">sin datos (${esc(p.motivo)})</div><select class="preset" data-i="14">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : '';
+    const sel15 = p.fuente === 'selecciones' ? '<div class="src">modelo de selecciones</div>' : p.fuente === 'sin datos' ? `<div class="src">sin datos (${esc(p.motivo)})</div><select class="preset" data-i="14">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : '';
     if (!p.pleno){
       pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}${sel15}</td><td colspan="4" class="m" style="color:var(--muted)">Sin datos para el Pleno: elige un favorito en su desplegable</td></tr>`;
     } else {
@@ -660,6 +691,7 @@ function renderEquipos(){
   try {
     [PRED, BT, EQ] = await Promise.all([load('predicciones'), load('backtest'), load('equipos')]);
     MODELO = await load('modelo').catch(() => null);
+    SELE = await load('selecciones').catch(() => null);
   } catch (e) {
     document.getElementById('meta').textContent = 'Todavía no hay datos. La primera actualización tarda unos minutos.';
     return;
