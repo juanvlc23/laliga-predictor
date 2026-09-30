@@ -327,17 +327,33 @@ function qInit(){
     for (const p of order){ if (Q.items.length >= 15) break; if (!Q.items.some(x => x.local===p.local && x.visitante===p.visitante)) Q.items.push({...p, fuente: p.casas?'casas':'modelo'}); }
     qRender();
   };
-  document.getElementById('qClear').onclick = () => { Q.items = []; document.getElementById('qPasteMsg').innerHTML = ''; qRender(); };
-  document.getElementById('qLoad').onclick = () => {
-    const r = parseBoleto(document.getElementById('qPaste').value);
+  document.getElementById('qClear').onclick = () => {
+    Q.items = []; document.getElementById('qPasteMsg').innerHTML = ''; document.getElementById('qPaste').value = '';
+    try { localStorage.removeItem('boleto'); } catch (e) {}
+    qRender();
+  };
+  const loadBoleto = (text, saved) => {
+    const r = parseBoleto(text);
     Q.items = r.items;
     const msgs = [];
     if (r.items.length) msgs.push(`<p class="explain" style="color:var(--accent)">Cargados ${r.items.length} partidos.</p>`);
     if (r.extra) msgs.push(`<div class="warn">Había más de 15 líneas; solo se usan las 15 primeras.</div>`);
     r.problems.forEach(p => msgs.push(`<div class="warn">${esc(p)}</div>`));
+    if (saved) msgs.unshift(`<p class="explain">Boleto guardado recuperado y recalculado con los datos de ${new Date(PRED.meta.actualizado).toLocaleString('es-ES', {dateStyle:'short', timeStyle:'short'})}.</p>`);
     document.getElementById('qPasteMsg').innerHTML = msgs.join('');
     qRender();
   };
+  document.getElementById('qLoad').onclick = () => {
+    const text = document.getElementById('qPaste').value;
+    try { localStorage.setItem('boleto', text); } catch (e) {}
+    loadBoleto(text, false);
+  };
+  let saved = null;
+  try { saved = localStorage.getItem('boleto'); } catch (e) {}
+  if (saved && saved.trim()){
+    document.getElementById('qPaste').value = saved;
+    loadBoleto(saved, true);
+  }
   qRender();
 }
 
@@ -432,7 +448,7 @@ function qRender(){
 
   const rows = matches.map((p,i) => `<tr>
       <td class="n">${i+1}</td>
-      <td class="m">${esc(p.local)} – ${esc(p.visitante)}${p.fuente !== 'casas' ? `<div class="src">${p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : 'sin datos: probabilidades medias'}</div>` : ''}</td>
+      <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : 'sin datos: probabilidades medias'}</div></td>
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
