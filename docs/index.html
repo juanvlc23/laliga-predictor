@@ -78,6 +78,7 @@ h3{font-size:15px;margin:0 0 8px}
 .boleto .cov{font-size:12px;color:var(--muted);width:48px}
 .warn{font-size:13px;color:var(--c2);margin-top:8px}
 .src{font-size:11px;color:var(--muted)}
+.e8{color:var(--cx);margin-left:2px;font-size:12px}
 select.preset{font:inherit;font-size:12px;margin-top:4px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);max-width:100%}
 textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
 </style>
@@ -587,12 +588,15 @@ function qRender(){
   const matches = Q.items.slice(0,14);
   const choice = optimize(matches, dEff, tEff);
   const covs = choice.map(c => c.cov);
+  // Elige 8: los 8 partidos con más probabilidad de acierto según tu columna
+  const e8 = covs.map((c,i) => [c,i]).sort((a,b) => b[0]-a[0]).slice(0,8).map(x => x[1]);
+  const pE8 = e8.reduce((a,i) => a*covs[i], 1);
   const dist = hitDistribution(covs);
   const atLeast = k => dist.slice(k).reduce((a,b) => a+b, 0);
   const expected = covs.reduce((a,b) => a+b, 0);
 
   const rows = matches.map((p,i) => `<tr>
-      <td class="n">${i+1}</td>
+      <td class="n">${i+1}${e8.includes(i) ? '<span class="e8" title="Elige 8">★</span>' : ''}</td>
       <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : p.fuente === 'selecciones' ? 'modelo de selecciones (sin cuotas)' : `sin datos (${esc(p.motivo)})`}</div>${p.fuente === 'sin datos' ? `<select class="preset" data-i="${i}">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : ''}</td>
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
@@ -628,6 +632,13 @@ function qRender(){
       <div class="card stat"><div class="v">${pct1(atLeast(12))}</div><div class="l">Probabilidad de 12 o más</div></div>
       <div class="card stat"><div class="v">${atLeast(14) >= 0.001 ? pct1(atLeast(14)) : '1 entre ' + Math.round(1/atLeast(14)).toLocaleString('es-ES')}</div><div class="l">Probabilidad de acertar los 14</div></div>
     </div>
+    <h2>Elige 8 (opcional)</h2>
+    <p class="explain">Si juegas el Elige 8, marca los partidos con ★: son los 8 con más probabilidad de acierto según tu columna. Cuesta 0,50 € más por apuesta y solo hay premio si aciertas los 8.</p>
+    <div class="stats">
+      <div class="card stat"><div class="v">${pE8 >= 0.01 ? pct1(pE8) : '1 entre ' + Math.round(1/pE8).toLocaleString('es-ES')}</div><div class="l">Probabilidad de acertar los 8 (al azar: 1 entre 6.561)</div></div>
+      <div class="card stat"><div class="v">${eur(bets*0.5)}</div><div class="l">Coste extra del Elige 8 (${bets.toLocaleString('es-ES')} apuesta${bets>1?'s':''} × 0,50 €)</div></div>
+    </div>
+    <p class="explain">Ojo con el premio: casi todo el mundo elige los mismos favoritos, así que se reparte entre muchos (el 9 de septiembre de 2026 pagó 2,58 € por acertante).</p>
     <p class="explain">Ojo: el premio depende de cuánta gente acierte. Con 10 aciertos muchas jornadas no se cobra nada y con 11 se suelen cobrar entre 5 y 25 € por apuesta. Para el mismo dinero, los triples suben más la probabilidad de llegar a 11 que los dobles.</p>`;
   res.querySelectorAll('select.preset').forEach(sel => sel.onchange = () => {
     const it = Q.items[+sel.dataset.i];
