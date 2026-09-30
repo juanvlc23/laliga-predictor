@@ -115,7 +115,7 @@ h3{font-size:15px;margin:0 0 8px}
       <div class="controls">
         <label>Dobles<select id="qD"></select></label>
         <label>Triples<select id="qT"></select></label>
-        <label>Precio por apuesta (€)<input id="qPrice" type="number" step="0.05" min="0" value="0.75"></label>
+        <label>Precio por apuesta (€)<input id="qPrice" type="number" step="0.05" min="0" value="1"></label>
       </div>
       <div class="cost" id="qCost"></div>
     </div>
@@ -306,7 +306,7 @@ function qRender(){
   document.getElementById('qCost').innerHTML =
     `${bets.toLocaleString('es-ES')} apuestas · <b>${eur(bets*price)}</b>` +
     (D + T > n14 && n14 ? `<div class="warn">Hay más dobles y triples que partidos elegidos; se usan ${dEff} dobles y ${tEff} triples.</div>` : '') +
-    `<p class="explain" style="margin-top:6px">Comprueba el precio vigente de la apuesta en Loterías y Apuestas del Estado.</p>`;
+    `<p class="explain" style="margin-top:6px">Precio de la apuesta: 1 € (puedes cambiarlo si varía).</p>`;
 
   const res = document.getElementById('qResult');
   if (Q.sel.length < 14){
