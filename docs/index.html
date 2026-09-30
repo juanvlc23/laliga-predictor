@@ -112,6 +112,13 @@ textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid va
         <button class="btn" id="qLoad">Cargar boleto</button>
       </div>
       <div id="qPasteMsg"></div>
+      <p class="explain" style="margin-top:14px"><b>Opción C (página completa):</b> abre el boleto en la web de juegos de Loterías, selecciona todo (Ctrl+A o «Seleccionar todo»), copia y pégalo aquí sin limpiar nada. La app busca los partidos entre todo el texto.</p>
+      <textarea id="qPage" rows="4" placeholder="Pega aquí todo el texto de la página del boleto…"></textarea>
+      <div class="btns">
+        <a class="btn" href="https://juegos.loteriasyapuestas.es/jugar/la-quiniela/apuesta" target="_blank" rel="noopener">Abrir el boleto en Loterías ↗</a>
+        <button class="btn" id="qFind">Buscar partidos</button>
+      </div>
+      <div id="qPageMsg"></div>
       <p class="explain" style="margin-top:14px"><b>Opción B:</b> toca los partidos del listado en el orden del boleto, o pulsa Autocompletar.</p>
       <div class="btns">
         <button class="btn" id="qAuto">Autocompletar</button>
@@ -317,6 +324,43 @@ function parseBoleto(text){
   return {items: out.slice(0, 15), problems, extra: out.length > 15};
 }
 
+// Busca los partidos del boleto dentro del texto de una página completa (menús, botones, etc.)
+function strictTeam(line, teams){
+  const n = norm(line);
+  if (!n || n.split(' ').length > 5) return null;
+  if (ALIAS[n] && teams.includes(ALIAS[n])) return ALIAS[n];
+  const strip = s => s.split(' ').filter(w => !STOP.has(w)).join(' ');
+  const ns = strip(n);
+  if (ALIAS[ns] && teams.includes(ALIAS[ns])) return ALIAS[ns];
+  for (const t of teams){
+    const k = strip(norm(t));
+    if (k === ns || k === ns.replace(/^real /, '')) return t;
+  }
+  return null;
+}
+function extractFromPage(text){
+  const teams = teamIndex();
+  const lines = text.split(/\r?\n/).map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const found = [];
+  const add = (h, a) => { if (h && a && h !== a && !found.some(f => f[0] === h && f[1] === a)) found.push([h, a]); };
+  // 1) líneas con los dos equipos separados por un guion: «Real Madrid - Getafe»
+  for (const line of lines){
+    const l = line.replace(/^(p\s*15|pleno( al 15)?|\d{1,2})\s*[\.\):\-–]?\s+/i, '');
+    const parts = l.split(/\s+(?:-|–|—|vs\.?)\s+|\s*[–—]\s*|(?<=[a-záéíóúñ])-(?=[A-ZÁÉÍÓÚÑ])/i);
+    if (parts.length === 2) add(strictTeam(parts[0], teams), strictTeam(parts[1], teams));
+  }
+  // 2) si no basta, equipos en líneas separadas: local y visitante seguidos
+  if (found.length < 14){
+    const seq = lines.map(l => strictTeam(l.replace(/^\d{1,2}\s*[\.\)]?\s+/, ''), teams)).filter(Boolean);
+    const alt = [];
+    for (let i = 0; i + 1 < seq.length; i += 2){
+      if (!alt.some(f => f[0] === seq[i] && f[1] === seq[i+1])) alt.push([seq[i], seq[i+1]]);
+    }
+    if (alt.length > found.length) return alt.slice(0, 15);
+  }
+  return found.slice(0, 15);
+}
+
 function qInit(){
   const dSel = document.getElementById('qD'), tSel = document.getElementById('qT');
   dSel.innerHTML = Array.from({length:15}, (_,i) => `<option value="${i}">${i}</option>`).join('');
@@ -348,6 +392,19 @@ function qInit(){
     const text = document.getElementById('qPaste').value;
     try { localStorage.setItem('boleto', text); } catch (e) {}
     loadBoleto(text, false);
+  };
+  document.getElementById('qFind').onclick = () => {
+    const pairs = extractFromPage(document.getElementById('qPage').value);
+    const box = document.getElementById('qPageMsg');
+    if (!pairs.length){
+      box.innerHTML = '<div class="warn">No he encontrado partidos de Primera o Segunda en ese texto. Prueba a copiar otra vez la página o usa la opción A.</div>';
+      return;
+    }
+    const text = pairs.map(([h, a], i) => `${i+1}. ${h} - ${a}`).join('\n');
+    document.getElementById('qPaste').value = text;
+    try { localStorage.setItem('boleto', text); } catch (e) {}
+    loadBoleto(text, false);
+    box.innerHTML = `<p class="explain" style="color:var(--accent)">Encontrados ${pairs.length} partidos. Los he pasado al cuadro de la opción A: revisa que el orden coincide con el boleto${pairs.length < 15 ? ' y añade a mano los que falten (por ejemplo, partidos de fuera de Primera y Segunda)' : ''}.</p>`;
   };
   let saved = null;
   try { saved = localStorage.getItem('boleto'); } catch (e) {}
