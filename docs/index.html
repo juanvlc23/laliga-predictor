@@ -623,11 +623,12 @@ function qRender(){
     <h2>Probabilidades de esta columna</h2>
     <div class="stats">
       <div class="card stat"><div class="v">${num(expected)}</div><div class="l">Aciertos esperados de 14</div></div>
-      <div class="card stat"><div class="v">${pct1(atLeast(10))}</div><div class="l">Probabilidad de 10 o más (premio mínimo)</div></div>
+      <div class="card stat"><div class="v">${pct1(atLeast(11))}</div><div class="l">Probabilidad de 11 o más (primer premio que suele pagar)</div></div>
+      <div class="card stat"><div class="v">${pct1(atLeast(10))}</div><div class="l">Probabilidad de 10 o más (muchas jornadas paga 0 €)</div></div>
       <div class="card stat"><div class="v">${pct1(atLeast(12))}</div><div class="l">Probabilidad de 12 o más</div></div>
       <div class="card stat"><div class="v">${atLeast(14) >= 0.001 ? pct1(atLeast(14)) : '1 entre ' + Math.round(1/atLeast(14)).toLocaleString('es-ES')}</div><div class="l">Probabilidad de acertar los 14</div></div>
     </div>
-    <p class="explain">Ojo: acertar 10 no garantiza cobrar algo que merezca la pena; el premio depende de cuánta gente acierte. Cuanto más previsible es la jornada, más acertantes y menos se paga.</p>`;
+    <p class="explain">Ojo: el premio depende de cuánta gente acierte. Con 10 aciertos muchas jornadas no se cobra nada y con 11 se suelen cobrar entre 5 y 25 € por apuesta. Para el mismo dinero, los triples suben más la probabilidad de llegar a 11 que los dobles.</p>`;
   res.querySelectorAll('select.preset').forEach(sel => sel.onchange = () => {
     const it = Q.items[+sel.dataset.i];
     setOverride(it.key, sel.value);
