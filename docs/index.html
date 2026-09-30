@@ -77,6 +77,8 @@ h3{font-size:15px;margin:0 0 8px}
 .boleto .m{text-align:left;font-size:13px}
 .boleto .cov{font-size:12px;color:var(--muted);width:48px}
 .warn{font-size:13px;color:var(--c2);margin-top:8px}
+.src{font-size:11px;color:var(--muted)}
+textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
 </style>
 </head>
 <body>
@@ -102,8 +104,14 @@ h3{font-size:15px;margin:0 0 8px}
 
   <section id="quiniela">
     <div class="card">
-      <h3>1. Elige los 15 partidos del boleto</h3>
-      <p class="explain">Toca los partidos en el mismo orden que en el boleto oficial. Los 14 primeros son las casillas 1–14 y el 15.º es el Pleno al 15.</p>
+      <h3>1. Los 15 partidos del boleto</h3>
+      <p class="explain"><b>Opción A (recomendada):</b> copia los partidos del boleto desde la web de Loterías y Apuestas y pégalos aquí, uno por línea y en orden (ej. «1. Real Madrid - Getafe»). El 15.º es el Pleno al 15.</p>
+      <textarea id="qPaste" rows="6" placeholder="1. Real Madrid - Getafe&#10;2. Barcelona - Sevilla&#10;…&#10;15. Leganés - Andorra"></textarea>
+      <div class="btns">
+        <button class="btn" id="qLoad">Cargar boleto</button>
+      </div>
+      <div id="qPasteMsg"></div>
+      <p class="explain" style="margin-top:14px"><b>Opción B:</b> toca los partidos del listado en el orden del boleto, o pulsa Autocompletar.</p>
       <div class="btns">
         <button class="btn" id="qAuto">Autocompletar</button>
         <button class="btn" id="qClear">Vaciar</button>
@@ -213,8 +221,100 @@ function renderPartidos(){
 }
 
 /* ---------------- Quiniela ---------------- */
-const Q = {sel: []};  // índices en PRED.partidos, en orden del boleto
-const keyOf = p => `${p.local}|${p.visitante}|${p.fecha}`;
+const Q = {items: []};  // partidos en orden del boleto (objetos con local, visitante, prob, pleno)
+let MODELO = null;
+
+// --- Reconocer nombres de equipos escritos de cualquier forma ---
+const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const STOP = new Set(['fc','cf','cd','ud','sd','rcd','rc','ad','ce','sad','club','de','del','la','balompie','cp','sc','ca','futbol','sociedad deportiva']);
+const ALIAS = {
+  'atletico de madrid':'Ath Madrid','atletico madrid':'Ath Madrid','atletico':'Ath Madrid','atleti':'Ath Madrid','at madrid':'Ath Madrid','atl madrid':'Ath Madrid',
+  'athletic club':'Ath Bilbao','athletic':'Ath Bilbao','athletic bilbao':'Ath Bilbao','ath club':'Ath Bilbao',
+  'real sociedad':'Sociedad','r sociedad':'Sociedad','real sociedad b':'Sociedad B','sanse':'Sociedad B',
+  'real betis':'Betis','rayo vallecano':'Vallecano','rayo':'Vallecano',
+  'rcd espanyol':'Espanol','espanyol':'Espanol',
+  'deportivo':'La Coruna','deportivo de la coruna':'La Coruna','deportivo la coruna':'La Coruna','dep la coruna':'La Coruna','depor':'La Coruna','rc deportivo':'La Coruna','deportivo coruna':'La Coruna',
+  'racing':'Santander','racing santander':'Santander','racing de santander':'Santander','real racing club':'Santander',
+  'sporting':'Sp Gijon','sporting gijon':'Sp Gijon','sporting de gijon':'Sp Gijon','real sporting':'Sp Gijon',
+  'celta de vigo':'Celta','rc celta':'Celta','celta fortuna':'Celta B',
+  'deportivo alaves':'Alaves','ud las palmas':'Las Palmas','albacete balompie':'Albacete',
+};
+function teamIndex(){
+  const names = Object.keys(MODELO?.equipos || {});
+  const set = new Set(PRED.partidos.flatMap(p => [p.local, p.visitante]));
+  names.forEach(n => set.add(n));
+  return [...set];
+}
+function matchTeam(raw, teams){
+  const n = norm(raw);
+  if (!n) return null;
+  if (ALIAS[n] && teams.includes(ALIAS[n])) return ALIAS[n];
+  const byNorm = new Map(teams.map(t => [norm(t), t]));
+  if (byNorm.has(n)) return byNorm.get(n);
+  const strip = s => s.split(' ').filter(w => !STOP.has(w)).join(' ');
+  const ns = strip(n);
+  if (ALIAS[ns] && teams.includes(ALIAS[ns])) return ALIAS[ns];
+  for (const [k,t] of byNorm) if (strip(k) === ns) return t;
+  const noReal = ns.replace(/^real /, '');
+  for (const [k,t] of byNorm) if (strip(k) === noReal) return t;
+  // coincidencia parcial: el nombre más largo contenido en el texto (o al revés)
+  let best = null, bl = 0;
+  for (const [k,t] of byNorm){
+    const ks = strip(k);
+    if (ks.length >= 4 && (ns.includes(ks) || ks.includes(noReal)) && ks.length > bl){ best = t; bl = ks.length; }
+  }
+  return best;
+}
+
+// --- Modelo en el navegador (mismo Dixon-Coles que el programa) ---
+function poissonPmf(l, kmax){ const out = []; let p = Math.exp(-l); for (let k=0;k<=kmax;k++){ out.push(p); p *= l/(k+1); } return out; }
+function modelPredict(home, away){
+  const M = MODELO, h = M.equipos[home], a = M.equipos[away];
+  const d = (h.div === 'SP2' && a.div === 'SP2') ? 1 : (h.div === 'SP2' || a.div === 'SP2') ? 0.5 : 0;
+  const base = M.mu + M.mu2*d;
+  let lh = Math.exp(base + M.home + M.home2*d + h.att + a.def);
+  let la = Math.exp(base + a.att + h.def);
+  if (M.ajustes[home]){ lh *= M.ajustes[home][0]; la *= M.ajustes[home][1]; }
+  if (M.ajustes[away]){ la *= M.ajustes[away][0]; lh *= M.ajustes[away][1]; }
+  const G = M.max_goles, ph = poissonPmf(lh, G), pa = poissonPmf(la, G), r = M.rho;
+  const m = ph.map(x => pa.map(y => x*y));
+  m[0][0] *= 1 - lh*la*r; m[0][1] *= 1 + lh*r; m[1][0] *= 1 + la*r; m[1][1] *= 1 - r;
+  let s = 0; m.forEach(row => row.forEach(v => s += Math.max(v,0)));
+  const prob = {'1':0,'X':0,'2':0}, pleno = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  m.forEach((row,i) => row.forEach((v,j) => {
+    v = Math.max(v,0)/s;
+    prob[i>j?'1':i===j?'X':'2'] += v;
+    pleno[Math.min(i,3)][Math.min(j,3)] += v;
+  }));
+  return {prob, pleno};
+}
+
+function buildItem(home, away, rawH, rawA){
+  const f = PRED.partidos.find(p => p.local === home && p.visitante === away);
+  if (f) return {...f, fuente: f.casas ? 'casas' : 'modelo'};
+  if (home && away && MODELO?.equipos[home] && MODELO?.equipos[away]){
+    const r = modelPredict(home, away);
+    return {local: home, visitante: away, prob: r.prob, pleno: r.pleno, fuente: 'modelo'};
+  }
+  const rm = MODELO?.reparto_medio || {'1':0.45,'X':0.27,'2':0.28};
+  return {local: home || rawH, visitante: away || rawA, prob: {...rm}, pleno: null, fuente: 'sin datos'};
+}
+
+function parseBoleto(text){
+  const teams = teamIndex();
+  const out = [], problems = [];
+  text.split(/\r?\n/).map(l => l.trim()).filter(Boolean).forEach(line => {
+    let l = line.replace(/^(p\s*15|pleno( al 15)?|\d{1,2})\s*[\.\):\-–]?\s+/i, '');
+    const parts = l.split(/\s+(?:-|–|—|vs\.?|v)\s+|\s*[-–—]\s*/i).map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2){ problems.push(`No entiendo la línea «${line}»`); return; }
+    const [rh, ra] = [parts[0], parts.slice(1).join(' ')];
+    const h = matchTeam(rh, teams), a = matchTeam(ra, teams);
+    if (!h || !a) problems.push(`No reconozco ${!h ? '«'+rh+'»' : ''}${!h && !a ? ' ni ' : ''}${!a ? '«'+ra+'»' : ''} (se usarán probabilidades medias)`);
+    out.push(buildItem(h, a, rh, ra));
+  });
+  return {items: out.slice(0, 15), problems, extra: out.length > 15};
+}
 
 function qInit(){
   const dSel = document.getElementById('qD'), tSel = document.getElementById('qT');
@@ -223,12 +323,21 @@ function qInit(){
   dSel.value = '2'; tSel.value = '0';
   [dSel, tSel, document.getElementById('qPrice')].forEach(el => el.oninput = qRender);
   document.getElementById('qAuto').onclick = () => {
-    const idx = PRED.partidos.map((p,i) => [p,i]);
-    const order = [...idx.filter(([p]) => p.division==='Primera'), ...idx.filter(([p]) => p.division==='Segunda')];
-    for (const [,i] of order){ if (Q.sel.length >= 15) break; if (!Q.sel.includes(i)) Q.sel.push(i); }
+    const order = [...PRED.partidos.filter(p => p.division==='Primera'), ...PRED.partidos.filter(p => p.division==='Segunda')];
+    for (const p of order){ if (Q.items.length >= 15) break; if (!Q.items.some(x => x.local===p.local && x.visitante===p.visitante)) Q.items.push({...p, fuente: p.casas?'casas':'modelo'}); }
     qRender();
   };
-  document.getElementById('qClear').onclick = () => { Q.sel = []; qRender(); };
+  document.getElementById('qClear').onclick = () => { Q.items = []; document.getElementById('qPasteMsg').innerHTML = ''; qRender(); };
+  document.getElementById('qLoad').onclick = () => {
+    const r = parseBoleto(document.getElementById('qPaste').value);
+    Q.items = r.items;
+    const msgs = [];
+    if (r.items.length) msgs.push(`<p class="explain" style="color:var(--accent)">Cargados ${r.items.length} partidos.</p>`);
+    if (r.extra) msgs.push(`<div class="warn">Había más de 15 líneas; solo se usan las 15 primeras.</div>`);
+    r.problems.forEach(p => msgs.push(`<div class="warn">${esc(p)}</div>`));
+    document.getElementById('qPasteMsg').innerHTML = msgs.join('');
+    qRender();
+  };
   qRender();
 }
 
@@ -282,25 +391,26 @@ function hitDistribution(covs){
 
 function qRender(){
   const list = document.getElementById('qList');
+  const idxOf = p => Q.items.findIndex(x => x.local === p.local && x.visitante === p.visitante);
   if (!PRED.partidos.length){
-    list.innerHTML = '<div class="empty">Aún no están publicados los próximos partidos.</div>';
+    list.innerHTML = '<div class="empty">Aún no están publicados los próximos partidos. Puedes pegar el boleto arriba.</div>';
   } else {
     list.innerHTML = PRED.partidos.map((p,i) => {
-      const pos = Q.sel.indexOf(i);
+      const pos = idxOf(p);
       const tag = pos < 0 ? '' : (pos === 14 ? 'P15' : pos+1);
       return `<div class="pick-item ${pos>=0?'sel':''}" data-i="${i}"><span class="num">${tag}</span>
         <span>${esc(p.local)} – ${esc(p.visitante)}</span><span class="div">${p.division} · ${fmtDate(p.fecha)}</span></div>`;
     }).join('');
     list.querySelectorAll('.pick-item').forEach(el => el.onclick = () => {
-      const i = +el.dataset.i, pos = Q.sel.indexOf(i);
-      if (pos >= 0) Q.sel.splice(pos, 1); else if (Q.sel.length < 15) Q.sel.push(i);
+      const p = PRED.partidos[+el.dataset.i], pos = idxOf(p);
+      if (pos >= 0) Q.items.splice(pos, 1); else if (Q.items.length < 15) Q.items.push({...p, fuente: p.casas?'casas':'modelo'});
       qRender();
     });
   }
 
   const D = +document.getElementById('qD').value, T = +document.getElementById('qT').value;
   const price = Math.max(+document.getElementById('qPrice').value || 0, 0);
-  const n14 = Math.min(Q.sel.length, 14);
+  const n14 = Math.min(Q.items.length, 14);
   const dEff = Math.min(D, n14), tEff = Math.min(T, n14 - dEff);
   const bets = 2**dEff * 3**tEff;
   document.getElementById('qCost').innerHTML =
@@ -309,11 +419,11 @@ function qRender(){
     `<p class="explain" style="margin-top:6px">Precio de la apuesta: 1 € (puedes cambiarlo si varía).</p>`;
 
   const res = document.getElementById('qResult');
-  if (Q.sel.length < 14){
-    res.innerHTML = `<h3>3. Tu columna</h3><p class="explain">Elige al menos 14 partidos (llevas ${Q.sel.length}).</p>`;
+  if (Q.items.length < 14){
+    res.innerHTML = `<h3>3. Tu columna</h3><p class="explain">Faltan partidos: hacen falta al menos 14 (llevas ${Q.items.length}).</p>`;
     return;
   }
-  const matches = Q.sel.slice(0,14).map(i => PRED.partidos[i]);
+  const matches = Q.items.slice(0,14);
   const choice = optimize(matches, dEff, tEff);
   const covs = choice.map(c => c.cov);
   const dist = hitDistribution(covs);
@@ -322,22 +432,24 @@ function qRender(){
 
   const rows = matches.map((p,i) => `<tr>
       <td class="n">${i+1}</td>
-      <td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
+      <td class="m">${esc(p.local)} – ${esc(p.visitante)}${p.fuente !== 'casas' ? `<div class="src">${p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : 'sin datos: probabilidades medias'}</div>` : ''}</td>
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
   let pleno = '';
-  if (Q.sel.length >= 15){
-    const p = PRED.partidos[Q.sel[14]];
-    const cats = ['0','1','2','M'];
-    let best = [0,0,0];
-    p.pleno.forEach((r,a) => r.forEach((v,b) => { if (v > best[2]) best = [a,b,v]; }));
-    const top = [];
-    p.pleno.forEach((r,a) => r.forEach((v,b) => top.push([cats[a]+'-'+cats[b], v])));
-    top.sort((a,b) => b[1]-a[1]);
-    pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
-      <td colspan="3" style="text-align:center"><b>${cats[best[0]]} – ${cats[best[1]]}</b></td><td class="cov">${pct(best[2])}</td></tr>
-      <tr><td></td><td colspan="5" class="m" style="color:var(--muted);font-size:12px">Otras opciones del Pleno: ${top.slice(1,4).map(([k,v]) => `${k} (${pct(v)})`).join(' · ')}</td></tr>`;
+  if (Q.items.length >= 15){
+    const p = Q.items[14];
+    if (!p.pleno){
+      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td><td colspan="4" class="m" style="color:var(--muted)">Sin datos para el Pleno</td></tr>`;
+    } else {
+      const cats = ['0','1','2','M'];
+      const top = [];
+      p.pleno.forEach((r,a) => r.forEach((v,b) => top.push([cats[a]+' – '+cats[b], v])));
+      top.sort((a,b) => b[1]-a[1]);
+      pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}</td>
+        <td colspan="3" style="text-align:center"><b>${top[0][0]}</b></td><td class="cov">${pct(top[0][1])}</td></tr>
+        <tr><td></td><td colspan="5" class="m" style="color:var(--muted);font-size:12px">Otras opciones del Pleno: ${top.slice(1,4).map(([k,v]) => `${k} (${pct(v)})`).join(' · ')}</td></tr>`;
+    }
   }
 
   res.innerHTML = `<h3>3. Tu columna</h3>
@@ -408,6 +520,7 @@ function renderEquipos(){
 (async () => {
   try {
     [PRED, BT, EQ] = await Promise.all([load('predicciones'), load('backtest'), load('equipos')]);
+    MODELO = await load('modelo').catch(() => null);
   } catch (e) {
     document.getElementById('meta').textContent = 'Todavía no hay datos. La primera actualización tarda unos minutos.';
     return;

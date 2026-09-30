@@ -560,6 +560,25 @@ def main():
     (OUT / "predicciones.json").write_text(json.dumps({"meta": meta, "partidos": preds}, ensure_ascii=False, indent=1))
     (OUT / "equipos.json").write_text(json.dumps({"meta": meta, "divisiones": tables}, ensure_ascii=False, indent=1))
     (OUT / "backtest.json").write_text(json.dumps({"meta": meta, **backtest}, ensure_ascii=False, indent=1))
+
+    # Parámetros del modelo, para que la web pueda predecir cualquier partido
+    # de Primera o Segunda (por ejemplo los del boleto de la Quiniela) aunque
+    # aún no esté en el listado de próximos partidos.
+    team_div = {}
+    for div in DIVISIONS:
+        cur = matches[(matches["div"] == div) & (matches.season == current_season)]
+        for t in set(cur.home) | set(cur.away):
+            team_div[t] = div
+    modelo = {
+        "mu": model.mu, "home": model.home, "mu2": model.mu2, "home2": model.home2,
+        "rho": model.rho, "max_goles": MAX_GOALS,
+        "equipos": {t: {"att": float(model.att[model.idx[t]]), "def": float(model.dfn[model.idx[t]]),
+                        "div": team_div.get(t)} for t in model.teams if t in team_div},
+        "ajustes": {t: [fa, fd] for t, (fa, fd, _) in ajustes.items()},
+        "reparto_medio": backtest["divisiones"]["Primera"]["total"]["reparto_real"]
+        if backtest["divisiones"]["Primera"]["total"] else {"1": 0.45, "X": 0.27, "2": 0.28},
+    }
+    (OUT / "modelo.json").write_text(json.dumps({"meta": meta, **modelo}, ensure_ascii=False, indent=1))
     print(f"Listo: {len(preds)} predicciones.")
     for name, b in backtest["divisiones"].items():
         t = b["total"]
