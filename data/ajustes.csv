@@ -1,0 +1,6 @@
+# Ajustes manuales antes de cada jornada (bajas, sanciones, rotaciones).
+# Usa el nombre del equipo tal como aparece en la web (ej.: Real Madrid, Ath Madrid, Barcelona, Betis).
+# factor_ataque: multiplica los goles que se espera que marque. 0.85 = baja de un delantero clave.
+# factor_defensa: multiplica los goles que se espera que encaje. 1.15 = baja del portero o central titular.
+# Deja 1.0 si no cambia nada. Borra la línea cuando el jugador vuelva.
+equipo,factor_ataque,factor_defensa,nota

@@ -1,0 +1,51 @@
+name: Actualizar predicciones
+
+on:
+  schedule:
+    # Todos los días a las 06:17 UTC (08:17 en Madrid en verano)
+    - cron: "17 6 * * *"
+  workflow_dispatch: {}      # botón "Run workflow" para lanzarlo a mano
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "data/ajustes.csv"
+      - "requirements.txt"
+      - ".github/workflows/update.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Descargar datos y calcular predicciones
+        run: python scripts/update.py
+
+      - name: Guardar cambios en el repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs/data
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+          else
+            git commit -m "Actualiza datos y predicciones $(date -u +%Y-%m-%d)"
+            git pull --rebase origin main
+            git push
+          fi
