@@ -1,11 +1,16 @@
 {
  "meta": {
-  "actualizado": "2026-09-30T09:20:40Z",
+  "actualizado": "2026-09-30T09:40:20Z",
   "temporada": "2026/27",
-  "partidos_historico": 3869,
-  "ultimo_partido": "2026-09-20",
-  "ventaja_local": 1.345,
-  "goles_media_visitante": 1.089
+  "partidos_historico": 8566,
+  "ultimo_partido": {
+   "Primera": "2026-09-20",
+   "Segunda": "2026-09-28"
+  },
+  "peso_modelo": {
+   "Primera": 0.0,
+   "Segunda": 0.0
+  }
  },
  "partidos": []
 }
