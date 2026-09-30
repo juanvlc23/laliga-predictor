@@ -1,0 +1,132 @@
+{
+ "meta": {
+  "actualizado": "2026-09-30T09:19:12Z",
+  "temporada": "2026/27",
+  "partidos_historico": 3869,
+  "ultimo_partido": "2026-09-20",
+  "ventaja_local": 1.345,
+  "goles_media_visitante": 1.089
+ },
+ "equipos": [
+  {
+   "equipo": "Barcelona",
+   "elo": 1882,
+   "ataque": 2.231,
+   "defensa": 0.72
+  },
+  {
+   "equipo": "Real Madrid",
+   "elo": 1794,
+   "ataque": 1.749,
+   "defensa": 0.697
+  },
+  {
+   "equipo": "Ath Madrid",
+   "elo": 1693,
+   "ataque": 1.462,
+   "defensa": 0.773
+  },
+  {
+   "equipo": "Betis",
+   "elo": 1644,
+   "ataque": 1.245,
+   "defensa": 0.851
+  },
+  {
+   "equipo": "Villarreal",
+   "elo": 1640,
+   "ataque": 1.542,
+   "defensa": 0.97
+  },
+  {
+   "equipo": "Vallecano",
+   "elo": 1552,
+   "ataque": 0.948,
+   "defensa": 0.906
+  },
+  {
+   "equipo": "Ath Bilbao",
+   "elo": 1546,
+   "ataque": 1.025,
+   "defensa": 0.843
+  },
+  {
+   "equipo": "Celta",
+   "elo": 1545,
+   "ataque": 1.127,
+   "defensa": 0.902
+  },
+  {
+   "equipo": "Sociedad",
+   "elo": 1533,
+   "ataque": 1.16,
+   "defensa": 1.058
+  },
+  {
+   "equipo": "Valencia",
+   "elo": 1516,
+   "ataque": 0.937,
+   "defensa": 0.998
+  },
+  {
+   "equipo": "Alaves",
+   "elo": 1514,
+   "ataque": 0.986,
+   "defensa": 0.913
+  },
+  {
+   "equipo": "Sevilla",
+   "elo": 1507,
+   "ataque": 1.018,
+   "defensa": 1.009
+  },
+  {
+   "equipo": "Getafe",
+   "elo": 1502,
+   "ataque": 0.667,
+   "defensa": 0.719
+  },
+  {
+   "equipo": "Levante",
+   "elo": 1497,
+   "ataque": 1.093,
+   "defensa": 1.121
+  },
+  {
+   "equipo": "Santander",
+   "elo": 1487,
+   "ataque": 1.34,
+   "defensa": 1.818
+  },
+  {
+   "equipo": "Osasuna",
+   "elo": 1482,
+   "ataque": 0.963,
+   "defensa": 1.018
+  },
+  {
+   "equipo": "Espanol",
+   "elo": 1476,
+   "ataque": 0.957,
+   "defensa": 0.98
+  },
+  {
+   "equipo": "Elche",
+   "elo": 1468,
+   "ataque": 1.149,
+   "defensa": 1.148
+  },
+  {
+   "equipo": "La Coruna",
+   "elo": 1410,
+   "ataque": 1.114,
+   "defensa": 0.928
+  },
+  {
+   "equipo": "Malaga",
+   "elo": 1338,
+   "ataque": 0.486,
+   "defensa": 1.048
+  }
+ ]
+}

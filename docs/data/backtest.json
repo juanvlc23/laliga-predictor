@@ -1,0 +1,117 @@
+{
+ "meta": {
+  "actualizado": "2026-09-30T09:19:12Z",
+  "temporada": "2026/27",
+  "partidos_historico": 3869,
+  "ultimo_partido": "2026-09-20",
+  "ventaja_local": 1.345,
+  "goles_media_visitante": 1.089
+ },
+ "total": {
+  "partidos": 443,
+  "aciertos": 234,
+  "acierto": 0.5282167042889391,
+  "logloss": 0.9792572841574041,
+  "acierto_casas": 0.54627539503386,
+  "partidos_con_cuotas": 443,
+  "por_confianza": [
+   {
+    "umbral": 0.5,
+    "partidos": 204,
+    "aciertos": 134
+   },
+   {
+    "umbral": 0.6,
+    "partidos": 104,
+    "aciertos": 79
+   },
+   {
+    "umbral": 0.7,
+    "partidos": 43,
+    "aciertos": 39
+   },
+   {
+    "umbral": 0.8,
+    "partidos": 12,
+    "aciertos": 12
+   }
+  ],
+  "reparto_real": {
+   "1": 0.48306997742663654,
+   "X": 0.24153498871331827,
+   "2": 0.27539503386004516
+  }
+ },
+ "temporadas": {
+  "2025/26": {
+   "partidos": 378,
+   "aciertos": 200,
+   "acierto": 0.5291005291005291,
+   "logloss": 0.9836033931560356,
+   "acierto_casas": 0.5423280423280423,
+   "partidos_con_cuotas": 378,
+   "por_confianza": [
+    {
+     "umbral": 0.5,
+     "partidos": 174,
+     "aciertos": 115
+    },
+    {
+     "umbral": 0.6,
+     "partidos": 88,
+     "aciertos": 66
+    },
+    {
+     "umbral": 0.7,
+     "partidos": 37,
+     "aciertos": 33
+    },
+    {
+     "umbral": 0.8,
+     "partidos": 10,
+     "aciertos": 10
+    }
+   ],
+   "reparto_real": {
+    "1": 0.48677248677248675,
+    "X": 0.24603174603174602,
+    "2": 0.2671957671957672
+   }
+  },
+  "2026/27": {
+   "partidos": 65,
+   "aciertos": 34,
+   "acierto": 0.5230769230769231,
+   "logloss": 0.9539829887499786,
+   "acierto_casas": 0.5692307692307692,
+   "partidos_con_cuotas": 65,
+   "por_confianza": [
+    {
+     "umbral": 0.5,
+     "partidos": 30,
+     "aciertos": 19
+    },
+    {
+     "umbral": 0.6,
+     "partidos": 16,
+     "aciertos": 13
+    },
+    {
+     "umbral": 0.7,
+     "partidos": 6,
+     "aciertos": 6
+    },
+    {
+     "umbral": 0.8,
+     "partidos": 2,
+     "aciertos": 2
+    }
+   ],
+   "reparto_real": {
+    "1": 0.46153846153846156,
+    "X": 0.2153846153846154,
+    "2": 0.3230769230769231
+   }
+  }
+ }
+}
