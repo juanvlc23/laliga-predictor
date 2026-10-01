@@ -73,6 +73,11 @@ h3{font-size:15px;margin:0 0 8px}
 .boleto .sig{width:34px;text-align:center}
 .boleto .sig span{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:6px;color:var(--muted);font-weight:600;font-size:13px}
 .boleto .sig span.on{background:var(--ink);color:var(--bg)}
+.boleto .sig small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.1}
+.boleto{table-layout:fixed}
+.boleto th.n{width:30px}.boleto th.sig{width:36px}.boleto th.cov{width:52px}
+.boleto td{padding:7px 2px}.boleto .m{overflow-wrap:anywhere}
+.boleto select.preset{width:100%}
 .boleto .n{width:28px;color:var(--muted);text-align:left}
 .boleto .m{text-align:left;font-size:13px}
 .boleto .cov{font-size:12px;color:var(--muted);width:48px}
@@ -598,7 +603,7 @@ function qRender(){
   const rows = matches.map((p,i) => `<tr>
       <td class="n">${i+1}${e8.includes(i) ? '<span class="e8" title="Elige 8">★</span>' : ''}</td>
       <td class="m">${esc(p.local)} – ${esc(p.visitante)}<div class="src">${p.fuente === 'casas' ? 'con cuotas de las casas' : p.fuente === 'modelo' ? 'solo modelo (aún sin cuotas)' : p.fuente === 'selecciones' ? 'modelo de selecciones (sin cuotas)' : `sin datos (${esc(p.motivo)})`}</div>${p.fuente === 'sin datos' ? `<select class="preset" data-i="${i}">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : ''}</td>
-      ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span></td>`).join('')}
+      ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span><small>${pct(p.prob[k])}</small></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
   let pleno = '';
@@ -619,9 +624,9 @@ function qRender(){
   }
 
   res.innerHTML = `<h3>3. Tu columna</h3>
-    <p class="explain">Los dobles y triples van donde más suben la probabilidad de acertar. El % de cada fila es la probabilidad de que ese partido quede cubierto.</p>
+    <p class="explain">Debajo de cada signo está su probabilidad. Los signos en negro son los que marcas. «Acierto» es la probabilidad de acertar ese partido con lo marcado (la suma de sus signos). Los dobles y triples van donde más suben esa probabilidad.</p>
     <div class="tablewrap"><table class="boleto">
-      <tr><th class="n">#</th><th class="m">Partido</th><th class="sig">1</th><th class="sig">X</th><th class="sig">2</th><th>Cubre</th></tr>
+      <tr><th class="n">#</th><th class="m">Partido</th><th class="sig">1</th><th class="sig">X</th><th class="sig">2</th><th class="cov" title="Probabilidad de acertar este partido con los signos marcados">Acierto</th></tr>
       ${rows}${pleno}
     </table></div>
     <h2>Probabilidades de esta columna</h2>
