@@ -3,13 +3,14 @@ name: Actualizar predicciones
 on:
   schedule:
     # Horas en UTC (Madrid = UTC+2 en verano, UTC+1 en invierno).
-    # De jueves a sábado, cada hora: es cuando se publican y se mueven las cuotas
-    # del fin de semana, y la Quiniela suele cerrar el sábado.
-    # (dos horarios por hora porque GitHub a veces retrasa o se salta ejecuciones programadas)
-    - cron: "17 * * * 4,5,6"
-    - cron: "47 * * * 4,5,6"
-    # De domingo a miércoles, dos veces al día (08:17 y 19:17 en Madrid en verano).
+    # Jueves y viernes: dos veces por hora (GitHub a veces retrasa o se salta ejecuciones).
+    - cron: "17 * * * 4,5"
+    - cron: "47 * * * 4,5"
+    # Sábado hasta el cierre de la Quiniela (14:00 en Madrid): dos veces por hora.
+    - cron: "17,47 0-11 * * 6"
+    # Resto de la semana: dos veces al día (08:17 y 19:17 en Madrid en verano).
     - cron: "17 6,17 * * 0,1,2,3"
+    - cron: "17 17 * * 6"
   workflow_dispatch:         # botón "Run workflow" para lanzarlo a mano
     inputs:
       prueba_aviso:
