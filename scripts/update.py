@@ -584,7 +584,8 @@ def main():
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         import avisos
-        avisos.avisar_cuotas(preds)
+        if not avisos.avisar_cuotas(preds):
+            avisos.avisar_ejecucion(preds, meta)
     except Exception as e:  # nunca debe romper la actualización
         print(f"Avisos: error ({e}); se omite.")
 
