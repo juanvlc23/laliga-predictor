@@ -6,7 +6,7 @@ Predicciones 1X2 de Primera y Segunda División y generador de columnas de Quini
 
 - **Datos:** resultados y cuotas de Primera (SP1) y Segunda (SP2) de [football-data.co.uk](https://www.football-data.co.uk), desde la temporada 2016/17. Las temporadas cerradas se descargan una sola vez y quedan guardadas en `data/raw/`. La temporada actual y los próximos partidos se vuelven a descargar en cada actualización.
 - **Actualización automática:** GitHub Actions ejecuta `scripts/update.py` cada día y guarda los resultados en `docs/data/`.
-- **Web:** GitHub Pages publica `docs/index.html`, que muestra las predicciones, el acierto real del modelo en temporadas pasadas y la fuerza de cada equipo.
+- **Web:** GitHub Pages publica `docs/index.html`, que muestra las predicciones, el acierto real del modelo en temporadas pasadas y la fuerza de cada equipo. https://juanvlc23.github.io/laliga-predictor/
 
 ## Ajustes manuales (bajas, rotaciones)
 
