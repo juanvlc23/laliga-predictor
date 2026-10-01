@@ -8,7 +8,12 @@ on:
     - cron: "17 * * * 4,5,6"
     # De domingo a miércoles, dos veces al día (08:17 y 19:17 en Madrid en verano).
     - cron: "17 6,17 * * 0,1,2,3"
-  workflow_dispatch: {}      # botón "Run workflow" para lanzarlo a mano
+  workflow_dispatch:         # botón "Run workflow" para lanzarlo a mano
+    inputs:
+      prueba_aviso:
+        description: "Enviar un mensaje de prueba por Telegram"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -39,6 +44,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Descargar datos y calcular predicciones
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PRUEBA_AVISO: ${{ github.event.inputs.prueba_aviso }}
         run: python scripts/update.py
 
       - name: Guardar cambios en el repositorio

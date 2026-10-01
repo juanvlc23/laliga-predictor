@@ -580,6 +580,14 @@ def main():
     }
     (OUT / "modelo.json").write_text(json.dumps({"meta": meta, **modelo}, ensure_ascii=False, indent=1))
 
+    # Aviso por Telegram si han aparecido cuotas nuevas
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import avisos
+        avisos.avisar_cuotas(preds)
+    except Exception as e:  # nunca debe romper la actualización
+        print(f"Avisos: error ({e}); se omite.")
+
     # Selecciones nacionales (para el Pleno al 15 y los parones de la Quiniela)
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
