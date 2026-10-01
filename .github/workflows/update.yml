@@ -3,11 +3,10 @@ name: Actualizar predicciones
 on:
   schedule:
     # Horas en UTC (Madrid = UTC+2 en verano, UTC+1 en invierno).
-    # Jueves y viernes: dos veces por hora (GitHub a veces retrasa o se salta ejecuciones).
-    - cron: "17 * * * 4,5"
-    - cron: "47 * * * 4,5"
-    # Sábado hasta el cierre de la Quiniela (14:00 en Madrid): dos veces por hora.
-    - cron: "17,47 0-11 * * 6"
+    # Jueves y viernes: cada 2 horas.
+    - cron: "17 */2 * * 4,5"
+    # Sábado hasta el cierre de la Quiniela (14:00 en Madrid): cada 2 horas y una última a las 13:17.
+    - cron: "17 0,2,4,6,8,10,11 * * 6"
     # Resto de la semana: dos veces al día (08:17 y 19:17 en Madrid en verano).
     - cron: "17 6,17 * * 0,1,2,3"
     - cron: "17 17 * * 6"

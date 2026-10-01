@@ -36,13 +36,13 @@ function fmtMadrid(date) {
   }).format(date);
 }
 
-// Ventana de comprobación cada hora: de jueves 00:00 a sábado 14:00 (hora de Madrid).
+// Ventana de actualización cada 2 horas: de jueves 00:00 a sábado 14:00 (hora de Madrid).
 function enVentanaHoraria(m) {
   return m.dow === 4 || m.dow === 5 || (m.dow === 6 && m.hour < 14);
 }
 // Minutos sin actualizar a partir de los cuales se considera que algo va mal.
 function umbralMinutos(m) {
-  return enVentanaHoraria(m) ? 90 : 14 * 60;
+  return enVentanaHoraria(m) ? 150 : 14 * 60;
 }
 function horasSilencio(m) {
   return m.hour < 8; // de 00:00 a 08:00 no se envían avisos
