@@ -55,6 +55,7 @@ MAX_GOALS = 10
 BLEND_GRID = [round(x, 1) for x in np.arange(0, 1.01, 0.1)]
 DEFAULT_BLEND = 0.5          # peso del modelo si no hay datos para elegirlo
 LABELS = ["1", "X", "2"]
+RESULTADOS_DIAS = 200        # resultados recientes que se publican para el historial de la web
 
 
 # --------------------------------------------------------------------------
@@ -601,6 +602,14 @@ def main():
         if backtest["divisiones"]["Primera"]["total"] else {"1": 0.45, "X": 0.27, "2": 0.28},
     }
     (OUT / "modelo.json").write_text(json.dumps({"meta": meta, **modelo}, ensure_ascii=False, indent=1))
+
+    # Resultados recientes: la web los usa para puntuar las jugadas guardadas en el historial.
+    rec = matches[matches.date >= pd.Timestamp(today.date()) - timedelta(days=RESULTADOS_DIAS)]
+    resultados = {"meta": {"actualizado": meta["actualizado"]},
+                  "clubes": [[d.strftime("%Y-%m-%d"), h, a, int(hg), int(ag)]
+                             for d, h, a, hg, ag in zip(rec.date, rec.home, rec.away, rec.hg, rec.ag)],
+                  "selecciones": []}
+    (OUT / "resultados.json").write_text(json.dumps(resultados, ensure_ascii=False, separators=(",", ":")))
 
     # Aviso por Telegram si han aparecido cuotas nuevas
     try:

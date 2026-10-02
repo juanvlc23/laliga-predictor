@@ -185,6 +185,15 @@ def run(offline: bool, ref: pd.Timestamp, meta: dict) -> None:
            "mu": m["mu"], "home": m["home"], "rho": m["rho"], "max_goles": 10,
            "equipos": teams, "nombres_es": ES, "backtest": bt}
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
+
+    # Resultados recientes de selecciones, junto a los de los clubes (para el historial de la web)
+    res_path = OUT.parent / "resultados.json"
+    if res_path.exists():
+        res = json.loads(res_path.read_text())
+        rec = d[(d.date >= ref - timedelta(days=200)) & (d.date < ref)]
+        res["selecciones"] = [[f.strftime("%Y-%m-%d"), h, a, int(hg), int(ag)]
+                              for f, h, a, hg, ag in zip(rec.date, rec.home_team, rec.away_team, rec.hg, rec.ag)]
+        res_path.write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")))
     ok = sum(1 for v in set(ES.values()) if v in teams)
     print(f"Selecciones: {len(teams)} equipos (último partido {out['meta']['ultimo_partido_selecciones']}), "
           f"backtest {bt['partidos']} partidos, acierto {bt['acierto']:.1%}; nombres en español válidos {ok}/{len(set(ES.values()))}")
