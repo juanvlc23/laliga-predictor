@@ -213,7 +213,7 @@ function renderPartidos(){
   box.innerHTML = how + list.map(p => {
     const lab = k => p.prob[k] >= 0.18 ? `${k} · ${pct(p.prob[k])}` : p.prob[k] >= 0.07 ? pct(p.prob[k]) : '';
     const src = `<span>Modelo: <b>${pct(p.prob_modelo['1'])} · ${pct(p.prob_modelo.X)} · ${pct(p.prob_modelo['2'])}</b></span>` +
-      (p.casas ? `<span>Casas: <b>${pct(p.casas['1'])} · ${pct(p.casas.X)} · ${pct(p.casas['2'])}</b></span>` : `<span>Sin cuotas todavía</span>`);
+      (p.casas ? `<span>Casas${p.cuotas_fuente === 'en vivo' ? ' (en vivo)' : ''}: <b>${pct(p.casas['1'])} · ${pct(p.casas.X)} · ${pct(p.casas['2'])}</b></span>` : `<span>Sin cuotas todavía</span>`);
     const notas = p.notas.length ? `<div class="note">Ajuste manual: ${esc(p.notas.join(' · '))}</div>` : '';
     return `<div class="card">
       <div class="match-top"><span>${fmtDate(p.fecha, p.hora)}</span>
@@ -716,7 +716,8 @@ function renderEquipos(){
   const m = PRED.meta;
   const upd = new Date(m.actualizado).toLocaleString('es-ES', {dateStyle:'medium', timeStyle:'short'});
   document.getElementById('meta').textContent =
-    `Temporada ${m.temporada} · ${m.partidos_historico.toLocaleString('es-ES')} partidos en el histórico · actualizado ${upd}`;
+    `Temporada ${m.temporada} · ${m.partidos_historico.toLocaleString('es-ES')} partidos en el histórico · actualizado ${upd}` +
+    (m.cuotas_vivo?.leidas ? ` · cuotas en vivo de ${m.cuotas_vivo.partidos} partidos, leídas ${new Date(m.cuotas_vivo.leidas).toLocaleString('es-ES', {weekday:'short', hour:'2-digit', minute:'2-digit'})}` : '');
   divPartidos = segmented('segPartidos', renderPartidos);
   divAcierto = segmented('segAcierto', renderBacktest);
   divEquipos = segmented('segEquipos', renderEquipos);

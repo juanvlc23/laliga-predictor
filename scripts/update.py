@@ -490,6 +490,25 @@ def main():
     # Próximos partidos
     ajustes = load_ajustes()
     fixtures = load_fixtures(matches)
+
+    # Cuotas en vivo (The Odds API): sustituyen a las de football-data cuando las hay.
+    current_season = matches.season.max()
+    equipos_div = {}
+    for div in DIVISIONS:
+        cur = matches[(matches["div"] == div) & (matches.season == current_season)]
+        equipos_div[div] = sorted((set(cur.home) | set(cur.away)) & set(model.teams))
+        if len(equipos_div[div]) < 18:      # principio de temporada: aún no han jugado todos
+            equipos_div[div] = list(model.teams)
+    cuotas_info = {"activo": False, "partidos": 0, "leidas": None, "restantes": None, "sin_emparejar": [], "error": None}
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import cuotas_vivo
+        fixtures, cuotas_info = cuotas_vivo.aplicar(fixtures, equipos_div, now, args.offline)
+    except Exception as e:  # nunca debe romper la actualización: se sigue con football-data
+        print(f"Cuotas en vivo: error ({e}); se usan las de football-data.")
+        if "fuente" not in fixtures.columns:
+            fixtures = fixtures.assign(fuente=None, leido=None)
+
     preds, skipped = [], []
     for r in fixtures.itertuples():
         if not (model.knows(r.home) and model.knows(r.away)):
@@ -520,6 +539,8 @@ def main():
             "prob": dict(zip(LABELS, map(r4, final))),
             "prob_modelo": dict(zip(LABELS, map(r4, mo["p"]))),
             "casas": None if book is None else dict(zip(LABELS, map(r4, book))),
+            "cuotas_fuente": None if book is None else (r.fuente if isinstance(r.fuente, str) else "football-data"),
+            "cuotas_leidas": r.leido if isinstance(r.leido, str) else None,
             "pick": LABELS[k],
             "confianza": confidence_label(final[k]),
             "doble_oportunidad": {"pick": "".join(LABELS[i] for i in top2), "prob": r4(final[top2].sum())},
@@ -533,7 +554,6 @@ def main():
 
     # Tablas de fuerza por división
     elo = compute_elo(matches)
-    current_season = matches.season.max()
     tables = {}
     for div, name in DIVISIONS.items():
         cur = matches[(matches["div"] == div) & (matches.season == current_season)]
@@ -556,6 +576,8 @@ def main():
         "ultimo_partido": {DIVISIONS[d]: matches[matches["div"] == d].date.max().strftime("%Y-%m-%d")
                            for d in DIVISIONS if (matches["div"] == d).any()},
         "peso_modelo": {DIVISIONS[d]: v for d, v in weights.items()},
+        "cuotas_vivo": {"activo": cuotas_info["activo"], "partidos": cuotas_info["partidos"],
+                        "leidas": cuotas_info["leidas"]},
     }
     (OUT / "predicciones.json").write_text(json.dumps({"meta": meta, "partidos": preds}, ensure_ascii=False, indent=1))
     (OUT / "equipos.json").write_text(json.dumps({"meta": meta, "divisiones": tables}, ensure_ascii=False, indent=1))
@@ -584,8 +606,10 @@ def main():
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         import avisos
-        if not avisos.avisar_cuotas(preds):
-            avisos.avisar_ejecucion(preds, meta)
+        nuevas = avisos.avisar_cuotas(preds)
+        cambios = avisos.avisar_cambios(preds, now)
+        if not (nuevas or cambios):
+            avisos.avisar_ejecucion(preds, meta, cuotas_info)
     except Exception as e:  # nunca debe romper la actualización
         print(f"Avisos: error ({e}); se omite.")
 
