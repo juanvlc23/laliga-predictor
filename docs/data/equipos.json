@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-02T10:07:24Z",
+  "actualizado": "2026-10-02T10:29:40Z",
   "temporada": "2026/27",
   "partidos_historico": 8566,
   "ultimo_partido": {
@@ -10,6 +10,11 @@
   "peso_modelo": {
    "Primera": 0.0,
    "Segunda": 0.0
+  },
+  "cuotas_vivo": {
+   "activo": false,
+   "partidos": 0,
+   "leidas": null
   }
  },
  "divisiones": {
