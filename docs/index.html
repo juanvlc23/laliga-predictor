@@ -85,6 +85,29 @@ h3{font-size:15px;margin:0 0 8px}
 .src{font-size:11px;color:var(--muted)}
 .e8{color:var(--cx);margin-left:2px;font-size:12px}
 select.preset{font:inherit;font-size:12px;margin-top:4px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);max-width:100%}
+/* Historial */
+.hist summary{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;list-style:none}
+.hist summary::-webkit-details-marker{display:none}
+.hist summary::before{content:'▸';color:var(--muted)}
+.hist[open] summary::before{content:'▾'}
+.hist summary .pill{margin-left:auto}
+.hist[open] summary{margin-bottom:8px}
+.boleto th.res{width:60px}
+.boleto .res{font-size:12px;white-space:nowrap}
+.boleto .sig span.hit{box-shadow:0 0 0 2px var(--c1)}
+.boleto .sig span.miss{box-shadow:0 0 0 2px var(--c2)}
+.boleto .sig span.tap{cursor:pointer;outline:1px dashed var(--line);outline-offset:1px}
+.ok{color:var(--c1);font-weight:600} .ko{color:var(--c2);font-weight:600}
+.pos{color:var(--c1)} .neg{color:var(--c2)}
+.hfoot{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px;font-size:13px}
+.hfoot label{display:flex;gap:6px;align-items:center;color:var(--muted)}
+.hfoot input,.boleto select.gol{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.hfoot input{width:92px}
+.hfoot .right{margin-left:auto;display:flex;gap:8px}
+.boleto select.gol{padding:3px 2px;font-size:12px}
+.btn.mini{padding:3px 10px;font-weight:600}
+.btn.danger{color:var(--c2);border-color:var(--c2)}
+.btn[disabled]{opacity:.6;cursor:default}
 textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
 </style>
 </head>
@@ -97,6 +120,7 @@ textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid va
   <nav>
     <button data-s="partidos" class="on">Próximos partidos</button>
     <button data-s="quiniela">Quiniela</button>
+    <button data-s="historial">Historial</button>
     <button data-s="acierto">¿Cuánto acierta?</button>
     <button data-s="equipos">Equipos</button>
   </nav>
@@ -145,6 +169,10 @@ textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid va
     <div class="card" id="qResult"></div>
   </section>
 
+  <section id="historial">
+    <div id="hist"></div>
+  </section>
+
   <section id="acierto">
     <div class="seg" id="segAcierto"></div>
     <div id="bt"></div>
@@ -161,6 +189,7 @@ textarea{width:100%;font:inherit;font-size:14px;padding:10px;border:1px solid va
 const pct = x => (x*100).toFixed(0) + '%';
 const pct1 = x => (x*100).toFixed(1).replace('.', ',') + '%';
 const num = x => x.toFixed(2).replace('.', ',');
+const num1 = x => x.toFixed(1).replace('.', ',');
 const eur = x => x.toLocaleString('es-ES', {style:'currency', currency:'EUR'});
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmtDate = (d, t) => {
@@ -395,7 +424,7 @@ function parseBoleto(text){
     const nh = natTeam(clean(rh)), na = natTeam(clean(ra));
     if (nh && na){
       const r = natPredict(nh, na);
-      out.push({local: clean(rh), visitante: clean(ra), prob: r.prob, pleno: r.pleno, fuente: 'selecciones'});
+      out.push({local: clean(rh), visitante: clean(ra), prob: r.prob, pleno: r.pleno, fuente: 'selecciones', idL: nh, idV: na});
       return;
     }
     const h = matchTeam(clean(rh), teams), a = matchTeam(clean(ra), teams);
@@ -586,6 +615,7 @@ function qRender(){
     `<p class="explain" style="margin-top:6px">Precio de la apuesta: 1 € (puedes cambiarlo si varía).</p>`;
 
   const res = document.getElementById('qResult');
+  Q.current = null;
   if (Q.items.length < 14){
     res.innerHTML = `<h3>3. Tu columna</h3><p class="explain">Faltan partidos: hacen falta al menos 14 (llevas ${Q.items.length}).</p>`;
     return;
@@ -606,7 +636,7 @@ function qRender(){
       ${LAB.map(k => `<td class="sig"><span class="${choice[i].signs.includes(k)?'on':''}">${k}</span><small>${pct(p.prob[k])}</small></td>`).join('')}
       <td class="cov">${pct(choice[i].cov)}</td></tr>`).join('');
 
-  let pleno = '';
+  let pleno = '', plenoPick = null;
   if (Q.items.length >= 15){
     const p = Q.items[14];
     const sel15 = p.fuente === 'selecciones' ? '<div class="src">modelo de selecciones</div>' : p.fuente === 'sin datos' ? `<div class="src">sin datos (${esc(p.motivo)})</div><select class="preset" data-i="14">${PRESETS.map(([c,l]) => `<option value="${c}" ${c===p.preset?'selected':''}>${l}</option>`).join('')}</select>` : '';
@@ -617,6 +647,7 @@ function qRender(){
       const top = [];
       p.pleno.forEach((r,a) => r.forEach((v,b) => top.push([cats[a]+' – '+cats[b], v])));
       top.sort((a,b) => b[1]-a[1]);
+      plenoPick = top[0][0];
       pleno = `<tr><td class="n">15</td><td class="m">${esc(p.local)} – ${esc(p.visitante)}${sel15}</td>
         <td colspan="3" style="text-align:center"><b>${top[0][0]}</b></td><td class="cov">${pct(top[0][1])}</td></tr>
         <tr><td></td><td colspan="5" class="m" style="color:var(--muted);font-size:12px">Otras opciones del Pleno: ${top.slice(1,4).map(([k,v]) => `${k} (${pct(v)})`).join(' · ')}</td></tr>`;
@@ -629,6 +660,8 @@ function qRender(){
       <tr><th class="n">#</th><th class="m">Partido</th><th class="sig">1</th><th class="sig">X</th><th class="sig">2</th><th class="cov" title="Probabilidad de acertar este partido con los signos marcados">Acierto</th></tr>
       ${rows}${pleno}
     </table></div>
+    <div class="btns" style="margin-top:12px"><button class="btn" id="qSave"></button></div>
+    <p class="explain" id="qSaveMsg"></p>
     <h2>Probabilidades de esta columna</h2>
     <div class="stats">
       <div class="card stat"><div class="v">${num(expected)}</div><div class="l">Aciertos esperados de 14</div></div>
@@ -645,6 +678,8 @@ function qRender(){
     </div>
     <p class="explain">Ojo con el premio: casi todo el mundo elige los mismos favoritos, así que se reparte entre muchos (el 9 de septiembre de 2026 pagó 2,58 € por acertante).</p>
     <p class="explain">Ojo: el premio depende de cuánta gente acierte. Con 10 aciertos muchas jornadas no se cobra nada y con 11 se suelen cobrar entre 5 y 25 € por apuesta. Para el mismo dinero, los triples suben más la probabilidad de llegar a 11 que los dobles.</p>`;
+  Q.current = {matches, choice, price, expected, plenoPick, p15: Q.items[14] || null};
+  qSaveState();
   res.querySelectorAll('select.preset').forEach(sel => sel.onchange = () => {
     const it = Q.items[+sel.dataset.i];
     setOverride(it.key, sel.value);
@@ -653,6 +688,239 @@ function qRender(){
   });
   const sinDatos = Q.items.filter(x => x.fuente === 'sin datos').length;
   if (sinDatos) res.insertAdjacentHTML('afterbegin', `<div class="warn" style="margin-bottom:8px">${sinDatos} partido${sinDatos>1?'s':''} del boleto no ${sinDatos>1?'están':'está'} en Primera o Segunda masculina. Elige en su desplegable quién crees que es favorito para afinar la columna.</div>`);
+}
+
+/* ---------------- Historial de jugadas (se guarda en este dispositivo) ---------------- */
+let RES = null;
+const H = {edit: null, del: null, open: null};
+const CATS = ['0','1','2','M'];
+const cat = g => CATS[Math.min(g, 3)];
+const signOf = g => g[0] > g[1] ? '1' : g[0] === g[1] ? 'X' : '2';
+function hLoad(){
+  try { const h = JSON.parse(localStorage.getItem('historial') || '[]'); return Array.isArray(h) ? h : []; }
+  catch (e) { return []; }
+}
+function hStore(h){ try { localStorage.setItem('historial', JSON.stringify(h)); return true; } catch (e) { return false; } }
+const hKey = j => j.partidos.map(m => `${m.l}|${m.v}`).join(';');
+const hBets = j => j.partidos.reduce((a,m) => a * m.s.length, 1);
+const hSigns = j => j.partidos.map(m => [...m.s].sort().join('')).join(',') + '|' + (j.pleno?.pick || '');
+const hToday = () => { const d = new Date(); return new Date(d - d.getTimezoneOffset()*60000).toISOString().slice(0,10); };
+
+// La columna que se ve ahora mismo en la pestaña Quiniela, lista para guardar
+function hSnapshot(){
+  const c = Q.current;
+  if (!c) return null;
+  const snap = p => {
+    const tipo = p.fuente === 'selecciones' ? 'sel' : p.fuente === 'sin datos' ? 'manual' : 'club';
+    return {l: p.local, v: p.visitante, tipo,
+            il: tipo === 'sel' ? p.idL : tipo === 'club' ? p.local : null,
+            iv: tipo === 'sel' ? p.idV : tipo === 'club' ? p.visitante : null};
+  };
+  const fechas = Q.items.map(p => p.fecha).filter(Boolean).sort();
+  const j = {id: Date.now(), guardado: new Date().toISOString(), fecha: fechas[0] || hToday(), precio: c.price,
+             esperados: +c.expected.toFixed(2), premio: null,
+             partidos: c.matches.map((p,i) => ({...snap(p), s: [...c.choice[i].signs], p: p.prob})),
+             pleno: c.p15 ? {...snap(c.p15), pick: c.plenoPick} : null};
+  j.coste = +(hBets(j) * c.price).toFixed(2);
+  return j;
+}
+function hGuardar(){
+  const j = hSnapshot();
+  if (!j) return;
+  const h = hLoad(), i = h.findIndex(x => hKey(x) === hKey(j));
+  if (i >= 0){ j.id = h[i].id; j.premio = h[i].premio; h[i] = j; } else h.push(j);
+  if (!hStore(h)){ document.getElementById('qSaveMsg').textContent = 'No se ha podido guardar: el navegador no deja guardar datos (¿modo privado?).'; return; }
+  H.open = j.id;
+  hRender(); qSaveState();
+}
+// Estado del botón «Guardar» según si la columna ya está en el historial
+function qSaveState(){
+  const btn = document.getElementById('qSave'), msg = document.getElementById('qSaveMsg');
+  if (!btn) return;
+  const j = hSnapshot();
+  if (!j) return;
+  const old = hLoad().find(x => hKey(x) === hKey(j));
+  btn.onclick = hGuardar;
+  btn.disabled = false;
+  if (!old){
+    btn.textContent = 'Guardar esta jugada en el historial';
+    msg.textContent = 'Guárdala cuando la hayas jugado. Cuando se jueguen los partidos, la pestaña Historial contará tus aciertos.';
+  } else if ([...old.partidos, ...(old.pleno ? [old.pleno] : [])].some(m => m.r || m.g)){
+    btn.textContent = '✓ Guardada en el historial'; btn.disabled = true;
+    msg.textContent = 'Esta jornada ya tiene resultados; si jugaste otra cosa, corrígela en la pestaña Historial.';
+  } else if (hSigns(old) === hSigns(j)){
+    btn.textContent = '✓ Guardada en el historial'; btn.disabled = true;
+    msg.textContent = 'Si la columna cambia antes del cierre, podrás actualizarla aquí.';
+  } else {
+    btn.textContent = 'Actualizar la jugada guardada';
+    msg.textContent = 'La columna de arriba ya no es igual que la que guardaste (han cambiado las cuotas, los dobles o los triples). Actualízala solo si es la que has jugado.';
+  }
+}
+
+// Busca el resultado de un partido guardado entre los resultados publicados
+function hBuscar(m, j){
+  if (!RES || !m.il || !m.iv) return null;
+  const t = Date.parse(j.fecha + 'T12:00:00Z'), t0 = t - 6*864e5, t1 = t + 12*864e5;
+  for (const r of (m.tipo === 'sel' ? RES.selecciones : RES.clubes) || []){
+    const d = Date.parse(r[0] + 'T12:00:00Z');
+    if (d < t0 || d > t1) continue;
+    if (r[1] === m.il && r[2] === m.iv) return [r[3], r[4]];
+    if (m.tipo === 'sel' && r[1] === m.iv && r[2] === m.il) return [r[4], r[3]];   // campo neutral
+  }
+  return null;
+}
+function hActualizar(h){
+  let cambio = false;
+  for (const j of h) for (const m of [...j.partidos, ...(j.pleno ? [j.pleno] : [])]){
+    const g = hBuscar(m, j);
+    if (g && !(m.a && m.g && m.g[0] === g[0] && m.g[1] === g[1])){ m.g = g; m.r = signOf(g); m.a = true; cambio = true; }
+  }
+  return cambio;
+}
+function hPuntos(j){
+  const jug = j.partidos.filter(m => m.r);
+  return {jugados: jug.length, aciertos: jug.filter(m => m.s.includes(m.r)).length, completa: jug.length === j.partidos.length};
+}
+const hTitulo = j => {
+  const d = new Date(j.fecha + 'T12:00:00');
+  return 'Jornada del ' + d.toLocaleDateString('es-ES', {day:'numeric', month:'short', ...(d.getFullYear() !== new Date().getFullYear() ? {year:'numeric'} : {})});
+};
+
+function hCard(j, abierta){
+  const edit = H.edit === j.id, pt = hPuntos(j), id = j.id;
+  const pill = pt.completa ? `<span class="pill ${pt.aciertos >= 10 ? 'alta' : 'media'}">${pt.aciertos} aciertos de ${j.partidos.length}</span>`
+    : pt.jugados ? `<span class="pill baja">${pt.aciertos} de ${pt.jugados} jugados</span>` : `<span class="pill baja">por jugar</span>`;
+  const filas = j.partidos.map((m,i) => {
+    const hit = m.r ? m.s.includes(m.r) : null;
+    const sig = LAB.map(k => `<td class="sig"><span data-i="${i}" data-k="${k}" class="${m.s.includes(k) ? 'on' : ''} ${m.r === k ? (hit ? 'hit' : 'miss') : ''} ${edit ? 'tap' : ''}">${k}</span></td>`).join('');
+    const res = edit && !m.a ? `<button class="btn mini" data-res="${i}" title="Toca para poner el resultado">${m.r || '?'}</button>`
+      : m.r ? `<span class="${hit ? 'ok' : 'ko'}">${m.g ? m.g[0] + '–' + m.g[1] : m.r} ${hit ? '✓' : '✗'}</span>` : '<span style="color:var(--muted)" title="Aún sin resultado">—</span>';
+    return `<tr><td class="n">${i+1}</td><td class="m">${esc(m.l)} – ${esc(m.v)}</td>${sig}<td class="res">${res}</td></tr>`;
+  }).join('');
+  let pleno = '';
+  if (j.pleno){
+    const m = j.pleno, real = m.g ? `${cat(m.g[0])} – ${cat(m.g[1])}` : null, hit = real && m.pick ? real === m.pick : null;
+    const sel = n => `<select class="gol" data-gol="${n}"><option value="">?</option>${CATS.map((c,k) => `<option value="${k}" ${m.g && Math.min(m.g[n],3) === k ? 'selected' : ''}>${c}</option>`).join('')}</select>`;
+    const res = edit && !m.a ? `${sel(0)}${sel(1)}`
+      : real ? `<span class="${hit === null ? '' : hit ? 'ok' : 'ko'}">${m.a ? m.g[0] + '–' + m.g[1] : real} ${hit === null ? '' : hit ? '✓' : '✗'}</span>` : '<span style="color:var(--muted)">—</span>';
+    pleno = `<tr><td class="n">15</td><td class="m">${esc(m.l)} – ${esc(m.v)}<div class="src">Pleno al 15 (solo cuenta con 14 aciertos)</div></td>
+      <td colspan="3" style="text-align:center"><b>${m.pick || '—'}</b></td><td class="res">${res}</td></tr>`;
+  }
+  const bets = hBets(j);
+  return `<details class="card hist" data-id="${id}" ${abierta ? 'open' : ''}>
+    <summary><span>${hTitulo(j)}</span>${pill}</summary>
+    ${edit ? '<p class="explain">Toca un signo para marcarlo o quitarlo si al final jugaste otra cosa. En los partidos sin resultado automático, toca «?» para ponerlo a mano.</p>' : ''}
+    <div class="tablewrap"><table class="boleto">
+      <tr><th class="n">#</th><th class="m">Partido</th><th class="sig">1</th><th class="sig">X</th><th class="sig">2</th><th class="res">Final</th></tr>
+      ${filas}${pleno}
+    </table></div>
+    <div class="hfoot">
+      ${edit ? `<label>Coste (€) <input type="number" min="0" step="0.5" data-coste value="${j.coste}"></label>`
+             : `<span>Coste: <b>${eur(j.coste)}</b> (${bets.toLocaleString('es-ES')} apuesta${bets > 1 ? 's' : ''})</span>`}
+      <label>Premio cobrado (€) <input type="number" min="0" step="0.01" inputmode="decimal" data-premio value="${j.premio ?? ''}" placeholder="0"></label>
+      <span class="right">${edit
+        ? `<button class="btn danger" data-del>${H.del === id ? '¿Seguro? Borrar' : 'Borrar jugada'}</button><button class="btn" data-edit>Hecho</button>`
+        : `<button class="btn" data-edit>Corregir</button>`}</span>
+    </div>
+    <p class="explain" style="margin:10px 0 0">Al guardarla, la app esperaba ${num1(j.esperados)} aciertos.</p>
+  </details>`;
+}
+
+function hRender(){
+  const box = document.getElementById('hist');
+  const h = hLoad();
+  if (hActualizar(h)) hStore(h);
+  const orden = [...h].sort((a,b) => (b.fecha || '').localeCompare(a.fecha || '') || b.id - a.id);
+  if (!orden.length){
+    box.innerHTML = `<div class="card empty">Aún no has guardado ninguna jugada.<br>En la pestaña Quiniela, cuando tengas tu columna, pulsa «Guardar esta jugada en el historial».</div>`;
+    hBackup(box, h);
+    return;
+  }
+  if (H.open === null) H.open = orden[0].id;
+  const comp = orden.filter(j => hPuntos(j).completa);
+  const media = comp.length ? comp.reduce((a,j) => a + hPuntos(j).aciertos, 0) / comp.length : null;
+  const esperada = comp.length ? comp.reduce((a,j) => a + (j.esperados || 0), 0) / comp.length : null;
+  const mejor = comp.length ? Math.max(...comp.map(j => hPuntos(j).aciertos)) : null;
+  const gastado = orden.reduce((a,j) => a + (+j.coste || 0), 0), cobrado = orden.reduce((a,j) => a + (+j.premio || 0), 0);
+  const bal = cobrado - gastado;
+  box.innerHTML = `<div class="stats">
+      <div class="card stat"><div class="v">${media === null ? '—' : num1(media)}</div><div class="l">Aciertos de media (de 14)${esperada === null ? '' : ` · la app esperaba ${num1(esperada)}`}</div></div>
+      <div class="card stat"><div class="v">${comp.length}</div><div class="l">Jornadas terminadas${orden.length > comp.length ? ` · ${orden.length - comp.length} en curso` : ''}${mejor === null ? '' : ` · mejor: ${mejor} aciertos`}</div></div>
+      <div class="card stat"><div class="v ${bal > 0 ? 'pos' : bal < 0 ? 'neg' : ''}">${bal > 0 ? '+' : ''}${eur(bal)}</div><div class="l">Balance · gastado ${eur(gastado)} · cobrado ${eur(cobrado)}</div></div>
+    </div>
+    <p class="explain">En negro, lo que marcaste. Con borde, lo que salió: verde si lo acertaste, rojo si no. Los resultados de Primera y Segunda se rellenan solos uno o dos días después del partido; los de selecciones pueden tardar más. Si falta alguno, pulsa «Corregir» y ponlo a mano.</p>
+    ${orden.map(j => hCard(j, H.open === j.id || H.edit === j.id)).join('')}`;
+  hBackup(box, h);
+
+  box.querySelectorAll('details.hist').forEach(el => {
+    const id = +el.dataset.id;
+    const cambiar = fn => { const all = hLoad(), j = all.find(x => x.id === id); if (!j) return; fn(j, all); hStore(all); hRender(); if (typeof qSaveState === 'function') qSaveState(); };
+    el.ontoggle = () => { if (el.open) H.open = id; else if (H.open === id) H.open = 0; };
+    el.querySelector('[data-edit]').onclick = () => { H.edit = H.edit === id ? null : id; H.del = null; H.open = id; hRender(); };
+    el.querySelector('[data-premio]').onchange = e => cambiar(j => { const v = parseFloat(e.target.value); j.premio = isFinite(v) && v >= 0 ? v : null; });
+    const coste = el.querySelector('[data-coste]');
+    if (coste) coste.onchange = e => cambiar(j => { const v = parseFloat(e.target.value); if (isFinite(v) && v >= 0) j.coste = v; });
+    const del = el.querySelector('[data-del]');
+    if (del) del.onclick = () => {
+      if (H.del !== id){ H.del = id; hRender(); return; }
+      const all = hLoad().filter(x => x.id !== id);
+      hStore(all); H.del = H.edit = null; H.open = null; hRender(); qSaveState();
+    };
+    el.querySelectorAll('span.tap').forEach(sp => sp.onclick = () => cambiar(j => {
+      const m = j.partidos[+sp.dataset.i], k = sp.dataset.k;
+      if (m.s.includes(k)){ if (m.s.length > 1) m.s = m.s.filter(x => x !== k); }
+      else m.s = LAB.filter(x => x === k || m.s.includes(x));
+      j.coste = +(hBets(j) * (j.precio || 1)).toFixed(2);
+    }));
+    el.querySelectorAll('[data-res]').forEach(b => b.onclick = () => cambiar(j => {
+      const m = j.partidos[+b.dataset.res];
+      m.r = ['1','X','2',null][(['1','X','2'].indexOf(m.r) + 1 + 4) % 4];
+      delete m.g;
+    }));
+    el.querySelectorAll('select.gol').forEach(s => s.onchange = () => {
+      const vals = [...el.querySelectorAll('select.gol')].map(x => x.value);
+      cambiar(j => { if (vals.every(v => v !== '')){ j.pleno.g = vals.map(Number); j.pleno.r = signOf(j.pleno.g); } else { delete j.pleno.g; delete j.pleno.r; } });
+    });
+  });
+}
+
+// Copia de seguridad: el historial vive solo en este navegador
+function hBackup(box, h){
+  box.insertAdjacentHTML('beforeend', `<div class="card">
+    <h3>Copia de seguridad</h3>
+    <p class="explain">El historial se guarda solo en este móvil o navegador y se pierde si borras sus datos (en iPhone, también si pasas semanas sin abrir la app). Descarga una copia de vez en cuando.</p>
+    <div class="btns" style="margin-bottom:0">
+      <button class="btn" id="hDown" ${h.length ? '' : 'disabled'}>Descargar copia</button>
+      <button class="btn" id="hUp">Recuperar una copia</button>
+      <input type="file" id="hFile" accept=".json,application/json" hidden>
+    </div>
+    <div id="hMsg"></div>
+  </div>`);
+  document.getElementById('hDown').onclick = () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(hLoad(), null, 1)], {type: 'application/json'}));
+    a.download = `quiniela-historial-${hToday()}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  const file = document.getElementById('hFile');
+  document.getElementById('hUp').onclick = () => file.click();
+  file.onchange = async () => {
+    let msg;
+    try {
+      const nuevos = JSON.parse(await file.files[0].text());
+      if (!Array.isArray(nuevos) || !nuevos.every(j => j && j.id && Array.isArray(j.partidos) && j.partidos.every(m => Array.isArray(m.s)))) throw new Error('formato');
+      const all = hLoad();
+      let n = 0;
+      for (const j of nuevos) if (!all.some(x => x.id === j.id || hKey(x) === hKey(j))){ all.push(j); n++; }
+      hStore(all); H.open = null;
+      msg = `<p class="explain" style="color:var(--accent);margin:8px 0 0">Copia recuperada: ${n} jornada${n === 1 ? '' : 's'} añadida${n === 1 ? '' : 's'}${nuevos.length > n ? ` (${nuevos.length - n} ya estaba${nuevos.length - n === 1 ? '' : 'n'})` : ''}.</p>`;
+    } catch (e) {
+      msg = '<div class="warn">Ese archivo no es una copia del historial.</div>';
+    }
+    hRender();
+    document.getElementById('hMsg').innerHTML = msg;
+  };
 }
 
 /* ---------------- Acierto ---------------- */
@@ -709,6 +977,7 @@ function renderEquipos(){
     [PRED, BT, EQ] = await Promise.all([load('predicciones'), load('backtest'), load('equipos')]);
     MODELO = await load('modelo').catch(() => null);
     SELE = await load('selecciones').catch(() => null);
+    RES = await load('resultados').catch(() => null);
   } catch (e) {
     document.getElementById('meta').textContent = 'Todavía no hay datos. La primera actualización tarda unos minutos.';
     return;
@@ -722,7 +991,7 @@ function renderEquipos(){
   divAcierto = segmented('segAcierto', renderBacktest);
   divEquipos = segmented('segEquipos', renderEquipos);
   document.getElementById('soloAlta').onchange = renderPartidos;
-  renderPartidos(); renderBacktest(); renderEquipos(); qInit();
+  renderPartidos(); renderBacktest(); renderEquipos(); qInit(); hRender();
 })();
 </script>
 </body>

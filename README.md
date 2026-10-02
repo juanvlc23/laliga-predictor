@@ -17,6 +17,10 @@ football-data.co.uk recoge las cuotas una sola vez, el viernes por la tarde. Par
 
 Con la clave puesta, `scripts/cuotas_vivo.py` vuelve a leer las cuotas cada hora o dos el viernes y el sábado hasta las 14:00, y unas cuatro veces al día el resto de la semana. Si cambia el signo más probable de un partido, llega un aviso por Telegram. Sin la clave, la app sigue funcionando solo con football-data.co.uk.
 
+## Historial de jugadas
+
+En la pestaña Quiniela, el botón «Guardar esta jugada en el historial» apunta la columna que has jugado. La pestaña Historial cuenta los aciertos de cada jornada cuando se publican los resultados (`docs/data/resultados.json`), y lleva la cuenta de lo gastado y lo cobrado. El historial se guarda solo en el navegador; desde esa pestaña se puede descargar y recuperar una copia.
+
 ## Ajustes manuales (bajas, rotaciones)
 
 Edita `data/ajustes.csv` desde la web de GitHub (icono del lápiz). Por ejemplo:
