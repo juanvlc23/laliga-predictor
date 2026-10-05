@@ -99,6 +99,17 @@ select.preset{font:inherit;font-size:12px;margin-top:4px;padding:3px 6px;border:
 .boleto .sig span.tap{cursor:pointer;outline:1px dashed var(--line);outline-offset:1px}
 .ok{color:var(--c1);font-weight:600} .ko{color:var(--c2);font-weight:600}
 .pos{color:var(--c1)} .neg{color:var(--c2)}
+/* Análisis del historial */
+.ana summary{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;list-style:none}
+.ana summary::-webkit-details-marker{display:none}
+.ana summary::before{content:'▸';color:var(--muted)}
+.ana[open] summary::before{content:'▾'}
+.ana summary .pill{margin-left:auto}
+.ana[open] summary{margin-bottom:10px}
+.ana h4{font-size:14px;margin:16px 0 4px}
+.ana p{margin:0 0 6px;font-size:13.5px}
+.ana table{font-size:13px}
+.ana .lead{font-size:14.5px}
 .hfoot{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px;font-size:13px}
 .hfoot label{display:flex;gap:6px;align-items:center;color:var(--muted)}
 .hfoot input,.boleto select.gol{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
@@ -826,6 +837,84 @@ function hCard(j, abierta){
   </details>`;
 }
 
+// Análisis del historial: qué se puede concluir de las jornadas terminadas
+function hAnalisis(h){
+  const comp = h.filter(j => hPuntos(j).completa);
+  const n = comp.length;
+  if (!n) return `<details class="card ana"><summary><span>Análisis de tus jugadas</span><span class="pill baja">sin datos</span></summary>
+    <p>Aparecerá cuando termine tu primera jornada guardada. Para sacar conclusiones harán falta unas 15 jornadas.</p></details>`;
+  const fiab = n < 5 ? ['baja', 'muy pocas jornadas', `Con ${n} jornada${n > 1 ? 's' : ''} todo esto es casi azar. Míralo por curiosidad y no cambies tu forma de jugar todavía.`]
+    : n < 15 ? ['media', 'orientativo', `Con ${n} jornadas los datos son solo orientativos. A partir de unas 15 empiezan a ser fiables para los aciertos.`]
+    : ['alta', 'fiable para aciertos', `Con ${n} jornadas los aciertos ya son fiables. El dinero no: depende de premios que salen muy pocas veces y necesita muchas más jornadas.`];
+
+  // Partidos con resultado, con la probabilidad que daba la app a lo marcado
+  const ms = [];
+  for (const j of comp) for (const m of j.partidos){
+    const cov = m.p ? m.s.reduce((a,k) => a + (+m.p[k] || 0), 0) : null;
+    const top = m.p ? [...m.s].sort((a,b) => (m.p[b] || 0) - (m.p[a] || 0))[0] : m.s[0];
+    ms.push({tipo: m.tipo || 'club', k: m.s.length, hit: m.s.includes(m.r), cov, top, r: m.r});
+  }
+  const conP = ms.filter(m => m.cov !== null);
+  const sum = (a, f) => a.reduce((t,x) => t + f(x), 0);
+  const fila = (nombre, arr) => {
+    if (!arr.length) return '';
+    const cp = arr.filter(m => m.cov !== null);
+    return `<tr><td>${nombre}</td><td>${arr.length}</td><td>${pct(sum(arr, m => m.hit ? 1 : 0) / arr.length)}</td><td>${cp.length ? pct(sum(cp, m => m.cov) / cp.length) : '—'}</td></tr>`;
+  };
+
+  // 1) ¿Acierta lo que promete?
+  const hits = sum(conP, m => m.hit ? 1 : 0), exp = sum(conP, m => m.cov), sd = Math.sqrt(sum(conP, m => m.cov * (1 - m.cov)));
+  const z = sd > 0 ? (hits - exp) / sd : 0;
+  const veredicto = !conP.length ? '' : Math.abs(z) < 1 ? 'Es prácticamente lo esperado.'
+    : Math.abs(z) < 2 ? `Vas algo por ${z > 0 ? 'encima' : 'debajo'}, pero la diferencia entra dentro de la suerte normal.`
+    : z > 0 ? 'Vas claramente por encima de lo esperado: buena racha.'
+    : 'Vas claramente por debajo de lo esperado. Si sigue así con más jornadas, convendría revisar el modelo.';
+  const calib = conP.length ? `<p class="lead">Has acertado <b>${hits}</b> de ${conP.length} partidos; la app esperaba <b>${num1(exp)}</b>. ${veredicto}</p>` : '';
+
+  // 2) Dinero
+  const gast = sum(comp, j => +j.coste || 0), cobr = sum(comp, j => +j.premio || 0);
+  const sinPremio = comp.filter(j => j.premio === null || j.premio === undefined).length;
+  const con10 = comp.filter(j => hPuntos(j).aciertos >= 10).length, con11 = comp.filter(j => hPuntos(j).aciertos >= 11).length;
+  const dinero = gast > 0 ? `<p>Por cada euro jugado has recuperado <b>${eur(cobr / gast)}</b> (jugado ${eur(gast)}, cobrado ${eur(cobr)}). En las simulaciones salía entre 0,28 € y 0,82 €.</p>
+    <p>Jornadas con 10 o más aciertos: <b>${con10}</b> de ${n}. Con 11 o más: <b>${con11}</b>.</p>
+    ${sinPremio ? `<p style="color:var(--muted)">${sinPremio} jornada${sinPremio > 1 ? 's' : ''} sin premio apuntado: cuenta${sinPremio > 1 ? 'n' : ''} como 0 €. Apúntalo aunque sea 0 para que el balance sea real.</p>` : ''}` : '';
+
+  // 3) Dobles y triples
+  const mult = ms.filter(m => m.k >= 2);
+  let multiples = '<p>Aún no has jugado dobles ni triples en jornadas terminadas.</p>';
+  if (mult.length){
+    const salvados = mult.filter(m => m.hit && m.r !== m.top).length;
+    const igual = mult.filter(m => m.hit && m.r === m.top).length;
+    const fallados = mult.filter(m => !m.hit).length;
+    const extra = sum(comp, j => Math.max(0, (+j.coste || 0) - (+j.precio || 1)));
+    multiples = `<p>Has puesto <b>${mult.length}</b> doble${mult.length > 1 ? 's' : ''} o triple${mult.length > 1 ? 's' : ''}:</p>
+      <p>• <b>${salvados}</b> te salv${salvados === 1 ? 'ó' : 'aron'} el partido (salió el signo que no era tu favorito).<br>
+         • <b>${igual}</b> no hacía${igual === 1 ? '' : 'n'} falta (salió tu favorito).<br>
+         • <b>${fallados}</b> fall${fallados === 1 ? 'ó' : 'aron'} igualmente.</p>
+      <p>Te han costado <b>${eur(extra)}</b> más que jugar sencillas${salvados ? `: <b>${eur(extra / salvados)}</b> por cada acierto extra` : ' y todavía no te han dado ningún acierto extra'}.</p>`;
+  }
+
+  // 4) Por tipo de partido
+  const tipos = `<div class="tablewrap"><table>
+      <tr><th>Tipo de partido</th><th>Partidos</th><th>Acertados</th><th>Esperado</th></tr>
+      ${fila('Clubes (Primera y Segunda)', ms.filter(m => m.tipo === 'club'))}
+      ${fila('Selecciones', ms.filter(m => m.tipo === 'sel'))}
+      ${fila('Elegidos a mano (sin datos)', ms.filter(m => m.tipo === 'manual'))}
+      ${fila('Fijos (un signo)', ms.filter(m => m.k === 1))}
+      ${fila('Dobles y triples', mult)}
+    </table></div>
+    <p style="color:var(--muted)">«Esperado» es la probabilidad media que daba la app a lo que marcaste. Si un tipo queda muy por debajo de su esperado durante muchas jornadas, ahí es donde conviene poner los dobles o no jugar.</p>`;
+
+  return `<details class="card ana" ${H.ana === false ? '' : 'open'}>
+    <summary><span>Análisis de tus jugadas</span><span class="pill ${fiab[0]}">${fiab[1]}</span></summary>
+    <p style="color:var(--muted)">${fiab[2]}</p>
+    <h4>¿Acierta lo que promete?</h4>${calib}
+    <h4>Dinero</h4>${dinero}
+    <h4>Dobles y triples</h4>${multiples}
+    <h4>Por tipo de partido</h4>${tipos}
+  </details>`;
+}
+
 function hRender(){
   const box = document.getElementById('hist');
   const h = hLoad();
@@ -849,9 +938,11 @@ function hRender(){
       <div class="card stat"><div class="v ${bal > 0 ? 'pos' : bal < 0 ? 'neg' : ''}">${bal > 0 ? '+' : ''}${eur(bal)}</div><div class="l">Balance · gastado ${eur(gastado)} · cobrado ${eur(cobrado)}</div></div>
     </div>
     <p class="explain">En negro, lo que marcaste. Con borde, lo que salió: verde si lo acertaste, rojo si no. Los resultados de Primera y Segunda se rellenan solos uno o dos días después del partido; los de selecciones pueden tardar más. Si falta alguno, pulsa «Corregir» y ponlo a mano.</p>
+    ${hAnalisis(orden)}
     ${orden.map(j => hCard(j, H.open === j.id || H.edit === j.id)).join('')}`;
   hBackup(box, h);
 
+  const ana = box.querySelector('details.ana'); if (ana) ana.ontoggle = () => { H.ana = ana.open; };
   box.querySelectorAll('details.hist').forEach(el => {
     const id = +el.dataset.id;
     const cambiar = fn => { const all = hLoad(), j = all.find(x => x.id === id); if (!j) return; fn(j, all); hStore(all); hRender(); if (typeof qSaveState === 'function') qSaveState(); };
