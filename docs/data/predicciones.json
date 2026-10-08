@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-07T21:58:27Z",
+  "actualizado": "2026-10-08T06:02:39Z",
   "temporada": "2026/27",
   "partidos_historico": 8577,
   "ultimo_partido": {
@@ -52,7 +52,7 @@
     "prob": 0.7369
    },
    "marcador_probable": "1-0",
-   "over_2_5": 0.3209,
+   "over_2_5": 0.321,
    "pleno": [
     [
      0.1381,

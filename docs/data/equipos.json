@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-07T21:58:27Z",
+  "actualizado": "2026-10-08T06:02:39Z",
   "temporada": "2026/27",
   "partidos_historico": 8577,
   "ultimo_partido": {
@@ -22,80 +22,80 @@
    {
     "equipo": "Barcelona",
     "elo": 1974,
-    "ataque": 2.502,
+    "ataque": 2.504,
     "defensa": 0.632
    },
    {
     "equipo": "Real Madrid",
     "elo": 1886,
-    "ataque": 1.931,
+    "ataque": 1.933,
     "defensa": 0.607
    },
    {
     "equipo": "Ath Madrid",
     "elo": 1787,
-    "ataque": 1.617,
+    "ataque": 1.618,
     "defensa": 0.671
    },
    {
     "equipo": "Betis",
     "elo": 1739,
-    "ataque": 1.379,
+    "ataque": 1.38,
     "defensa": 0.748
    },
    {
     "equipo": "Villarreal",
     "elo": 1739,
-    "ataque": 1.712,
-    "defensa": 0.841
+    "ataque": 1.713,
+    "defensa": 0.84
    },
    {
     "equipo": "Vallecano",
     "elo": 1646,
-    "ataque": 1.058,
-    "defensa": 0.794
+    "ataque": 1.059,
+    "defensa": 0.793
    },
    {
     "equipo": "Celta",
     "elo": 1641,
-    "ataque": 1.253,
-    "defensa": 0.781
+    "ataque": 1.254,
+    "defensa": 0.78
    },
    {
     "equipo": "Ath Bilbao",
     "elo": 1639,
-    "ataque": 1.137,
-    "defensa": 0.74
+    "ataque": 1.138,
+    "defensa": 0.739
    },
    {
     "equipo": "Sociedad",
     "elo": 1627,
-    "ataque": 1.287,
+    "ataque": 1.289,
     "defensa": 0.928
    },
    {
     "equipo": "Valencia",
     "elo": 1612,
-    "ataque": 1.036,
+    "ataque": 1.037,
     "defensa": 0.876
    },
    {
     "equipo": "Alaves",
     "elo": 1610,
-    "ataque": 1.1,
+    "ataque": 1.101,
     "defensa": 0.799
    },
    {
     "equipo": "Levante",
     "elo": 1606,
-    "ataque": 1.182,
-    "defensa": 0.954
+    "ataque": 1.183,
+    "defensa": 0.953
    },
    {
     "equipo": "Sevilla",
     "elo": 1603,
     "ataque": 1.123,
-    "defensa": 0.885
+    "defensa": 0.884
    },
    {
     "equipo": "Getafe",
@@ -106,37 +106,37 @@
    {
     "equipo": "Elche",
     "elo": 1584,
-    "ataque": 1.189,
-    "defensa": 0.966
+    "ataque": 1.19,
+    "defensa": 0.965
    },
    {
     "equipo": "La Coruna",
     "elo": 1583,
-    "ataque": 1.088,
-    "defensa": 0.939
+    "ataque": 1.089,
+    "defensa": 0.94
    },
    {
     "equipo": "Santander",
     "elo": 1580,
-    "ataque": 1.443,
+    "ataque": 1.444,
     "defensa": 1.348
    },
    {
     "equipo": "Osasuna",
     "elo": 1576,
-    "ataque": 1.069,
-    "defensa": 0.89
+    "ataque": 1.07,
+    "defensa": 0.889
    },
    {
     "equipo": "Espanol",
     "elo": 1575,
-    "ataque": 1.051,
-    "defensa": 0.863
+    "ataque": 1.052,
+    "defensa": 0.86
    },
    {
     "equipo": "Malaga",
     "elo": 1553,
-    "ataque": 1.082,
+    "ataque": 1.083,
     "defensa": 1.029
    }
   ],
@@ -144,7 +144,7 @@
    {
     "equipo": "Castellon",
     "elo": 1600,
-    "ataque": 1.244,
+    "ataque": 1.245,
     "defensa": 1.012
    },
    {
@@ -156,31 +156,31 @@
    {
     "equipo": "Girona",
     "elo": 1598,
-    "ataque": 1.137,
-    "defensa": 0.86
+    "ataque": 1.138,
+    "defensa": 0.859
    },
    {
     "equipo": "Mallorca",
     "elo": 1589,
-    "ataque": 0.971,
+    "ataque": 0.972,
     "defensa": 0.751
    },
    {
     "equipo": "Almeria",
     "elo": 1583,
-    "ataque": 1.325,
+    "ataque": 1.326,
     "defensa": 1.146
    },
    {
     "equipo": "Burgos",
     "elo": 1555,
-    "ataque": 0.843,
-    "defensa": 0.82
+    "ataque": 0.844,
+    "defensa": 0.821
    },
    {
     "equipo": "Las Palmas",
     "elo": 1540,
-    "ataque": 1.017,
+    "ataque": 1.018,
     "defensa": 1.012
    },
    {
@@ -204,38 +204,38 @@
    {
     "equipo": "Celta B",
     "elo": 1475,
-    "ataque": 0.997,
-    "defensa": 1.444
+    "ataque": 0.998,
+    "defensa": 1.443
    },
    {
     "equipo": "Granada",
     "elo": 1453,
-    "ataque": 1.001,
+    "ataque": 1.002,
     "defensa": 1.217
    },
    {
     "equipo": "Andorra",
     "elo": 1446,
-    "ataque": 1.059,
+    "ataque": 1.06,
     "defensa": 1.247
    },
    {
     "equipo": "Ceuta",
     "elo": 1438,
-    "ataque": 0.85,
+    "ataque": 0.851,
     "defensa": 1.454
    },
    {
     "equipo": "Cordoba",
     "elo": 1433,
-    "ataque": 1.08,
+    "ataque": 1.081,
     "defensa": 1.452
    },
    {
     "equipo": "Albacete",
     "elo": 1430,
     "ataque": 0.9,
-    "defensa": 1.204
+    "defensa": 1.205
    },
    {
     "equipo": "Leganes",
@@ -246,14 +246,14 @@
    {
     "equipo": "Tenerife",
     "elo": 1420,
-    "ataque": 0.752,
+    "ataque": 0.753,
     "defensa": 1.149
    },
    {
     "equipo": "Eldense",
     "elo": 1409,
-    "ataque": 0.834,
-    "defensa": 1.206
+    "ataque": 0.835,
+    "defensa": 1.207
    },
    {
     "equipo": "Sociedad B",
@@ -264,7 +264,7 @@
    {
     "equipo": "Valladolid",
     "elo": 1403,
-    "ataque": 0.764,
+    "ataque": 0.765,
     "defensa": 1.246
    },
    {
