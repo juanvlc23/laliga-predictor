@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-08T19:56:57Z",
+  "actualizado": "2026-10-09T00:22:28Z",
   "temporada": "2026/27",
   "partidos_historico": 8577,
   "ultimo_partido": {
@@ -22,13 +22,13 @@
    {
     "equipo": "Barcelona",
     "elo": 1974,
-    "ataque": 2.504,
+    "ataque": 2.503,
     "defensa": 0.632
    },
    {
     "equipo": "Real Madrid",
     "elo": 1886,
-    "ataque": 1.933,
+    "ataque": 1.932,
     "defensa": 0.607
    },
    {
@@ -40,13 +40,13 @@
    {
     "equipo": "Betis",
     "elo": 1739,
-    "ataque": 1.38,
+    "ataque": 1.379,
     "defensa": 0.748
    },
    {
     "equipo": "Villarreal",
     "elo": 1739,
-    "ataque": 1.713,
+    "ataque": 1.714,
     "defensa": 0.84
    },
    {
@@ -70,7 +70,7 @@
    {
     "equipo": "Sociedad",
     "elo": 1627,
-    "ataque": 1.289,
+    "ataque": 1.288,
     "defensa": 0.928
    },
    {
@@ -107,13 +107,13 @@
     "equipo": "Elche",
     "elo": 1584,
     "ataque": 1.19,
-    "defensa": 0.965
+    "defensa": 0.966
    },
    {
     "equipo": "La Coruna",
     "elo": 1583,
     "ataque": 1.089,
-    "defensa": 0.94
+    "defensa": 0.939
    },
    {
     "equipo": "Santander",
@@ -175,7 +175,7 @@
     "equipo": "Burgos",
     "elo": 1555,
     "ataque": 0.844,
-    "defensa": 0.821
+    "defensa": 0.82
    },
    {
     "equipo": "Las Palmas",
@@ -228,7 +228,7 @@
    {
     "equipo": "Cordoba",
     "elo": 1433,
-    "ataque": 1.081,
+    "ataque": 1.08,
     "defensa": 1.452
    },
    {
@@ -247,7 +247,7 @@
     "equipo": "Tenerife",
     "elo": 1420,
     "ataque": 0.753,
-    "defensa": 1.149
+    "defensa": 1.15
    },
    {
     "equipo": "Eldense",
