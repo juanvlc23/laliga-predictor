@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-09T22:37:50Z",
+  "actualizado": "2026-10-10T05:57:22Z",
   "temporada": "2026/27",
   "partidos_historico": 8577,
   "ultimo_partido": {
@@ -46,7 +46,7 @@
    {
     "equipo": "Villarreal",
     "elo": 1739,
-    "ataque": 1.714,
+    "ataque": 1.713,
     "defensa": 0.84
    },
    {
@@ -64,7 +64,7 @@
    {
     "equipo": "Ath Bilbao",
     "elo": 1639,
-    "ataque": 1.138,
+    "ataque": 1.137,
     "defensa": 0.739
    },
    {
@@ -100,7 +100,7 @@
    {
     "equipo": "Getafe",
     "elo": 1601,
-    "ataque": 0.737,
+    "ataque": 0.738,
     "defensa": 0.625
    },
    {
@@ -175,7 +175,7 @@
     "equipo": "Burgos",
     "elo": 1555,
     "ataque": 0.844,
-    "defensa": 0.82
+    "defensa": 0.821
    },
    {
     "equipo": "Las Palmas",
@@ -270,7 +270,7 @@
    {
     "equipo": "Cadiz",
     "elo": 1381,
-    "ataque": 0.823,
+    "ataque": 0.824,
     "defensa": 1.204
    }
   ]
