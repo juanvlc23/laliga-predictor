@@ -22,14 +22,5 @@
   "2026-10-12|Tenerife|Girona",
   "2026-10-12|Valladolid|Albacete"
  ],
- "signos": {
-  "2026-10-10|Vallecano|Ath Bilbao": {
-   "pick": "2",
-   "prob": {
-    "1": 0.3488,
-    "X": 0.2819,
-    "2": 0.3693
-   }
-  }
- }
+ "signos": {}
 }

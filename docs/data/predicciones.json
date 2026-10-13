@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-12T23:37:11Z",
+  "actualizado": "2026-10-13T14:09:24Z",
   "temporada": "2026/27",
   "partidos_historico": 8597,
   "ultimo_partido": {
@@ -17,69 +17,5 @@
    "leidas": null
   }
  },
- "partidos": [
-  {
-   "division": "Primera",
-   "fecha": "2026-10-10",
-   "hora": "13:00",
-   "local": "Vallecano",
-   "visitante": "Ath Bilbao",
-   "goles_esperados": [
-    1.18,
-    1.01
-   ],
-   "prob": {
-    "1": 0.3488,
-    "X": 0.2819,
-    "2": 0.3693
-   },
-   "prob_modelo": {
-    "1": 0.3962,
-    "X": 0.2936,
-    "2": 0.3102
-   },
-   "casas": {
-    "1": 0.3488,
-    "X": 0.2819,
-    "2": 0.3693
-   },
-   "cuotas_fuente": "football-data",
-   "cuotas_leidas": null,
-   "pick": "2",
-   "confianza": "baja",
-   "doble_oportunidad": {
-    "pick": "12",
-    "prob": 0.7181
-   },
-   "marcador_probable": "1-1",
-   "over_2_5": 0.3741,
-   "pleno": [
-    [
-     0.1135,
-     0.1117,
-     0.057,
-     0.0252
-    ],
-    [
-     0.1308,
-     0.1348,
-     0.0673,
-     0.0297
-    ],
-    [
-     0.078,
-     0.0787,
-     0.0397,
-     0.0175
-    ],
-    [
-     0.0423,
-     0.0427,
-     0.0215,
-     0.0095
-    ]
-   ],
-   "notas": []
-  }
- ]
+ "partidos": []
 }
