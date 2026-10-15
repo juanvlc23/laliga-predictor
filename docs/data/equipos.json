@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-14T20:41:17Z",
+  "actualizado": "2026-10-15T04:37:38Z",
   "temporada": "2026/27",
   "partidos_historico": 8597,
   "ultimo_partido": {
@@ -40,7 +40,7 @@
    {
     "equipo": "Betis",
     "elo": 1746,
-    "ataque": 1.454,
+    "ataque": 1.455,
     "defensa": 0.764
    },
    {
@@ -70,14 +70,14 @@
    {
     "equipo": "Sociedad",
     "elo": 1634,
-    "ataque": 1.32,
+    "ataque": 1.319,
     "defensa": 0.94
    },
    {
     "equipo": "Valencia",
     "elo": 1613,
     "ataque": 1.047,
-    "defensa": 0.873
+    "defensa": 0.874
    },
    {
     "equipo": "Sevilla",
@@ -88,7 +88,7 @@
    {
     "equipo": "Levante",
     "elo": 1604,
-    "ataque": 1.21,
+    "ataque": 1.212,
     "defensa": 0.982
    },
    {
@@ -113,7 +113,7 @@
     "equipo": "Santander",
     "elo": 1579,
     "ataque": 1.43,
-    "defensa": 1.363
+    "defensa": 1.362
    },
    {
     "equipo": "Espanol",
@@ -168,7 +168,7 @@
    {
     "equipo": "Eibar",
     "elo": 1582,
-    "ataque": 1.036,
+    "ataque": 1.035,
     "defensa": 0.882
    },
    {
@@ -204,8 +204,8 @@
    {
     "equipo": "Celta B",
     "elo": 1486,
-    "ataque": 1.174,
-    "defensa": 1.408
+    "ataque": 1.173,
+    "defensa": 1.409
    },
    {
     "equipo": "Granada",
@@ -216,8 +216,8 @@
    {
     "equipo": "Andorra",
     "elo": 1458,
-    "ataque": 1.033,
-    "defensa": 1.199
+    "ataque": 1.032,
+    "defensa": 1.198
    },
    {
     "equipo": "Ceuta",
@@ -253,13 +253,13 @@
     "equipo": "Leganes",
     "elo": 1418,
     "ataque": 0.742,
-    "defensa": 1.065
+    "defensa": 1.064
    },
    {
     "equipo": "Albacete",
     "elo": 1412,
     "ataque": 0.869,
-    "defensa": 1.283
+    "defensa": 1.282
    },
    {
     "equipo": "Sociedad B",
