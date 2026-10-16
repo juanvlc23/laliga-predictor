@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-15T21:22:27Z",
+  "actualizado": "2026-10-16T00:24:14Z",
   "temporada": "2026/27",
   "partidos_historico": 8597,
   "ultimo_partido": {
@@ -22,7 +22,7 @@
    {
     "equipo": "Barcelona",
     "elo": 1976,
-    "ataque": 2.516,
+    "ataque": 2.515,
     "defensa": 0.621
    },
    {
@@ -40,7 +40,7 @@
    {
     "equipo": "Betis",
     "elo": 1746,
-    "ataque": 1.455,
+    "ataque": 1.454,
     "defensa": 0.764
    },
    {
@@ -145,7 +145,7 @@
     "equipo": "Mallorca",
     "elo": 1599,
     "ataque": 1.006,
-    "defensa": 0.751
+    "defensa": 0.752
    },
    {
     "equipo": "Girona",
@@ -235,7 +235,7 @@
     "equipo": "Tenerife",
     "elo": 1423,
     "ataque": 0.749,
-    "defensa": 1.142
+    "defensa": 1.141
    },
    {
     "equipo": "Valladolid",
@@ -265,7 +265,7 @@
     "equipo": "Sociedad B",
     "elo": 1396,
     "ataque": 0.906,
-    "defensa": 1.379
+    "defensa": 1.378
    },
    {
     "equipo": "Cadiz",
