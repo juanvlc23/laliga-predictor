@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-16T21:07:16Z",
+  "actualizado": "2026-10-17T00:28:42Z",
   "temporada": "2026/27",
   "partidos_historico": 8597,
   "ultimo_partido": {
@@ -41,7 +41,7 @@
     "equipo": "Betis",
     "elo": 1746,
     "ataque": 1.454,
-    "defensa": 0.764
+    "defensa": 0.765
    },
    {
     "equipo": "Villarreal",
@@ -150,7 +150,7 @@
    {
     "equipo": "Girona",
     "elo": 1595,
-    "ataque": 1.125,
+    "ataque": 1.124,
     "defensa": 0.86
    },
    {
@@ -192,8 +192,8 @@
    {
     "equipo": "Sabadell",
     "elo": 1502,
-    "ataque": 0.842,
-    "defensa": 0.662
+    "ataque": 0.841,
+    "defensa": 0.663
    },
    {
     "equipo": "Sp Gijon",
@@ -205,7 +205,7 @@
     "equipo": "Celta B",
     "elo": 1486,
     "ataque": 1.173,
-    "defensa": 1.409
+    "defensa": 1.408
    },
    {
     "equipo": "Granada",
