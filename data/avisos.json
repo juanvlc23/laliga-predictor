@@ -2,14 +2,5 @@
  "avisados": [
   "2026-10-21|Levante|Ath Bilbao"
  ],
- "signos": {
-  "2026-10-21|Levante|Ath Bilbao": {
-   "pick": "2",
-   "prob": {
-    "1": 0.2755,
-    "X": 0.2864,
-    "2": 0.4382
-   }
-  }
- }
+ "signos": {}
 }
