@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-22T21:34:57Z",
+  "actualizado": "2026-10-23T00:39:54Z",
   "temporada": "2026/27",
   "partidos_historico": 8619,
   "ultimo_partido": {
@@ -34,7 +34,7 @@
    {
     "equipo": "Ath Madrid",
     "elo": 1800,
-    "ataque": 1.62,
+    "ataque": 1.621,
     "defensa": 0.648
    },
    {
@@ -94,7 +94,7 @@
    {
     "equipo": "Getafe",
     "elo": 1598,
-    "ataque": 0.73,
+    "ataque": 0.731,
     "defensa": 0.632
    },
    {
@@ -192,7 +192,7 @@
    {
     "equipo": "Sp Gijon",
     "elo": 1508,
-    "ataque": 0.983,
+    "ataque": 0.982,
     "defensa": 1.076
    },
    {
