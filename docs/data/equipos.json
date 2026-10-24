@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-23T23:08:26Z",
+  "actualizado": "2026-10-24T04:41:43Z",
   "temporada": "2026/27",
   "partidos_historico": 8619,
   "ultimo_partido": {
@@ -34,7 +34,7 @@
    {
     "equipo": "Ath Madrid",
     "elo": 1800,
-    "ataque": 1.621,
+    "ataque": 1.62,
     "defensa": 0.648
    },
    {
@@ -46,8 +46,8 @@
    {
     "equipo": "Villarreal",
     "elo": 1729,
-    "ataque": 1.633,
-    "defensa": 0.792
+    "ataque": 1.632,
+    "defensa": 0.793
    },
    {
     "equipo": "Sociedad",
@@ -88,13 +88,13 @@
    {
     "equipo": "Sevilla",
     "elo": 1601,
-    "ataque": 1.186,
+    "ataque": 1.185,
     "defensa": 0.922
    },
    {
     "equipo": "Getafe",
     "elo": 1598,
-    "ataque": 0.731,
+    "ataque": 0.73,
     "defensa": 0.632
    },
    {
