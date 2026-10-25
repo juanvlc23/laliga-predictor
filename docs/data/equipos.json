@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-24T19:29:15Z",
+  "actualizado": "2026-10-25T11:24:39Z",
   "temporada": "2026/27",
   "partidos_historico": 8619,
   "ultimo_partido": {
@@ -22,7 +22,7 @@
    {
     "equipo": "Barcelona",
     "elo": 1986,
-    "ataque": 2.605,
+    "ataque": 2.604,
     "defensa": 0.632
    },
    {
@@ -53,19 +53,19 @@
     "equipo": "Sociedad",
     "elo": 1650,
     "ataque": 1.415,
-    "defensa": 0.947
+    "defensa": 0.948
    },
    {
     "equipo": "Celta",
     "elo": 1649,
     "ataque": 1.24,
-    "defensa": 0.751
+    "defensa": 0.752
    },
    {
     "equipo": "Vallecano",
     "elo": 1647,
     "ataque": 1.072,
-    "defensa": 0.789
+    "defensa": 0.79
    },
    {
     "equipo": "Ath Bilbao",
@@ -88,13 +88,13 @@
    {
     "equipo": "Sevilla",
     "elo": 1601,
-    "ataque": 1.185,
+    "ataque": 1.186,
     "defensa": 0.922
    },
    {
     "equipo": "Getafe",
     "elo": 1598,
-    "ataque": 0.73,
+    "ataque": 0.731,
     "defensa": 0.632
    },
    {
@@ -181,7 +181,7 @@
     "equipo": "Oviedo",
     "elo": 1522,
     "ataque": 0.877,
-    "defensa": 0.924
+    "defensa": 0.925
    },
    {
     "equipo": "Las Palmas",
