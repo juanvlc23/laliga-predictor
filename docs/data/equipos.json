@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-25T19:36:11Z",
+  "actualizado": "2026-10-26T12:58:53Z",
   "temporada": "2026/27",
   "partidos_historico": 8619,
   "ultimo_partido": {
@@ -28,7 +28,7 @@
    {
     "equipo": "Real Madrid",
     "elo": 1895,
-    "ataque": 1.943,
+    "ataque": 1.942,
     "defensa": 0.587
    },
    {
@@ -47,25 +47,25 @@
     "equipo": "Villarreal",
     "elo": 1729,
     "ataque": 1.632,
-    "defensa": 0.793
+    "defensa": 0.792
    },
    {
     "equipo": "Sociedad",
     "elo": 1650,
     "ataque": 1.415,
-    "defensa": 0.948
+    "defensa": 0.947
    },
    {
     "equipo": "Celta",
     "elo": 1649,
-    "ataque": 1.24,
+    "ataque": 1.241,
     "defensa": 0.752
    },
    {
     "equipo": "Vallecano",
     "elo": 1647,
     "ataque": 1.072,
-    "defensa": 0.79
+    "defensa": 0.789
    },
    {
     "equipo": "Ath Bilbao",
@@ -88,19 +88,19 @@
    {
     "equipo": "Sevilla",
     "elo": 1601,
-    "ataque": 1.186,
+    "ataque": 1.185,
     "defensa": 0.922
    },
    {
     "equipo": "Getafe",
     "elo": 1598,
-    "ataque": 0.731,
+    "ataque": 0.73,
     "defensa": 0.632
    },
    {
     "equipo": "Alaves",
     "elo": 1596,
-    "ataque": 1.112,
+    "ataque": 1.111,
     "defensa": 0.813
    },
    {
@@ -124,7 +124,7 @@
    {
     "equipo": "Espanol",
     "elo": 1571,
-    "ataque": 1.028,
+    "ataque": 1.027,
     "defensa": 0.835
    },
    {
@@ -151,7 +151,7 @@
     "equipo": "Girona",
     "elo": 1602,
     "ataque": 1.13,
-    "defensa": 0.841
+    "defensa": 0.842
    },
    {
     "equipo": "Almeria",
@@ -168,7 +168,7 @@
    {
     "equipo": "Eibar",
     "elo": 1581,
-    "ataque": 1.026,
+    "ataque": 1.023,
     "defensa": 0.882
    },
    {
@@ -192,7 +192,7 @@
    {
     "equipo": "Sp Gijon",
     "elo": 1508,
-    "ataque": 0.982,
+    "ataque": 0.983,
     "defensa": 1.076
    },
    {
@@ -205,7 +205,7 @@
     "equipo": "Celta B",
     "elo": 1483,
     "ataque": 1.102,
-    "defensa": 1.402
+    "defensa": 1.403
    },
    {
     "equipo": "Granada",
@@ -216,7 +216,7 @@
    {
     "equipo": "Andorra",
     "elo": 1451,
-    "ataque": 1.005,
+    "ataque": 1.006,
     "defensa": 1.206
    },
    {
@@ -228,7 +228,7 @@
    {
     "equipo": "Eldense",
     "elo": 1430,
-    "ataque": 0.909,
+    "ataque": 0.91,
     "defensa": 1.222
    },
    {
@@ -247,7 +247,7 @@
     "equipo": "Valladolid",
     "elo": 1408,
     "ataque": 0.83,
-    "defensa": 1.268
+    "defensa": 1.263
    },
    {
     "equipo": "Leganes",
