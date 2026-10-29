@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-28T21:38:27Z",
+  "actualizado": "2026-10-29T05:46:52Z",
   "temporada": "2026/27",
   "partidos_historico": 8640,
   "ultimo_partido": {
@@ -40,7 +40,7 @@
    {
     "equipo": "Villarreal",
     "elo": 1737,
-    "ataque": 1.665,
+    "ataque": 1.664,
     "defensa": 0.794
    },
    {
@@ -59,13 +59,13 @@
     "equipo": "Celta",
     "elo": 1649,
     "ataque": 1.219,
-    "defensa": 0.734
+    "defensa": 0.735
    },
    {
     "equipo": "Ath Bilbao",
     "elo": 1641,
     "ataque": 1.2,
-    "defensa": 0.738
+    "defensa": 0.739
    },
    {
     "equipo": "Vallecano",
@@ -77,13 +77,13 @@
     "equipo": "Sevilla",
     "elo": 1613,
     "ataque": 1.205,
-    "defensa": 0.909
+    "defensa": 0.91
    },
    {
     "equipo": "Elche",
     "elo": 1612,
     "ataque": 1.187,
-    "defensa": 0.877
+    "defensa": 0.878
    },
    {
     "equipo": "Levante",
@@ -101,13 +101,13 @@
     "equipo": "Alaves",
     "elo": 1593,
     "ataque": 1.101,
-    "defensa": 0.817
+    "defensa": 0.818
    },
    {
     "equipo": "Getafe",
     "elo": 1584,
     "ataque": 0.727,
-    "defensa": 0.681
+    "defensa": 0.682
    },
    {
     "equipo": "Santander",
@@ -175,7 +175,7 @@
     "equipo": "Burgos",
     "elo": 1557,
     "ataque": 0.834,
-    "defensa": 0.819
+    "defensa": 0.818
    },
    {
     "equipo": "Oviedo",
@@ -204,8 +204,8 @@
    {
     "equipo": "Granada",
     "elo": 1482,
-    "ataque": 0.991,
-    "defensa": 1.164
+    "ataque": 0.99,
+    "defensa": 1.163
    },
    {
     "equipo": "Celta B",
@@ -229,19 +229,19 @@
     "equipo": "Tenerife",
     "elo": 1430,
     "ataque": 0.752,
-    "defensa": 1.094
+    "defensa": 1.093
    },
    {
     "equipo": "Albacete",
     "elo": 1419,
     "ataque": 0.871,
-    "defensa": 1.251
+    "defensa": 1.25
    },
    {
     "equipo": "Eldense",
     "elo": 1417,
     "ataque": 0.86,
-    "defensa": 1.231
+    "defensa": 1.23
    },
    {
     "equipo": "Leganes",
