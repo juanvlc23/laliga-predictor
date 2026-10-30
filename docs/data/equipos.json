@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-29T23:56:49Z",
+  "actualizado": "2026-10-30T05:47:14Z",
   "temporada": "2026/27",
   "partidos_historico": 8640,
   "ultimo_partido": {
@@ -28,7 +28,7 @@
    {
     "equipo": "Real Madrid",
     "elo": 1909,
-    "ataque": 1.977,
+    "ataque": 1.976,
     "defensa": 0.573
    },
    {
@@ -95,7 +95,7 @@
     "equipo": "Valencia",
     "elo": 1604,
     "ataque": 1.028,
-    "defensa": 0.861
+    "defensa": 0.862
    },
    {
     "equipo": "Alaves",
@@ -162,7 +162,7 @@
    {
     "equipo": "Almeria",
     "elo": 1596,
-    "ataque": 1.351,
+    "ataque": 1.35,
     "defensa": 1.147
    },
    {
