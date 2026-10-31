@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-30T23:45:45Z",
+  "actualizado": "2026-10-31T05:49:32Z",
   "temporada": "2026/27",
   "partidos_historico": 8640,
   "ultimo_partido": {
@@ -22,7 +22,7 @@
    {
     "equipo": "Barcelona",
     "elo": 1972,
-    "ataque": 2.602,
+    "ataque": 2.601,
     "defensa": 0.644
    },
    {
