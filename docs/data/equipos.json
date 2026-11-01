@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-10-31T20:27:09Z",
+  "actualizado": "2026-11-01T13:19:51Z",
   "temporada": "2026/27",
   "partidos_historico": 8640,
   "ultimo_partido": {
@@ -46,7 +46,7 @@
    {
     "equipo": "Betis",
     "elo": 1736,
-    "ataque": 1.466,
+    "ataque": 1.465,
     "defensa": 0.785
    },
    {
@@ -71,7 +71,7 @@
     "equipo": "Vallecano",
     "elo": 1623,
     "ataque": 1.047,
-    "defensa": 0.823
+    "defensa": 0.824
    },
    {
     "equipo": "Sevilla",
@@ -130,7 +130,7 @@
    {
     "equipo": "Espanol",
     "elo": 1562,
-    "ataque": 1.027,
+    "ataque": 1.026,
     "defensa": 0.842
    },
    {
@@ -211,7 +211,7 @@
     "equipo": "Celta B",
     "elo": 1473,
     "ataque": 1.088,
-    "defensa": 1.617
+    "defensa": 1.616
    },
    {
     "equipo": "Cordoba",
