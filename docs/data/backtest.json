@@ -1,11 +1,11 @@
 {
  "meta": {
-  "actualizado": "2026-11-01T21:11:09Z",
+  "actualizado": "2026-11-02T15:46:28Z",
   "temporada": "2026/27",
-  "partidos_historico": 8640,
+  "partidos_historico": 8656,
   "ultimo_partido": {
-   "Primera": "2026-10-26",
-   "Segunda": "2026-10-26"
+   "Primera": "2026-11-01",
+   "Segunda": "2026-11-01"
   },
   "peso_modelo": {
    "Primera": 0.0,
@@ -29,127 +29,127 @@
  "divisiones": {
   "Primera": {
    "total": {
-    "partidos": 859,
+    "partidos": 868,
     "modelo": {
-     "partidos": 859,
-     "aciertos": 458,
-     "acierto": 0.5331781140861467,
-     "logloss": 0.9740506866214823,
-     "acierto_doble": 0.7636786961583236,
+     "partidos": 868,
+     "aciertos": 465,
+     "acierto": 0.5357142857142857,
+     "logloss": 0.9727357912079394,
+     "acierto_doble": 0.7638248847926268,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 377,
-       "aciertos": 248
+       "partidos": 381,
+       "aciertos": 251
       },
       {
        "umbral": 0.6,
-       "partidos": 193,
-       "aciertos": 148
+       "partidos": 197,
+       "aciertos": 151
       },
       {
        "umbral": 0.7,
-       "partidos": 89,
-       "aciertos": 76
+       "partidos": 91,
+       "aciertos": 78
       },
       {
        "umbral": 0.8,
-       "partidos": 17,
-       "aciertos": 15
+       "partidos": 18,
+       "aciertos": 16
       }
      ]
     },
     "modelo_con_cuotas": {
-     "partidos": 859,
-     "aciertos": 458,
-     "acierto": 0.5331781140861467,
-     "logloss": 0.9740506866214823,
-     "acierto_doble": 0.7636786961583236,
+     "partidos": 868,
+     "aciertos": 465,
+     "acierto": 0.5357142857142857,
+     "logloss": 0.9727357912079394,
+     "acierto_doble": 0.7638248847926268,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 377,
-       "aciertos": 248
+       "partidos": 381,
+       "aciertos": 251
       },
       {
        "umbral": 0.6,
-       "partidos": 193,
-       "aciertos": 148
+       "partidos": 197,
+       "aciertos": 151
       },
       {
        "umbral": 0.7,
-       "partidos": 89,
-       "aciertos": 76
+       "partidos": 91,
+       "aciertos": 78
       },
       {
        "umbral": 0.8,
-       "partidos": 17,
-       "aciertos": 15
+       "partidos": 18,
+       "aciertos": 16
       }
      ]
     },
     "casas": {
-     "partidos": 859,
-     "aciertos": 471,
-     "acierto": 0.5483119906868452,
-     "logloss": 0.9553808313957329,
-     "acierto_doble": 0.7951105937136205,
+     "partidos": 868,
+     "aciertos": 477,
+     "acierto": 0.5495391705069125,
+     "logloss": 0.9538877333508938,
+     "acierto_doble": 0.7949308755760369,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 387,
-       "aciertos": 256
+       "partidos": 392,
+       "aciertos": 260
       },
       {
        "umbral": 0.6,
-       "partidos": 196,
-       "aciertos": 152
+       "partidos": 201,
+       "aciertos": 156
       },
       {
        "umbral": 0.7,
-       "partidos": 102,
-       "aciertos": 93
+       "partidos": 105,
+       "aciertos": 96
       },
       {
        "umbral": 0.8,
-       "partidos": 26,
-       "aciertos": 24
+       "partidos": 27,
+       "aciertos": 25
       }
      ]
     },
     "mezcla": {
-     "partidos": 859,
-     "aciertos": 471,
-     "acierto": 0.5483119906868452,
-     "logloss": 0.9553808313957329,
-     "acierto_doble": 0.7951105937136205,
+     "partidos": 868,
+     "aciertos": 477,
+     "acierto": 0.5495391705069125,
+     "logloss": 0.9538877333508938,
+     "acierto_doble": 0.7949308755760369,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 387,
-       "aciertos": 256
+       "partidos": 392,
+       "aciertos": 260
       },
       {
        "umbral": 0.6,
-       "partidos": 196,
-       "aciertos": 152
+       "partidos": 201,
+       "aciertos": 156
       },
       {
        "umbral": 0.7,
-       "partidos": 102,
-       "aciertos": 93
+       "partidos": 105,
+       "aciertos": 96
       },
       {
        "umbral": 0.8,
-       "partidos": 26,
-       "aciertos": 24
+       "partidos": 27,
+       "aciertos": 25
       }
      ]
     },
     "reparto_real": {
-     "1": 0.46449359720605354,
-     "X": 0.25261932479627475,
-     "2": 0.2828870779976717
+     "1": 0.46543778801843316,
+     "X": 0.25,
+     "2": 0.28456221198156684
     }
    },
    "temporadas": {
@@ -159,7 +159,7 @@
       "partidos": 380,
       "aciertos": 200,
       "acierto": 0.5263157894736842,
-      "logloss": 0.9762646664824182,
+      "logloss": 0.9762646664242988,
       "acierto_doble": 0.7921052631578948,
       "por_confianza": [
        {
@@ -188,7 +188,7 @@
       "partidos": 380,
       "aciertos": 200,
       "acierto": 0.5263157894736842,
-      "logloss": 0.9762646664824182,
+      "logloss": 0.9762646664242988,
       "acierto_doble": 0.7921052631578948,
       "por_confianza": [
        {
@@ -283,7 +283,7 @@
       "partidos": 380,
       "aciertos": 205,
       "acierto": 0.5394736842105263,
-      "logloss": 0.9772122765395393,
+      "logloss": 0.9772122760595646,
       "acierto_doble": 0.7394736842105263,
       "por_confianza": [
        {
@@ -312,7 +312,7 @@
       "partidos": 380,
       "aciertos": 205,
       "acierto": 0.5394736842105263,
-      "logloss": 0.9772122765395393,
+      "logloss": 0.9772122760595646,
       "acierto_doble": 0.7394736842105263,
       "por_confianza": [
        {
@@ -341,7 +341,7 @@
       "partidos": 380,
       "aciertos": 207,
       "acierto": 0.5447368421052632,
-      "logloss": 0.9641034157339412,
+      "logloss": 0.964103415733941,
       "acierto_doble": 0.7789473684210526,
       "por_confianza": [
        {
@@ -370,7 +370,7 @@
       "partidos": 380,
       "aciertos": 207,
       "acierto": 0.5447368421052632,
-      "logloss": 0.9641034157339412,
+      "logloss": 0.964103415733941,
       "acierto_doble": 0.7789473684210526,
       "por_confianza": [
        {
@@ -402,144 +402,144 @@
      }
     },
     "2026/27": {
-     "partidos": 99,
+     "partidos": 108,
      "modelo": {
-      "partidos": 99,
-      "aciertos": 53,
-      "acierto": 0.5353535353535354,
-      "logloss": 0.9534171864596913,
-      "acierto_doble": 0.7474747474747475,
+      "partidos": 108,
+      "aciertos": 60,
+      "acierto": 0.5555555555555556,
+      "logloss": 0.944568783561327,
+      "acierto_doble": 0.75,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 43,
-        "aciertos": 29
+        "partidos": 47,
+        "aciertos": 32
        },
        {
         "umbral": 0.6,
-        "partidos": 20,
-        "aciertos": 18
+        "partidos": 24,
+        "aciertos": 21
        },
        {
         "umbral": 0.7,
-        "partidos": 11,
-        "aciertos": 10
+        "partidos": 13,
+        "aciertos": 12
        },
        {
         "umbral": 0.8,
-        "partidos": 2,
-        "aciertos": 2
+        "partidos": 3,
+        "aciertos": 3
        }
       ]
      },
      "modelo_con_cuotas": {
-      "partidos": 99,
-      "aciertos": 53,
-      "acierto": 0.5353535353535354,
-      "logloss": 0.9534171864596913,
-      "acierto_doble": 0.7474747474747475,
+      "partidos": 108,
+      "aciertos": 60,
+      "acierto": 0.5555555555555556,
+      "logloss": 0.944568783561327,
+      "acierto_doble": 0.75,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 43,
-        "aciertos": 29
+        "partidos": 47,
+        "aciertos": 32
        },
        {
         "umbral": 0.6,
-        "partidos": 20,
-        "aciertos": 18
+        "partidos": 24,
+        "aciertos": 21
        },
        {
         "umbral": 0.7,
-        "partidos": 11,
-        "aciertos": 10
+        "partidos": 13,
+        "aciertos": 12
        },
        {
         "umbral": 0.8,
-        "partidos": 2,
-        "aciertos": 2
+        "partidos": 3,
+        "aciertos": 3
        }
       ]
      },
      "casas": {
-      "partidos": 99,
-      "aciertos": 55,
-      "acierto": 0.5555555555555556,
-      "logloss": 0.930274585091425,
-      "acierto_doble": 0.7878787878787878,
+      "partidos": 108,
+      "aciertos": 61,
+      "acierto": 0.5648148148148148,
+      "logloss": 0.9203666879971513,
+      "acierto_doble": 0.7870370370370371,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 43,
-        "aciertos": 29
+        "partidos": 48,
+        "aciertos": 33
        },
        {
         "umbral": 0.6,
-        "partidos": 26,
-        "aciertos": 22
+        "partidos": 31,
+        "aciertos": 26
        },
        {
         "umbral": 0.7,
-        "partidos": 15,
-        "aciertos": 15
+        "partidos": 18,
+        "aciertos": 18
        },
        {
         "umbral": 0.8,
-        "partidos": 6,
-        "aciertos": 6
+        "partidos": 7,
+        "aciertos": 7
        }
       ]
      },
      "mezcla": {
-      "partidos": 99,
-      "aciertos": 55,
-      "acierto": 0.5555555555555556,
-      "logloss": 0.930274585091425,
-      "acierto_doble": 0.7878787878787878,
+      "partidos": 108,
+      "aciertos": 61,
+      "acierto": 0.5648148148148148,
+      "logloss": 0.9203666879971513,
+      "acierto_doble": 0.7870370370370371,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 43,
-        "aciertos": 29
+        "partidos": 48,
+        "aciertos": 33
        },
        {
         "umbral": 0.6,
-        "partidos": 26,
-        "aciertos": 22
+        "partidos": 31,
+        "aciertos": 26
        },
        {
         "umbral": 0.7,
-        "partidos": 15,
-        "aciertos": 15
+        "partidos": 18,
+        "aciertos": 18
        },
        {
         "umbral": 0.8,
-        "partidos": 6,
-        "aciertos": 6
+        "partidos": 7,
+        "aciertos": 7
        }
       ]
      },
      "reparto_real": {
-      "1": 0.4444444444444444,
-      "X": 0.2727272727272727,
-      "2": 0.2828282828282828
+      "1": 0.4537037037037037,
+      "X": 0.25,
+      "2": 0.2962962962962963
      }
     }
    }
   },
   "Segunda": {
    "total": {
-    "partidos": 1037,
+    "partidos": 1044,
     "modelo": {
-     "partidos": 1037,
-     "aciertos": 491,
-     "acierto": 0.4734811957569913,
-     "logloss": 1.044266081667857,
-     "acierto_doble": 0.7473481195756991,
+     "partidos": 1044,
+     "aciertos": 492,
+     "acierto": 0.47126436781609193,
+     "logloss": 1.0456420516051048,
+     "acierto_doble": 0.7442528735632183,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 302,
+       "partidos": 303,
        "aciertos": 173
       },
       {
@@ -560,15 +560,15 @@
      ]
     },
     "modelo_con_cuotas": {
-     "partidos": 1037,
-     "aciertos": 491,
-     "acierto": 0.4734811957569913,
-     "logloss": 1.044266081667857,
-     "acierto_doble": 0.7473481195756991,
+     "partidos": 1044,
+     "aciertos": 492,
+     "acierto": 0.47126436781609193,
+     "logloss": 1.0456420516051048,
+     "acierto_doble": 0.7442528735632183,
      "por_confianza": [
       {
        "umbral": 0.5,
-       "partidos": 302,
+       "partidos": 303,
        "aciertos": 173
       },
       {
@@ -589,11 +589,11 @@
      ]
     },
     "casas": {
-     "partidos": 1037,
-     "aciertos": 516,
-     "acierto": 0.49758919961427195,
-     "logloss": 1.0212107002630375,
-     "acierto_doble": 0.7791706846673095,
+     "partidos": 1044,
+     "aciertos": 517,
+     "acierto": 0.4952107279693487,
+     "logloss": 1.0224613620105454,
+     "acierto_doble": 0.7787356321839081,
      "por_confianza": [
       {
        "umbral": 0.5,
@@ -618,11 +618,11 @@
      ]
     },
     "mezcla": {
-     "partidos": 1037,
-     "aciertos": 516,
-     "acierto": 0.49758919961427195,
-     "logloss": 1.0212107002630375,
-     "acierto_doble": 0.7791706846673095,
+     "partidos": 1044,
+     "aciertos": 517,
+     "acierto": 0.4952107279693487,
+     "logloss": 1.0224613620105454,
+     "acierto_doble": 0.7787356321839081,
      "por_confianza": [
       {
        "umbral": 0.5,
@@ -647,9 +647,9 @@
      ]
     },
     "reparto_real": {
-     "1": 0.45515911282545807,
-     "X": 0.25940212150433944,
-     "2": 0.2854387656702025
+     "1": 0.4540229885057471,
+     "X": 0.26053639846743293,
+     "2": 0.28544061302681994
     }
    },
    "temporadas": {
@@ -659,7 +659,7 @@
       "partidos": 459,
       "aciertos": 223,
       "acierto": 0.485838779956427,
-      "logloss": 1.0408796157558182,
+      "logloss": 1.0408796159723634,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -688,7 +688,7 @@
       "partidos": 459,
       "aciertos": 223,
       "acierto": 0.485838779956427,
-      "logloss": 1.0408796157558182,
+      "logloss": 1.0408796159723634,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -783,7 +783,7 @@
       "partidos": 459,
       "aciertos": 210,
       "acierto": 0.45751633986928103,
-      "logloss": 1.0585088704582355,
+      "logloss": 1.0585088715808304,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -812,7 +812,7 @@
       "partidos": 459,
       "aciertos": 210,
       "acierto": 0.45751633986928103,
-      "logloss": 1.0585088704582355,
+      "logloss": 1.0585088715808304,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -902,17 +902,17 @@
      }
     },
     "2026/27": {
-     "partidos": 119,
+     "partidos": 126,
      "modelo": {
-      "partidos": 119,
-      "aciertos": 58,
-      "acierto": 0.48739495798319327,
-      "logloss": 1.002391693422831,
-      "acierto_doble": 0.865546218487395,
+      "partidos": 126,
+      "aciertos": 59,
+      "acierto": 0.46825396825396826,
+      "logloss": 1.0161189372128054,
+      "acierto_doble": 0.8333333333333334,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 39,
+        "partidos": 40,
         "aciertos": 23
        },
        {
@@ -933,15 +933,15 @@
       ]
      },
      "modelo_con_cuotas": {
-      "partidos": 119,
-      "aciertos": 58,
-      "acierto": 0.48739495798319327,
-      "logloss": 1.002391693422831,
-      "acierto_doble": 0.865546218487395,
+      "partidos": 126,
+      "aciertos": 59,
+      "acierto": 0.46825396825396826,
+      "logloss": 1.0161189372128054,
+      "acierto_doble": 0.8333333333333334,
       "por_confianza": [
        {
         "umbral": 0.5,
-        "partidos": 39,
+        "partidos": 40,
         "aciertos": 23
        },
        {
@@ -962,11 +962,11 @@
       ]
      },
      "casas": {
-      "partidos": 119,
-      "aciertos": 64,
-      "acierto": 0.5378151260504201,
-      "logloss": 0.9918543233597092,
-      "acierto_doble": 0.8067226890756303,
+      "partidos": 126,
+      "aciertos": 65,
+      "acierto": 0.5158730158730159,
+      "logloss": 1.0038478590955935,
+      "acierto_doble": 0.8015873015873016,
       "por_confianza": [
        {
         "umbral": 0.5,
@@ -991,11 +991,11 @@
       ]
      },
      "mezcla": {
-      "partidos": 119,
-      "aciertos": 64,
-      "acierto": 0.5378151260504201,
-      "logloss": 0.9918543233597091,
-      "acierto_doble": 0.8067226890756303,
+      "partidos": 126,
+      "aciertos": 65,
+      "acierto": 0.5158730158730159,
+      "logloss": 1.0038478590955935,
+      "acierto_doble": 0.8015873015873016,
       "por_confianza": [
        {
         "umbral": 0.5,
@@ -1020,9 +1020,9 @@
       ]
      },
      "reparto_real": {
-      "1": 0.47058823529411764,
-      "X": 0.20168067226890757,
-      "2": 0.3277310924369748
+      "1": 0.4603174603174603,
+      "X": 0.21428571428571427,
+      "2": 0.3253968253968254
      }
     }
    }
