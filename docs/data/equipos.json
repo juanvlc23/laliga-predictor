@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-04T22:37:17Z",
+  "actualizado": "2026-11-05T06:44:15Z",
   "temporada": "2026/27",
   "partidos_historico": 8660,
   "ultimo_partido": {
@@ -22,7 +22,7 @@
    {
     "equipo": "Barcelona",
     "elo": 1975,
-    "ataque": 2.686,
+    "ataque": 2.685,
     "defensa": 0.656
    },
    {
@@ -76,7 +76,7 @@
    {
     "equipo": "Valencia",
     "elo": 1616,
-    "ataque": 1.031,
+    "ataque": 1.03,
     "defensa": 0.848
    },
    {
@@ -88,13 +88,13 @@
    {
     "equipo": "Elche",
     "elo": 1600,
-    "ataque": 1.157,
+    "ataque": 1.156,
     "defensa": 0.882
    },
    {
     "equipo": "Sevilla",
     "elo": 1599,
-    "ataque": 1.218,
+    "ataque": 1.217,
     "defensa": 0.947
    },
    {
@@ -124,27 +124,27 @@
    {
     "equipo": "Santander",
     "elo": 1569,
-    "ataque": 1.371,
+    "ataque": 1.37,
     "defensa": 1.326
    },
    {
     "equipo": "Osasuna",
     "elo": 1562,
     "ataque": 1.084,
-    "defensa": 0.934
+    "defensa": 0.935
    },
    {
     "equipo": "Malaga",
     "elo": 1535,
-    "ataque": 1.068,
-    "defensa": 1.069
+    "ataque": 1.067,
+    "defensa": 1.068
    }
   ],
   "Segunda": [
    {
     "equipo": "Castellon",
     "elo": 1616,
-    "ataque": 1.232,
+    "ataque": 1.231,
     "defensa": 0.932
    },
    {
@@ -186,13 +186,13 @@
    {
     "equipo": "Oviedo",
     "elo": 1514,
-    "ataque": 0.905,
-    "defensa": 0.969
+    "ataque": 0.906,
+    "defensa": 0.97
    },
    {
     "equipo": "Sp Gijon",
     "elo": 1511,
-    "ataque": 0.952,
+    "ataque": 0.951,
     "defensa": 1.074
    },
    {
@@ -205,18 +205,18 @@
     "equipo": "Sabadell",
     "elo": 1481,
     "ataque": 0.749,
-    "defensa": 0.783
+    "defensa": 0.782
    },
    {
     "equipo": "Celta B",
     "elo": 1471,
-    "ataque": 1.079,
-    "defensa": 1.629
+    "ataque": 1.08,
+    "defensa": 1.628
    },
    {
     "equipo": "Cordoba",
     "elo": 1457,
-    "ataque": 1.05,
+    "ataque": 1.049,
     "defensa": 1.362
    },
    {
@@ -234,20 +234,20 @@
    {
     "equipo": "Albacete",
     "elo": 1429,
-    "ataque": 0.884,
+    "ataque": 0.883,
     "defensa": 1.237
    },
    {
     "equipo": "Valladolid",
     "elo": 1410,
-    "ataque": 0.871,
+    "ataque": 0.87,
     "defensa": 1.294
    },
    {
     "equipo": "Eldense",
     "elo": 1402,
-    "ataque": 0.805,
-    "defensa": 1.242
+    "ataque": 0.804,
+    "defensa": 1.241
    },
    {
     "equipo": "Leganes",
@@ -264,7 +264,7 @@
    {
     "equipo": "Ceuta",
     "elo": 1390,
-    "ataque": 0.789,
+    "ataque": 0.788,
     "defensa": 1.51
    },
    {
