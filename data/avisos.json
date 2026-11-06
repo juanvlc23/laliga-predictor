@@ -1,26 +1,168 @@
 {
  "avisados": [
-  "2026-10-30|Villarreal|Espanol",
-  "2026-10-31|Albacete|Sabadell",
-  "2026-10-31|Barcelona|Alaves",
-  "2026-10-31|Betis|Malaga",
-  "2026-10-31|Celta B|Cordoba",
-  "2026-10-31|Eibar|Almeria",
-  "2026-10-31|Levante|Ath Madrid",
-  "2026-10-31|Sociedad B|Girona",
-  "2026-10-31|Vallecano|Celta",
-  "2026-11-01|Ath Bilbao|Sociedad",
-  "2026-11-01|Burgos|Castellon",
-  "2026-11-01|Ceuta|Sp Gijon",
-  "2026-11-01|Elche|Valencia",
-  "2026-11-01|Eldense|Granada",
-  "2026-11-01|Getafe|Sevilla",
-  "2026-11-01|Santander|Real Madrid",
-  "2026-11-01|Tenerife|Andorra",
-  "2026-11-02|La Coruna|Osasuna",
-  "2026-11-02|Mallorca|Cadiz",
-  "2026-11-02|Oviedo|Las Palmas",
-  "2026-11-02|Valladolid|Leganes"
+  "2026-11-06|Sevilla|Alaves",
+  "2026-11-07|Burgos|Celta B",
+  "2026-11-07|Cadiz|Oviedo",
+  "2026-11-07|Cordoba|Ceuta",
+  "2026-11-07|Espanol|La Coruna",
+  "2026-11-07|Leganes|Albacete",
+  "2026-11-07|Malaga|Santander",
+  "2026-11-07|Osasuna|Ath Bilbao",
+  "2026-11-07|Valencia|Real Madrid",
+  "2026-11-08|Ath Madrid|Barcelona",
+  "2026-11-08|Celta|Levante",
+  "2026-11-08|Elche|Betis",
+  "2026-11-08|Girona|Almeria",
+  "2026-11-08|Las Palmas|Eldense",
+  "2026-11-08|Sociedad|Vallecano",
+  "2026-11-08|Sp Gijon|Valladolid",
+  "2026-11-08|Villarreal|Getafe",
+  "2026-11-09|Sabadell|Sociedad B"
  ],
- "signos": {}
+ "signos": {
+  "2026-11-06|Sevilla|Alaves": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5072,
+    "X": 0.2775,
+    "2": 0.2154
+   }
+  },
+  "2026-11-07|Malaga|Santander": {
+   "pick": "1",
+   "prob": {
+    "1": 0.3945,
+    "X": 0.2663,
+    "2": 0.3392
+   }
+  },
+  "2026-11-07|Espanol|La Coruna": {
+   "pick": "1",
+   "prob": {
+    "1": 0.41,
+    "X": 0.2858,
+    "2": 0.3042
+   }
+  },
+  "2026-11-07|Osasuna|Ath Bilbao": {
+   "pick": "2",
+   "prob": {
+    "1": 0.2622,
+    "X": 0.2785,
+    "2": 0.4592
+   }
+  },
+  "2026-11-07|Valencia|Real Madrid": {
+   "pick": "2",
+   "prob": {
+    "1": 0.1021,
+    "X": 0.1539,
+    "2": 0.744
+   }
+  },
+  "2026-11-08|Elche|Betis": {
+   "pick": "2",
+   "prob": {
+    "1": 0.292,
+    "X": 0.2567,
+    "2": 0.4514
+   }
+  },
+  "2026-11-08|Sociedad|Vallecano": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5635,
+    "X": 0.2287,
+    "2": 0.2079
+   }
+  },
+  "2026-11-08|Celta|Levante": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5037,
+    "X": 0.2632,
+    "2": 0.2331
+   }
+  },
+  "2026-11-08|Villarreal|Getafe": {
+   "pick": "1",
+   "prob": {
+    "1": 0.657,
+    "X": 0.2116,
+    "2": 0.1314
+   }
+  },
+  "2026-11-08|Ath Madrid|Barcelona": {
+   "pick": "2",
+   "prob": {
+    "1": 0.2596,
+    "X": 0.2226,
+    "2": 0.5178
+   }
+  },
+  "2026-11-07|Burgos|Celta B": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5614,
+    "X": 0.246,
+    "2": 0.1926
+   }
+  },
+  "2026-11-07|Cadiz|Oviedo": {
+   "pick": "2",
+   "prob": {
+    "1": 0.3414,
+    "X": 0.2896,
+    "2": 0.369
+   }
+  },
+  "2026-11-07|Cordoba|Ceuta": {
+   "pick": "1",
+   "prob": {
+    "1": 0.6179,
+    "X": 0.2041,
+    "2": 0.1779
+   }
+  },
+  "2026-11-07|Leganes|Albacete": {
+   "pick": "1",
+   "prob": {
+    "1": 0.4619,
+    "X": 0.273,
+    "2": 0.2651
+   }
+  },
+  "2026-11-08|Girona|Almeria": {
+   "pick": "1",
+   "prob": {
+    "1": 0.4563,
+    "X": 0.2666,
+    "2": 0.2771
+   }
+  },
+  "2026-11-08|Las Palmas|Eldense": {
+   "pick": "1",
+   "prob": {
+    "1": 0.4291,
+    "X": 0.2712,
+    "2": 0.2997
+   }
+  },
+  "2026-11-08|Sp Gijon|Valladolid": {
+   "pick": "1",
+   "prob": {
+    "1": 0.3981,
+    "X": 0.2916,
+    "2": 0.3104
+   }
+  },
+  "2026-11-09|Sabadell|Sociedad B": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5466,
+    "X": 0.26,
+    "2": 0.1934
+   }
+  }
+ }
 }
