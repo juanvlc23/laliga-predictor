@@ -1,11 +1,11 @@
 {
  "meta": {
-  "actualizado": "2026-11-10T00:41:03Z",
+  "actualizado": "2026-11-10T14:50:45Z",
   "temporada": "2026/27",
-  "partidos_historico": 8677,
+  "partidos_historico": 8679,
   "ultimo_partido": {
    "Primera": "2026-11-08",
-   "Segunda": "2026-11-08"
+   "Segunda": "2026-11-09"
   },
   "peso_modelo": {
    "Primera": 0.0,
