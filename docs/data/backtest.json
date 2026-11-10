@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-09T16:14:56Z",
+  "actualizado": "2026-11-10T00:41:03Z",
   "temporada": "2026/27",
   "partidos_historico": 8677,
   "ultimo_partido": {
@@ -34,7 +34,7 @@
      "partidos": 879,
      "aciertos": 471,
      "acierto": 0.5358361774744027,
-     "logloss": 0.9728739806208903,
+     "logloss": 0.9728739805617171,
      "acierto_doble": 0.764505119453925,
      "por_confianza": [
       {
@@ -63,7 +63,7 @@
      "partidos": 879,
      "aciertos": 471,
      "acierto": 0.5358361774744027,
-     "logloss": 0.9728739806208903,
+     "logloss": 0.9728739805617171,
      "acierto_doble": 0.764505119453925,
      "por_confianza": [
       {
@@ -159,7 +159,7 @@
       "partidos": 380,
       "aciertos": 200,
       "acierto": 0.5263157894736842,
-      "logloss": 0.9762646663259132,
+      "logloss": 0.9762646663131533,
       "acierto_doble": 0.7921052631578948,
       "por_confianza": [
        {
@@ -188,7 +188,7 @@
       "partidos": 380,
       "aciertos": 200,
       "acierto": 0.5263157894736842,
-      "logloss": 0.9762646663259132,
+      "logloss": 0.9762646663131533,
       "acierto_doble": 0.7921052631578948,
       "por_confianza": [
        {
@@ -283,7 +283,7 @@
       "partidos": 380,
       "aciertos": 205,
       "acierto": 0.5394736842105263,
-      "logloss": 0.9772122763502118,
+      "logloss": 0.9772122766301528,
       "acierto_doble": 0.7394736842105263,
       "por_confianza": [
        {
@@ -312,7 +312,7 @@
       "partidos": 380,
       "aciertos": 205,
       "acierto": 0.5394736842105263,
-      "logloss": 0.9772122763502118,
+      "logloss": 0.9772122766301528,
       "acierto_doble": 0.7394736842105263,
       "por_confianza": [
        {
@@ -407,7 +407,7 @@
       "partidos": 119,
       "aciertos": 66,
       "acierto": 0.5546218487394958,
-      "logloss": 0.9481931995700422,
+      "logloss": 0.9481931982797739,
       "acierto_doble": 0.7563025210084033,
       "por_confianza": [
        {
@@ -436,7 +436,7 @@
       "partidos": 119,
       "aciertos": 66,
       "acierto": 0.5546218487394958,
-      "logloss": 0.9481931995700422,
+      "logloss": 0.9481931982797739,
       "acierto_doble": 0.7563025210084033,
       "por_confianza": [
        {
@@ -534,7 +534,7 @@
      "partidos": 1054,
      "aciertos": 497,
      "acierto": 0.4715370018975332,
-     "logloss": 1.045276190626986,
+     "logloss": 1.0452761900989436,
      "acierto_doble": 0.7438330170777988,
      "por_confianza": [
       {
@@ -563,7 +563,7 @@
      "partidos": 1054,
      "aciertos": 497,
      "acierto": 0.4715370018975332,
-     "logloss": 1.045276190626986,
+     "logloss": 1.0452761900989436,
      "acierto_doble": 0.7438330170777988,
      "por_confianza": [
       {
@@ -659,7 +659,7 @@
       "partidos": 459,
       "aciertos": 223,
       "acierto": 0.485838779956427,
-      "logloss": 1.040879615742882,
+      "logloss": 1.040879615592815,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -688,7 +688,7 @@
       "partidos": 459,
       "aciertos": 223,
       "acierto": 0.485838779956427,
-      "logloss": 1.040879615742882,
+      "logloss": 1.040879615592815,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -783,7 +783,7 @@
       "partidos": 459,
       "aciertos": 210,
       "acierto": 0.45751633986928103,
-      "logloss": 1.0585088711950306,
+      "logloss": 1.0585088703317398,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -812,7 +812,7 @@
       "partidos": 459,
       "aciertos": 210,
       "acierto": 0.45751633986928103,
-      "logloss": 1.0585088711950306,
+      "logloss": 1.0585088703317398,
       "acierto_doble": 0.7320261437908496,
       "por_confianza": [
        {
@@ -907,7 +907,7 @@
       "partidos": 136,
       "aciertos": 64,
       "acierto": 0.47058823529411764,
-      "logloss": 1.0154543339436874,
+      "logloss": 1.0154543332714385,
       "acierto_doble": 0.8235294117647058,
       "por_confianza": [
        {
@@ -936,7 +936,7 @@
       "partidos": 136,
       "aciertos": 64,
       "acierto": 0.47058823529411764,
-      "logloss": 1.0154543339436874,
+      "logloss": 1.0154543332714385,
       "acierto_doble": 0.8235294117647058,
       "por_confianza": [
        {
