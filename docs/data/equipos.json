@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-11T23:27:33Z",
+  "actualizado": "2026-11-12T07:08:21Z",
   "temporada": "2026/27",
   "partidos_historico": 8679,
   "ultimo_partido": {
@@ -34,7 +34,7 @@
    {
     "equipo": "Ath Madrid",
     "elo": 1805,
-    "ataque": 1.631,
+    "ataque": 1.632,
     "defensa": 0.635
    },
    {
@@ -70,7 +70,7 @@
    {
     "equipo": "Vallecano",
     "elo": 1631,
-    "ataque": 1.085,
+    "ataque": 1.086,
     "defensa": 0.813
    },
    {
@@ -119,7 +119,7 @@
     "equipo": "Santander",
     "elo": 1580,
     "ataque": 1.386,
-    "defensa": 1.311
+    "defensa": 1.312
    },
    {
     "equipo": "Espanol",
@@ -180,13 +180,13 @@
    {
     "equipo": "Las Palmas",
     "elo": 1536,
-    "ataque": 1.001,
+    "ataque": 1.002,
     "defensa": 1.048
    },
    {
     "equipo": "Oviedo",
     "elo": 1522,
-    "ataque": 0.931,
+    "ataque": 0.932,
     "defensa": 0.979
    },
    {
@@ -216,7 +216,7 @@
    {
     "equipo": "Celta B",
     "elo": 1465,
-    "ataque": 1.091,
+    "ataque": 1.092,
     "defensa": 1.653
    },
    {
