@@ -1,31 +1,104 @@
 {
  "avisados": [
-  "2026-11-06|Sevilla|Alaves",
-  "2026-11-07|Burgos|Celta B",
-  "2026-11-07|Cadiz|Oviedo",
-  "2026-11-07|Cordoba|Ceuta",
-  "2026-11-07|Espanol|La Coruna",
-  "2026-11-07|Leganes|Albacete",
-  "2026-11-07|Malaga|Santander",
-  "2026-11-07|Osasuna|Ath Bilbao",
-  "2026-11-07|Valencia|Real Madrid",
-  "2026-11-08|Ath Madrid|Barcelona",
-  "2026-11-08|Celta|Levante",
-  "2026-11-08|Elche|Betis",
-  "2026-11-08|Girona|Almeria",
-  "2026-11-08|Las Palmas|Eldense",
-  "2026-11-08|Sociedad|Vallecano",
-  "2026-11-08|Sp Gijon|Valladolid",
-  "2026-11-08|Villarreal|Getafe",
-  "2026-11-09|Sabadell|Sociedad B"
+  "2026-11-13|Leganes|Burgos",
+  "2026-11-14|Almeria|Andorra",
+  "2026-11-14|Mallorca|Cordoba",
+  "2026-11-14|Oviedo|Girona",
+  "2026-11-14|Sociedad B|Sp Gijon",
+  "2026-11-14|Valladolid|Castellon",
+  "2026-11-15|Eibar|Cadiz",
+  "2026-11-15|Eldense|Sabadell",
+  "2026-11-15|Granada|Las Palmas",
+  "2026-11-15|Tenerife|Ceuta",
+  "2026-11-16|Albacete|Celta B"
  ],
  "signos": {
-  "2026-11-08|Las Palmas|Eldense": {
+  "2026-11-13|Leganes|Burgos": {
    "pick": "1",
    "prob": {
-    "1": 0.4291,
-    "X": 0.2712,
-    "2": 0.2997
+    "1": 0.3885,
+    "X": 0.2986,
+    "2": 0.3129
+   }
+  },
+  "2026-11-14|Valladolid|Castellon": {
+   "pick": "2",
+   "prob": {
+    "1": 0.3172,
+    "X": 0.2642,
+    "2": 0.4186
+   }
+  },
+  "2026-11-14|Sociedad B|Sp Gijon": {
+   "pick": "1",
+   "prob": {
+    "1": 0.381,
+    "X": 0.2912,
+    "2": 0.3278
+   }
+  },
+  "2026-11-14|Almeria|Andorra": {
+   "pick": "1",
+   "prob": {
+    "1": 0.576,
+    "X": 0.2267,
+    "2": 0.1974
+   }
+  },
+  "2026-11-14|Mallorca|Cordoba": {
+   "pick": "1",
+   "prob": {
+    "1": 0.4864,
+    "X": 0.2485,
+    "2": 0.2651
+   }
+  },
+  "2026-11-14|Oviedo|Girona": {
+   "pick": "1",
+   "prob": {
+    "1": 0.3917,
+    "X": 0.2855,
+    "2": 0.3227
+   }
+  },
+  "2026-11-15|Tenerife|Ceuta": {
+   "pick": "1",
+   "prob": {
+    "1": 0.497,
+    "X": 0.2674,
+    "2": 0.2357
+   }
+  },
+  "2026-11-15|Granada|Las Palmas": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5214,
+    "X": 0.2577,
+    "2": 0.2209
+   }
+  },
+  "2026-11-15|Eibar|Cadiz": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5717,
+    "X": 0.2389,
+    "2": 0.1894
+   }
+  },
+  "2026-11-15|Eldense|Sabadell": {
+   "pick": "1",
+   "prob": {
+    "1": 0.3945,
+    "X": 0.3017,
+    "2": 0.3038
+   }
+  },
+  "2026-11-16|Albacete|Celta B": {
+   "pick": "1",
+   "prob": {
+    "1": 0.5768,
+    "X": 0.2284,
+    "2": 0.1947
    }
   }
  }
