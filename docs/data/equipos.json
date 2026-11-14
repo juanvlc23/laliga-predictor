@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-13T23:32:02Z",
+  "actualizado": "2026-11-14T06:30:04Z",
   "temporada": "2026/27",
   "partidos_historico": 8679,
   "ultimo_partido": {
@@ -22,13 +22,13 @@
    {
     "equipo": "Barcelona",
     "elo": 1982,
-    "ataque": 2.732,
+    "ataque": 2.733,
     "defensa": 0.655
    },
    {
     "equipo": "Real Madrid",
     "elo": 1922,
-    "ataque": 2.043,
+    "ataque": 2.042,
     "defensa": 0.555
    },
    {
@@ -40,13 +40,13 @@
    {
     "equipo": "Betis",
     "elo": 1751,
-    "ataque": 1.5,
+    "ataque": 1.499,
     "defensa": 0.783
    },
    {
     "equipo": "Villarreal",
     "elo": 1729,
-    "ataque": 1.659,
+    "ataque": 1.658,
     "defensa": 0.799
    },
    {
@@ -130,7 +130,7 @@
    {
     "equipo": "Osasuna",
     "elo": 1563,
-    "ataque": 1.1,
+    "ataque": 1.099,
     "defensa": 0.944
    },
    {
@@ -163,7 +163,7 @@
     "equipo": "Girona",
     "elo": 1585,
     "ataque": 1.118,
-    "defensa": 0.848
+    "defensa": 0.849
    },
    {
     "equipo": "Burgos",
@@ -216,8 +216,8 @@
    {
     "equipo": "Celta B",
     "elo": 1465,
-    "ataque": 1.091,
-    "defensa": 1.652
+    "ataque": 1.092,
+    "defensa": 1.653
    },
    {
     "equipo": "Albacete",
@@ -228,7 +228,7 @@
    {
     "equipo": "Andorra",
     "elo": 1443,
-    "ataque": 1.032,
+    "ataque": 1.033,
     "defensa": 1.254
    },
    {
