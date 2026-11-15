@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-14T21:27:30Z",
+  "actualizado": "2026-11-15T13:54:29Z",
   "temporada": "2026/27",
   "partidos_historico": 8679,
   "ultimo_partido": {
@@ -22,8 +22,8 @@
    {
     "equipo": "Barcelona",
     "elo": 1982,
-    "ataque": 2.733,
-    "defensa": 0.655
+    "ataque": 2.732,
+    "defensa": 0.656
    },
    {
     "equipo": "Real Madrid",
@@ -58,7 +58,7 @@
    {
     "equipo": "Ath Bilbao",
     "elo": 1649,
-    "ataque": 1.214,
+    "ataque": 1.213,
     "defensa": 0.746
    },
    {
@@ -100,7 +100,7 @@
    {
     "equipo": "Getafe",
     "elo": 1590,
-    "ataque": 0.775,
+    "ataque": 0.774,
     "defensa": 0.703
    },
    {
@@ -163,7 +163,7 @@
     "equipo": "Girona",
     "elo": 1585,
     "ataque": 1.118,
-    "defensa": 0.849
+    "defensa": 0.848
    },
    {
     "equipo": "Burgos",
@@ -216,7 +216,7 @@
    {
     "equipo": "Celta B",
     "elo": 1465,
-    "ataque": 1.092,
+    "ataque": 1.091,
     "defensa": 1.653
    },
    {
