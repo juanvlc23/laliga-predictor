@@ -1,11 +1,11 @@
 {
  "meta": {
-  "actualizado": "2026-11-16T15:42:02Z",
+  "actualizado": "2026-11-17T00:47:50Z",
   "temporada": "2026/27",
-  "partidos_historico": 8689,
+  "partidos_historico": 8690,
   "ultimo_partido": {
    "Primera": "2026-11-08",
-   "Segunda": "2026-11-15"
+   "Segunda": "2026-11-16"
   },
   "peso_modelo": {
    "Primera": 0.0,
@@ -17,69 +17,5 @@
    "leidas": null
   }
  },
- "partidos": [
-  {
-   "division": "Segunda",
-   "fecha": "2026-11-16",
-   "hora": "19:30",
-   "local": "Albacete",
-   "visitante": "Celta B",
-   "goles_esperados": [
-    2.1,
-    1.42
-   ],
-   "prob": {
-    "1": 0.5768,
-    "X": 0.2284,
-    "2": 0.1947
-   },
-   "prob_modelo": {
-    "1": 0.5306,
-    "X": 0.2131,
-    "2": 0.2563
-   },
-   "casas": {
-    "1": 0.5768,
-    "X": 0.2284,
-    "2": 0.1947
-   },
-   "cuotas_fuente": "football-data",
-   "cuotas_leidas": null,
-   "pick": "1",
-   "confianza": "media",
-   "doble_oportunidad": {
-    "pick": "1X",
-    "prob": 0.8053
-   },
-   "marcador_probable": "2-1",
-   "over_2_5": 0.683,
-   "pleno": [
-    [
-     0.0311,
-     0.0404,
-     0.0298,
-     0.0209
-    ],
-    [
-     0.0606,
-     0.0898,
-     0.0626,
-     0.044
-    ],
-    [
-     0.0653,
-     0.0927,
-     0.0658,
-     0.0462
-    ],
-    [
-     0.0848,
-     0.1204,
-     0.0855,
-     0.0601
-    ]
-   ],
-   "notas": []
-  }
- ]
+ "partidos": []
 }
