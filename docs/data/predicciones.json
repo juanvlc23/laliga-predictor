@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-20T10:00:10Z",
+  "actualizado": "2026-11-20T18:36:45Z",
   "temporada": "2026/27",
   "partidos_historico": 8690,
   "ultimo_partido": {
@@ -17,5 +17,1329 @@
    "leidas": null
   }
  },
- "partidos": []
+ "partidos": [
+  {
+   "division": "Primera",
+   "fecha": "2026-11-20",
+   "hora": "20:00",
+   "local": "Ath Bilbao",
+   "visitante": "Espanol",
+   "goles_esperados": [
+    1.41,
+    0.81
+   ],
+   "prob": {
+    "1": 0.6347,
+    "X": 0.2145,
+    "2": 0.1508
+   },
+   "prob_modelo": {
+    "1": 0.51,
+    "X": 0.2759,
+    "2": 0.214
+   },
+   "casas": {
+    "1": 0.6347,
+    "X": 0.2145,
+    "2": 0.1508
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "media",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.8492
+   },
+   "marcador_probable": "1-0",
+   "over_2_5": 0.3841,
+   "pleno": [
+    [
+     0.1097,
+     0.086,
+     0.0356,
+     0.012
+    ],
+    [
+     0.1509,
+     0.1257,
+     0.0504,
+     0.0169
+    ],
+    [
+     0.1079,
+     0.0876,
+     0.0356,
+     0.012
+    ],
+    [
+     0.0753,
+     0.0612,
+     0.0248,
+     0.0083
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-21",
+   "hora": "13:00",
+   "local": "Alaves",
+   "visitante": "La Coruna",
+   "goles_esperados": [
+    1.41,
+    0.97
+   ],
+   "prob": {
+    "1": 0.4319,
+    "X": 0.2884,
+    "2": 0.2798
+   },
+   "prob_modelo": {
+    "1": 0.4708,
+    "X": 0.2731,
+    "2": 0.2561
+   },
+   "casas": {
+    "1": 0.4319,
+    "X": 0.2884,
+    "2": 0.2798
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7202
+   },
+   "marcador_probable": "1-0",
+   "over_2_5": 0.4244,
+   "pleno": [
+    [
+     0.0945,
+     0.0879,
+     0.0433,
+     0.0181
+    ],
+    [
+     0.1292,
+     0.1283,
+     0.0611,
+     0.0255
+    ],
+    [
+     0.0924,
+     0.0893,
+     0.0431,
+     0.018
+    ],
+    [
+     0.0644,
+     0.0622,
+     0.0301,
+     0.0126
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-21",
+   "hora": "15:15",
+   "local": "Vallecano",
+   "visitante": "Valencia",
+   "goles_esperados": [
+    1.36,
+    0.9
+   ],
+   "prob": {
+    "1": 0.4899,
+    "X": 0.272,
+    "2": 0.2381
+   },
+   "prob_modelo": {
+    "1": 0.4731,
+    "X": 0.2807,
+    "2": 0.2463
+   },
+   "casas": {
+    "1": 0.4899,
+    "X": 0.272,
+    "2": 0.2381
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7619
+   },
+   "marcador_probable": "1-0",
+   "over_2_5": 0.3924,
+   "pleno": [
+    [
+     0.1065,
+     0.0923,
+     0.0423,
+     0.0161
+    ],
+    [
+     0.1405,
+     0.1295,
+     0.0574,
+     0.0219
+    ],
+    [
+     0.0966,
+     0.0868,
+     0.039,
+     0.0148
+    ],
+    [
+     0.0637,
+     0.0573,
+     0.0257,
+     0.0098
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-21",
+   "hora": "17:30",
+   "local": "Sevilla",
+   "visitante": "Betis",
+   "goles_esperados": [
+    1.34,
+    1.52
+   ],
+   "prob": {
+    "1": 0.3211,
+    "X": 0.2782,
+    "2": 0.4007
+   },
+   "prob_modelo": {
+    "1": 0.3353,
+    "X": 0.2518,
+    "2": 0.4129
+   },
+   "casas": {
+    "1": 0.3211,
+    "X": 0.2782,
+    "2": 0.4007
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7218
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.5454,
+   "pleno": [
+    [
+     0.0587,
+     0.0851,
+     0.0658,
+     0.051
+    ],
+    [
+     0.0752,
+     0.1182,
+     0.0885,
+     0.0686
+    ],
+    [
+     0.0516,
+     0.0784,
+     0.0595,
+     0.0461
+    ],
+    [
+     0.0336,
+     0.051,
+     0.0387,
+     0.03
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-21",
+   "hora": "20:00",
+   "local": "Real Madrid",
+   "visitante": "Celta",
+   "goles_esperados": [
+    2.23,
+    0.7
+   ],
+   "prob": {
+    "1": 0.8112,
+    "X": 0.1225,
+    "2": 0.0663
+   },
+   "prob_modelo": {
+    "1": 0.7202,
+    "X": 0.1784,
+    "2": 0.1014
+   },
+   "casas": {
+    "1": 0.8112,
+    "X": 0.1225,
+    "2": 0.0663
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "alta",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.9337
+   },
+   "marcador_probable": "2-0",
+   "over_2_5": 0.5602,
+   "pleno": [
+    [
+     0.0547,
+     0.0364,
+     0.0132,
+     0.0037
+    ],
+    [
+     0.1181,
+     0.0848,
+     0.0293,
+     0.0083
+    ],
+    [
+     0.1326,
+     0.0931,
+     0.0326,
+     0.0092
+    ],
+    [
+     0.1904,
+     0.1336,
+     0.0469,
+     0.0132
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-22",
+   "hora": "13:00",
+   "local": "Barcelona",
+   "visitante": "Villarreal",
+   "goles_esperados": [
+    3.13,
+    1.17
+   ],
+   "prob": {
+    "1": 0.7813,
+    "X": 0.1277,
+    "2": 0.0909
+   },
+   "prob_modelo": {
+    "1": 0.7599,
+    "X": 0.1334,
+    "2": 0.1067
+   },
+   "casas": {
+    "1": 0.7813,
+    "X": 0.1277,
+    "2": 0.0909
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "alta",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.9091
+   },
+   "marcador_probable": "3-1",
+   "over_2_5": 0.803,
+   "pleno": [
+    [
+     0.0142,
+     0.0151,
+     0.0093,
+     0.005
+    ],
+    [
+     0.0417,
+     0.0503,
+     0.029,
+     0.0156
+    ],
+    [
+     0.0664,
+     0.0777,
+     0.0455,
+     0.0244
+    ],
+    [
+     0.188,
+     0.22,
+     0.1287,
+     0.0691
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-22",
+   "hora": "15:15",
+   "local": "Santander",
+   "visitante": "Sociedad",
+   "goles_esperados": [
+    1.89,
+    2.02
+   ],
+   "prob": {
+    "1": 0.2959,
+    "X": 0.2328,
+    "2": 0.4714
+   },
+   "prob_modelo": {
+    "1": 0.3699,
+    "X": 0.2112,
+    "2": 0.4188
+   },
+   "casas": {
+    "1": 0.2959,
+    "X": 0.2328,
+    "2": 0.4714
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7672
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.7489,
+   "pleno": [
+    [
+     0.021,
+     0.0393,
+     0.0407,
+     0.0495
+    ],
+    [
+     0.0368,
+     0.0774,
+     0.0771,
+     0.0937
+    ],
+    [
+     0.0358,
+     0.0723,
+     0.073,
+     0.0887
+    ],
+    [
+     0.0391,
+     0.079,
+     0.0797,
+     0.0968
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-22",
+   "hora": "17:30",
+   "local": "Osasuna",
+   "visitante": "Malaga",
+   "goles_esperados": [
+    1.69,
+    1.07
+   ],
+   "prob": {
+    "1": 0.5206,
+    "X": 0.2655,
+    "2": 0.2139
+   },
+   "prob_modelo": {
+    "1": 0.5185,
+    "X": 0.2439,
+    "2": 0.2377
+   },
+   "casas": {
+    "1": 0.5206,
+    "X": 0.2655,
+    "2": 0.2139
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7861
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.5219,
+   "pleno": [
+    [
+     0.0646,
+     0.0658,
+     0.036,
+     0.0172
+    ],
+    [
+     0.1053,
+     0.1158,
+     0.0611,
+     0.0291
+    ],
+    [
+     0.0905,
+     0.0968,
+     0.0517,
+     0.0246
+    ],
+    [
+     0.0829,
+     0.0886,
+     0.0474,
+     0.0226
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-22",
+   "hora": "20:00",
+   "local": "Getafe",
+   "visitante": "Ath Madrid",
+   "goles_esperados": [
+    0.71,
+    1.23
+   ],
+   "prob": {
+    "1": 0.1591,
+    "X": 0.242,
+    "2": 0.5988
+   },
+   "prob_modelo": {
+    "1": 0.2106,
+    "X": 0.3024,
+    "2": 0.4869
+   },
+   "casas": {
+    "1": 0.1591,
+    "X": 0.242,
+    "2": 0.5988
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "media",
+   "doble_oportunidad": {
+    "pick": "X2",
+    "prob": 0.8409
+   },
+   "marcador_probable": "0-1",
+   "over_2_5": 0.307,
+   "pleno": [
+    [
+     0.1455,
+     0.1757,
+     0.1094,
+     0.0632
+    ],
+    [
+     0.0997,
+     0.1269,
+     0.0772,
+     0.0446
+    ],
+    [
+     0.0358,
+     0.0442,
+     0.0273,
+     0.0157
+    ],
+    [
+     0.0101,
+     0.0125,
+     0.0077,
+     0.0045
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Primera",
+   "fecha": "2026-11-23",
+   "hora": "20:00",
+   "local": "Levante",
+   "visitante": "Elche",
+   "goles_esperados": [
+    1.56,
+    1.17
+   ],
+   "prob": {
+    "1": 0.435,
+    "X": 0.2642,
+    "2": 0.3007
+   },
+   "prob_modelo": {
+    "1": 0.4634,
+    "X": 0.2542,
+    "2": 0.2825
+   },
+   "casas": {
+    "1": 0.435,
+    "X": 0.2642,
+    "2": 0.3007
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7358
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.5132,
+   "pleno": [
+    [
+     0.067,
+     0.0745,
+     0.0444,
+     0.0237
+    ],
+    [
+     0.1005,
+     0.1207,
+     0.0694,
+     0.0371
+    ],
+    [
+     0.0798,
+     0.093,
+     0.0542,
+     0.0289
+    ],
+    [
+     0.0645,
+     0.0752,
+     0.0438,
+     0.0234
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-20",
+   "hora": "19:30",
+   "local": "Andorra",
+   "visitante": "Leganes",
+   "goles_esperados": [
+    1.62,
+    1.04
+   ],
+   "prob": {
+    "1": 0.5037,
+    "X": 0.2619,
+    "2": 0.2344
+   },
+   "prob_modelo": {
+    "1": 0.5056,
+    "X": 0.2513,
+    "2": 0.2431
+   },
+   "casas": {
+    "1": 0.5037,
+    "X": 0.2619,
+    "2": 0.2344
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7656
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.4967,
+   "pleno": [
+    [
+     0.0715,
+     0.0713,
+     0.0381,
+     0.0176
+    ],
+    [
+     0.1114,
+     0.1196,
+     0.0615,
+     0.0284
+    ],
+    [
+     0.0914,
+     0.0954,
+     0.0498,
+     0.023
+    ],
+    [
+     0.0779,
+     0.0813,
+     0.0424,
+     0.0196
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-21",
+   "hora": "13:00",
+   "local": "Sabadell",
+   "visitante": "Granada",
+   "goles_esperados": [
+    0.95,
+    0.85
+   ],
+   "prob": {
+    "1": 0.3803,
+    "X": 0.3015,
+    "2": 0.3182
+   },
+   "prob_modelo": {
+    "1": 0.3614,
+    "X": 0.3317,
+    "2": 0.307
+   },
+   "casas": {
+    "1": 0.3803,
+    "X": 0.3015,
+    "2": 0.3182
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.6985
+   },
+   "marcador_probable": "0-0",
+   "over_2_5": 0.2701,
+   "pleno": [
+    [
+     0.1667,
+     0.1385,
+     0.0598,
+     0.0213
+    ],
+    [
+     0.155,
+     0.1354,
+     0.0568,
+     0.0202
+    ],
+    [
+     0.0746,
+     0.0635,
+     0.027,
+     0.0096
+    ],
+    [
+     0.0305,
+     0.026,
+     0.0111,
+     0.0039
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-21",
+   "hora": "15:15",
+   "local": "Sociedad B",
+   "visitante": "Cadiz",
+   "goles_esperados": [
+    1.45,
+    1.12
+   ],
+   "prob": {
+    "1": 0.4775,
+    "X": 0.2657,
+    "2": 0.2568
+   },
+   "prob_modelo": {
+    "1": 0.4452,
+    "X": 0.2647,
+    "2": 0.2901
+   },
+   "casas": {
+    "1": 0.4775,
+    "X": 0.2657,
+    "2": 0.2568
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7432
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.4745,
+   "pleno": [
+    [
+     0.0781,
+     0.0839,
+     0.048,
+     0.0243
+    ],
+    [
+     0.1092,
+     0.126,
+     0.0696,
+     0.0353
+    ],
+    [
+     0.0805,
+     0.0902,
+     0.0505,
+     0.0256
+    ],
+    [
+     0.0584,
+     0.0654,
+     0.0367,
+     0.0186
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-21",
+   "hora": "17:30",
+   "local": "Castellon",
+   "visitante": "Eldense",
+   "goles_esperados": [
+    2.05,
+    0.78
+   ],
+   "prob": {
+    "1": 0.6505,
+    "X": 0.2016,
+    "2": 0.1479
+   },
+   "prob_modelo": {
+    "1": 0.6685,
+    "X": 0.201,
+    "2": 0.1305
+   },
+   "casas": {
+    "1": 0.6505,
+    "X": 0.2016,
+    "2": 0.1479
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "media",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.8521
+   },
+   "marcador_probable": "2-0",
+   "over_2_5": 0.5378,
+   "pleno": [
+    [
+     0.0603,
+     0.0447,
+     0.0179,
+     0.0057
+    ],
+    [
+     0.1197,
+     0.0956,
+     0.0368,
+     0.0117
+    ],
+    [
+     0.1241,
+     0.0967,
+     0.0377,
+     0.012
+    ],
+    [
+     0.1546,
+     0.1205,
+     0.047,
+     0.015
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-21",
+   "hora": "20:00",
+   "local": "Tenerife",
+   "visitante": "Mallorca",
+   "goles_esperados": [
+    0.89,
+    1.22
+   ],
+   "prob": {
+    "1": 0.287,
+    "X": 0.287,
+    "2": 0.4259
+   },
+   "prob_modelo": {
+    "1": 0.2674,
+    "X": 0.297,
+    "2": 0.4355
+   },
+   "casas": {
+    "1": 0.287,
+    "X": 0.287,
+    "2": 0.4259
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "X2",
+    "prob": 0.713
+   },
+   "marcador_probable": "0-1",
+   "over_2_5": 0.3525,
+   "pleno": [
+    [
+     0.1233,
+     0.1462,
+     0.0902,
+     0.0512
+    ],
+    [
+     0.1062,
+     0.1335,
+     0.0802,
+     0.0455
+    ],
+    [
+     0.048,
+     0.0585,
+     0.0357,
+     0.0202
+    ],
+    [
+     0.0181,
+     0.022,
+     0.0134,
+     0.0076
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-22",
+   "hora": "13:00",
+   "local": "Cordoba",
+   "visitante": "Oviedo",
+   "goles_esperados": [
+    1.53,
+    1.35
+   ],
+   "prob": {
+    "1": 0.4873,
+    "X": 0.2524,
+    "2": 0.2603
+   },
+   "prob_modelo": {
+    "1": 0.4138,
+    "X": 0.251,
+    "2": 0.3352
+   },
+   "casas": {
+    "1": 0.4873,
+    "X": 0.2524,
+    "2": 0.2603
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7476
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.5486,
+   "pleno": [
+    [
+     0.0579,
+     0.0745,
+     0.0514,
+     0.0336
+    ],
+    [
+     0.0844,
+     0.1177,
+     0.0784,
+     0.0513
+    ],
+    [
+     0.0656,
+     0.0886,
+     0.0598,
+     0.0392
+    ],
+    [
+     0.0512,
+     0.0692,
+     0.0467,
+     0.0306
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-22",
+   "hora": "15:15",
+   "local": "Sp Gijon",
+   "visitante": "Las Palmas",
+   "goles_esperados": [
+    1.38,
+    1.16
+   ],
+   "prob": {
+    "1": 0.4459,
+    "X": 0.2754,
+    "2": 0.2787
+   },
+   "prob_modelo": {
+    "1": 0.4172,
+    "X": 0.2695,
+    "2": 0.3134
+   },
+   "casas": {
+    "1": 0.4459,
+    "X": 0.2754,
+    "2": 0.2787
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7246
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.4648,
+   "pleno": [
+    [
+     0.0811,
+     0.0901,
+     0.0531,
+     0.0281
+    ],
+    [
+     0.1075,
+     0.1282,
+     0.0731,
+     0.0387
+    ],
+    [
+     0.0752,
+     0.087,
+     0.0503,
+     0.0266
+    ],
+    [
+     0.0506,
+     0.0585,
+     0.0339,
+     0.0179
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-22",
+   "hora": "17:30",
+   "local": "Celta B",
+   "visitante": "Valladolid",
+   "goles_esperados": [
+    1.76,
+    1.46
+   ],
+   "prob": {
+    "1": 0.2802,
+    "X": 0.2618,
+    "2": 0.4581
+   },
+   "prob_modelo": {
+    "1": 0.4477,
+    "X": 0.2336,
+    "2": 0.3187
+   },
+   "casas": {
+    "1": 0.2802,
+    "X": 0.2618,
+    "2": 0.4581
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.7382
+   },
+   "marcador_probable": "1-1",
+   "over_2_5": 0.6241,
+   "pleno": [
+    [
+     0.0414,
+     0.0569,
+     0.0425,
+     0.031
+    ],
+    [
+     0.069,
+     0.1041,
+     0.0748,
+     0.0547
+    ],
+    [
+     0.062,
+     0.0904,
+     0.0659,
+     0.0481
+    ],
+    [
+     0.0603,
+     0.0879,
+     0.0641,
+     0.0468
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-22",
+   "hora": "17:30",
+   "local": "Girona",
+   "visitante": "Eibar",
+   "goles_esperados": [
+    1.37,
+    0.88
+   ],
+   "prob": {
+    "1": 0.5175,
+    "X": 0.2523,
+    "2": 0.2301
+   },
+   "prob_modelo": {
+    "1": 0.4833,
+    "X": 0.2794,
+    "2": 0.2372
+   },
+   "casas": {
+    "1": 0.5175,
+    "X": 0.2523,
+    "2": 0.2301
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7699
+   },
+   "marcador_probable": "1-0",
+   "over_2_5": 0.3905,
+   "pleno": [
+    [
+     0.1072,
+     0.0905,
+     0.0404,
+     0.0149
+    ],
+    [
+     0.1432,
+     0.1286,
+     0.0555,
+     0.0204
+    ],
+    [
+     0.0996,
+     0.0872,
+     0.0381,
+     0.0141
+    ],
+    [
+     0.0668,
+     0.0585,
+     0.0256,
+     0.0094
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-22",
+   "hora": "20:00",
+   "local": "Burgos",
+   "visitante": "Albacete",
+   "goles_esperados": [
+    1.39,
+    0.81
+   ],
+   "prob": {
+    "1": 0.4577,
+    "X": 0.28,
+    "2": 0.2623
+   },
+   "prob_modelo": {
+    "1": 0.5038,
+    "X": 0.2785,
+    "2": 0.2177
+   },
+   "casas": {
+    "1": 0.4577,
+    "X": 0.28,
+    "2": 0.2623
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "1",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "1X",
+    "prob": 0.7377
+   },
+   "marcador_probable": "1-0",
+   "over_2_5": 0.379,
+   "pleno": [
+    [
+     0.1118,
+     0.0879,
+     0.0365,
+     0.0123
+    ],
+    [
+     0.1516,
+     0.1265,
+     0.0508,
+     0.0171
+    ],
+    [
+     0.1067,
+     0.0869,
+     0.0354,
+     0.0119
+    ],
+    [
+     0.0729,
+     0.0594,
+     0.0242,
+     0.0081
+    ]
+   ],
+   "notas": []
+  },
+  {
+   "division": "Segunda",
+   "fecha": "2026-11-23",
+   "hora": "19:30",
+   "local": "Ceuta",
+   "visitante": "Almeria",
+   "goles_esperados": [
+    1.12,
+    2.17
+   ],
+   "prob": {
+    "1": 0.2715,
+    "X": 0.252,
+    "2": 0.4765
+   },
+   "prob_modelo": {
+    "1": 0.1856,
+    "X": 0.2025,
+    "2": 0.6119
+   },
+   "casas": {
+    "1": 0.2715,
+    "X": 0.252,
+    "2": 0.4765
+   },
+   "cuotas_fuente": "football-data",
+   "cuotas_leidas": null,
+   "pick": "2",
+   "confianza": "baja",
+   "doble_oportunidad": {
+    "pick": "12",
+    "prob": 0.748
+   },
+   "marcador_probable": "1-2",
+   "over_2_5": 0.6387,
+   "pleno": [
+    [
+     0.0385,
+     0.0796,
+     0.0878,
+     0.1207
+    ],
+    [
+     0.0404,
+     0.0917,
+     0.0982,
+     0.1351
+    ],
+    [
+     0.0233,
+     0.0506,
+     0.055,
+     0.0756
+    ],
+    [
+     0.0118,
+     0.0256,
+     0.0278,
+     0.0383
+    ]
+   ],
+   "notas": []
+  }
+ ]
 }
