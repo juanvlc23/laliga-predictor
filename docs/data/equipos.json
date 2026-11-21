@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-20T18:36:45Z",
+  "actualizado": "2026-11-21T01:30:15Z",
   "temporada": "2026/27",
   "partidos_historico": 8690,
   "ultimo_partido": {
@@ -28,13 +28,13 @@
    {
     "equipo": "Real Madrid",
     "elo": 1922,
-    "ataque": 2.052,
+    "ataque": 2.053,
     "defensa": 0.557
    },
    {
     "equipo": "Ath Madrid",
     "elo": 1805,
-    "ataque": 1.64,
+    "ataque": 1.639,
     "defensa": 0.637
    },
    {
@@ -52,8 +52,8 @@
    {
     "equipo": "Sociedad",
     "elo": 1657,
-    "ataque": 1.448,
-    "defensa": 0.963
+    "ataque": 1.449,
+    "defensa": 0.964
    },
    {
     "equipo": "Ath Bilbao",
@@ -150,7 +150,7 @@
    {
     "equipo": "Almeria",
     "elo": 1613,
-    "ataque": 1.326,
+    "ataque": 1.327,
     "defensa": 1.078
    },
    {
@@ -217,7 +217,7 @@
     "equipo": "Celta B",
     "elo": 1456,
     "ataque": 1.001,
-    "defensa": 1.571
+    "defensa": 1.57
    },
    {
     "equipo": "Albacete",
@@ -234,7 +234,7 @@
    {
     "equipo": "Tenerife",
     "elo": 1439,
-    "ataque": 0.786,
+    "ataque": 0.787,
     "defensa": 1.081
    },
    {
@@ -265,12 +265,12 @@
     "equipo": "Cadiz",
     "elo": 1374,
     "ataque": 0.794,
-    "defensa": 1.187
+    "defensa": 1.188
    },
    {
     "equipo": "Ceuta",
     "elo": 1368,
-    "ataque": 0.746,
+    "ataque": 0.745,
     "defensa": 1.532
    }
   ]
