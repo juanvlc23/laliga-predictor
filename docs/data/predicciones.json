@@ -1,11 +1,11 @@
 {
  "meta": {
-  "actualizado": "2026-11-23T18:03:23Z",
+  "actualizado": "2026-11-24T17:40:22Z",
   "temporada": "2026/27",
-  "partidos_historico": 8709,
+  "partidos_historico": 8711,
   "ultimo_partido": {
-   "Primera": "2026-11-22",
-   "Segunda": "2026-11-22"
+   "Primera": "2026-11-23",
+   "Segunda": "2026-11-23"
   },
   "peso_modelo": {
    "Primera": 0.0,
@@ -17,132 +17,5 @@
    "leidas": null
   }
  },
- "partidos": [
-  {
-   "division": "Primera",
-   "fecha": "2026-11-23",
-   "hora": "20:00",
-   "local": "Levante",
-   "visitante": "Elche",
-   "goles_esperados": [
-    1.56,
-    1.18
-   ],
-   "prob": {
-    "1": 0.435,
-    "X": 0.2642,
-    "2": 0.3007
-   },
-   "prob_modelo": {
-    "1": 0.4619,
-    "X": 0.2535,
-    "2": 0.2846
-   },
-   "casas": {
-    "1": 0.435,
-    "X": 0.2642,
-    "2": 0.3007
-   },
-   "cuotas_fuente": "football-data",
-   "cuotas_leidas": null,
-   "pick": "1",
-   "confianza": "baja",
-   "doble_oportunidad": {
-    "pick": "12",
-    "prob": 0.7358
-   },
-   "marcador_probable": "1-1",
-   "over_2_5": 0.516,
-   "pleno": [
-    [
-     0.0661,
-     0.0744,
-     0.0446,
-     0.0241
-    ],
-    [
-     0.0996,
-     0.1203,
-     0.0698,
-     0.0377
-    ],
-    [
-     0.0791,
-     0.0929,
-     0.0546,
-     0.0295
-    ],
-    [
-     0.0641,
-     0.0753,
-     0.0442,
-     0.0239
-    ]
-   ],
-   "notas": []
-  },
-  {
-   "division": "Segunda",
-   "fecha": "2026-11-23",
-   "hora": "19:30",
-   "local": "Ceuta",
-   "visitante": "Almeria",
-   "goles_esperados": [
-    1.12,
-    2.18
-   ],
-   "prob": {
-    "1": 0.2715,
-    "X": 0.252,
-    "2": 0.4765
-   },
-   "prob_modelo": {
-    "1": 0.184,
-    "X": 0.2012,
-    "2": 0.6148
-   },
-   "casas": {
-    "1": 0.2715,
-    "X": 0.252,
-    "2": 0.4765
-   },
-   "cuotas_fuente": "football-data",
-   "cuotas_leidas": null,
-   "pick": "2",
-   "confianza": "baja",
-   "doble_oportunidad": {
-    "pick": "12",
-    "prob": 0.748
-   },
-   "marcador_probable": "1-2",
-   "over_2_5": 0.6411,
-   "pleno": [
-    [
-     0.0379,
-     0.0792,
-     0.0877,
-     0.1219
-    ],
-    [
-     0.04,
-     0.091,
-     0.0981,
-     0.1364
-    ],
-    [
-     0.023,
-     0.0503,
-     0.0549,
-     0.0763
-    ],
-    [
-     0.0116,
-     0.0254,
-     0.0277,
-     0.0386
-    ]
-   ],
-   "notas": []
-  }
- ]
+ "partidos": []
 }
