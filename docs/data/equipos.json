@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-25T17:10:31Z",
+  "actualizado": "2026-11-26T00:59:18Z",
   "temporada": "2026/27",
   "partidos_historico": 8711,
   "ultimo_partido": {
@@ -28,7 +28,7 @@
    {
     "equipo": "Real Madrid",
     "elo": 1925,
-    "ataque": 2.048,
+    "ataque": 2.047,
     "defensa": 0.561
    },
    {
@@ -52,19 +52,19 @@
    {
     "equipo": "Sociedad",
     "elo": 1646,
-    "ataque": 1.45,
+    "ataque": 1.449,
     "defensa": 0.98
    },
    {
     "equipo": "Ath Bilbao",
     "elo": 1635,
     "ataque": 1.185,
-    "defensa": 0.749
+    "defensa": 0.75
    },
    {
     "equipo": "Celta",
     "elo": 1629,
-    "ataque": 1.191,
+    "ataque": 1.19,
     "defensa": 0.76
    },
    {
@@ -88,7 +88,7 @@
    {
     "equipo": "Levante",
     "elo": 1602,
-    "ataque": 1.209,
+    "ataque": 1.208,
     "defensa": 0.949
    },
    {
@@ -112,7 +112,7 @@
    {
     "equipo": "Santander",
     "elo": 1590,
-    "ataque": 1.407,
+    "ataque": 1.406,
     "defensa": 1.31
    },
    {
@@ -150,7 +150,7 @@
    {
     "equipo": "Almeria",
     "elo": 1618,
-    "ataque": 1.345,
+    "ataque": 1.344,
     "defensa": 1.098
    },
    {
@@ -187,7 +187,7 @@
     "equipo": "Granada",
     "elo": 1507,
     "ataque": 0.995,
-    "defensa": 1.093
+    "defensa": 1.092
    },
    {
     "equipo": "Oviedo",
@@ -204,8 +204,8 @@
    {
     "equipo": "Sp Gijon",
     "elo": 1480,
-    "ataque": 0.937,
-    "defensa": 1.127
+    "ataque": 0.936,
+    "defensa": 1.128
    },
    {
     "equipo": "Sabadell",
@@ -216,7 +216,7 @@
    {
     "equipo": "Celta B",
     "elo": 1453,
-    "ataque": 0.963,
+    "ataque": 0.962,
     "defensa": 1.546
    },
    {
@@ -252,14 +252,14 @@
    {
     "equipo": "Eldense",
     "elo": 1405,
-    "ataque": 0.786,
-    "defensa": 1.209
+    "ataque": 0.788,
+    "defensa": 1.208
    },
    {
     "equipo": "Cadiz",
     "elo": 1396,
     "ataque": 0.827,
-    "defensa": 1.165
+    "defensa": 1.164
    },
    {
     "equipo": "Sociedad B",
