@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-26T18:27:09Z",
+  "actualizado": "2026-11-27T02:50:57Z",
   "temporada": "2026/27",
   "partidos_historico": 8711,
   "ultimo_partido": {
@@ -22,7 +22,7 @@
    {
     "equipo": "Barcelona",
     "elo": 1985,
-    "ataque": 2.747,
+    "ataque": 2.746,
     "defensa": 0.67
    },
    {
@@ -89,7 +89,7 @@
     "equipo": "Levante",
     "elo": 1602,
     "ataque": 1.208,
-    "defensa": 0.949
+    "defensa": 0.95
    },
    {
     "equipo": "Sevilla",
@@ -130,7 +130,7 @@
    {
     "equipo": "Osasuna",
     "elo": 1570,
-    "ataque": 1.087,
+    "ataque": 1.086,
     "defensa": 0.927
    },
    {
@@ -216,7 +216,7 @@
    {
     "equipo": "Celta B",
     "elo": 1453,
-    "ataque": 0.962,
+    "ataque": 0.963,
     "defensa": 1.546
    },
    {
