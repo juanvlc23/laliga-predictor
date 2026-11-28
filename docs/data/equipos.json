@@ -1,6 +1,6 @@
 {
  "meta": {
-  "actualizado": "2026-11-27T22:42:03Z",
+  "actualizado": "2026-11-28T07:54:43Z",
   "temporada": "2026/27",
   "partidos_historico": 8711,
   "ultimo_partido": {
@@ -70,7 +70,7 @@
    {
     "equipo": "Valencia",
     "elo": 1621,
-    "ataque": 1.034,
+    "ataque": 1.033,
     "defensa": 0.854
    },
    {
@@ -82,14 +82,14 @@
    {
     "equipo": "Alaves",
     "elo": 1604,
-    "ataque": 1.144,
+    "ataque": 1.143,
     "defensa": 0.86
    },
    {
     "equipo": "Levante",
     "elo": 1602,
     "ataque": 1.208,
-    "defensa": 0.95
+    "defensa": 0.949
    },
    {
     "equipo": "Sevilla",
@@ -100,7 +100,7 @@
    {
     "equipo": "Elche",
     "elo": 1591,
-    "ataque": 1.141,
+    "ataque": 1.14,
     "defensa": 0.893
    },
    {
@@ -137,7 +137,7 @@
     "equipo": "Malaga",
     "elo": 1517,
     "ataque": 1.037,
-    "defensa": 1.062
+    "defensa": 1.063
    }
   ],
   "Segunda": [
@@ -162,8 +162,8 @@
    {
     "equipo": "Mallorca",
     "elo": 1592,
-    "ataque": 1.032,
-    "defensa": 0.796
+    "ataque": 1.033,
+    "defensa": 0.795
    },
    {
     "equipo": "Burgos",
@@ -186,7 +186,7 @@
    {
     "equipo": "Granada",
     "elo": 1507,
-    "ataque": 0.995,
+    "ataque": 0.994,
     "defensa": 1.092
    },
    {
@@ -216,7 +216,7 @@
    {
     "equipo": "Celta B",
     "elo": 1453,
-    "ataque": 0.963,
+    "ataque": 0.962,
     "defensa": 1.546
    },
    {
@@ -240,7 +240,7 @@
    {
     "equipo": "Valladolid",
     "elo": 1421,
-    "ataque": 0.863,
+    "ataque": 0.862,
     "defensa": 1.252
    },
    {
@@ -259,7 +259,7 @@
     "equipo": "Cadiz",
     "elo": 1396,
     "ataque": 0.827,
-    "defensa": 1.164
+    "defensa": 1.165
    },
    {
     "equipo": "Sociedad B",
